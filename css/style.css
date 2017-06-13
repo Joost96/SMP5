@@ -1,0 +1,109 @@
+[class*="col-"] {
+	box-sizing: border-box;
+    padding: 15px;
+    float: left;
+}
+
+.col-1 {width: calc(100% / 12);}
+.col-2 {width: calc(100% / 6);}
+.col-3 {width: 25%;}
+.col-4 {width: calc(100% / 3);}
+.col-5 {width: calc(100% / 12 * 5);}
+.col-6 {width: 50%;}
+.col-7 {width: calc(100% / 12 * 7);}
+.col-8 {width: calc(100% / 12 * 8);}
+.col-9 {width: 75%;}
+.col-10 {width: calc(100% / 12 * 10);}
+.col-11 {width: calc(100% / 12 * 11);}
+.col-12 {width: 100%;}
+
+
+.center {
+	margin : auto;
+	text-align: center;
+	float : none;
+}
+
+/* fonts */
+a {
+	font-family: "Franklin Gothic Medium";
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+p,li,label {
+	font-family: "Franklin Gothic";
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 23px;
+}
+h1 {
+	font-family: "Franklin Gothic";
+	font-size: 32px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 35.2px;
+}
+h3 {
+	font-family: "Franklin Gothic";
+	font-size: 16px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 17.6px;
+}
+
+/*form input */
+input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="url"], textarea, select {
+	width : 200px;
+	box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+	font : 14px "Franklin gothic";
+}
+textarea {
+	height : 100px;
+	max-width : 100%;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="url"]:focus, textarea:focus, select:focus {
+	border: 1px solid #0C0;
+}
+
+input[type="submit"],input[type="button"] {
+	box-sizing : border-box;
+	padding : 3%;
+	width : 120px;
+	border-style : none;
+}
+input[type="submit"] {
+	background : #169BD5;
+	border-bottom : 3px solid #e4e4e4;
+	color : #fff;
+}
+input[type="button"] {
+	background : #fff;
+	border : 1px solid #6b6b6b;
+	border-bottom : 3px solid #6b6b6b;
+}
+input[type="submit"]:hover {
+	background : #137faf;
+}
+input[type="button"]:hover {
+	background : #e4e4e4;
+}
