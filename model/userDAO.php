@@ -20,13 +20,14 @@
 			$databaseConn = $this->connect();
 			
 			if (!($stmt = $databaseConn->prepare($sql))) {
-				echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
 			}
 			if (!$stmt->bind_param("s", $username)) {
 				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 			}	
-			
-			$stmt->execute();
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
 			$result = $stmt->get_result();
 			if($row = $result->fetch_assoc())
 			{
