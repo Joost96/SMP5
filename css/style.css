@@ -28,6 +28,9 @@ body{
 	text-align: center;
 	float : none;
 }
+.clickable {
+	cursor: pointer;
+}
 
 /* header */
 header {

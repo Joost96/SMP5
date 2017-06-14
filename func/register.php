@@ -2,7 +2,11 @@
 	session_start();
 
 	$username = "";
-	$password = "";
+	$firstName= "";
+	$lastName= "";
+	$studentId= "";
+	$email= "";
+	$password= "";
 
 	if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
 		if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,12 +15,17 @@
 			$userDAO = new userDAO();
 			
 			$username = trim_data($_POST["username"]);
+			$firstName = trim_data($_POST["firstName"]);
+			$lastName = trim_data($_POST["lastName"]);
+			$studentId = trim_data($_POST["studentId"]);
+			$email = trim_data($_POST["email"]);
 			$password = trim_data($_POST["password"]);
-			$username = strtolower($username);
-			
+		  
+
+			$passwordHash = password_hash($password, PASSWORD_BCRYPT);
 			$user = $userDAO->GetUser($username);
 			if (password_verify($password, $user->password)) {
-				echo 'valid login';
+				echo 'valid register';
 				$_SESSION["user"] = $user;
 			} else {
 				echo 'Invalid';
