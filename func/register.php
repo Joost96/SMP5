@@ -20,7 +20,7 @@
 			$studentId = trim_data($_POST["studentId"]);
 			$email = trim_data($_POST["email"]);
 			$password = trim_data($_POST["password"]);
-		  
+			$username = strtolower($username);
 
 			$passwordHash = password_hash($password, PASSWORD_BCRYPT);
 			$user = $userDAO->GetUser($username);
