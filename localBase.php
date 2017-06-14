@@ -15,7 +15,7 @@
 				{
 					die($GLOBALS['DebugInfo'] .= "Connection failed: " . $conn->connect_error);
 				} 
-				echo "Connectie is gelukt!!!";
+				echo "Connectie met localBase is gelukt!!!";
 			$this->connection = $conn;     
 		}
 

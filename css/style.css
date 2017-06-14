@@ -17,11 +17,97 @@
 .col-11 {width: calc(100% / 12 * 11);}
 .col-12 {width: 100%;}
 
+body{
+	margin: auto;
+	width: 65%;
+
+}
 
 .center {
 	margin : auto;
 	text-align: center;
 	float : none;
+}
+
+/* header */
+header {
+	background-image: url(../img/header_background.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+}
+
+#menu_table{
+	float: right;
+	height: 5%;
+	border: none;
+	border-spacing: 0px;
+}
+
+#menu_table th{
+	border-right: 1px solid black;
+	padding: 0px 20px 0px 20px;
+	font-weight: normal;
+	background-color: white;
+}
+
+#first_menu_item{
+	border-left: 1px solid black;
+}
+
+#inholland_logo{
+	width: 20%;
+	margin-bottom: -155px;
+}
+
+#spacing_section{
+	height: 5%;
+}
+
+.navbar {
+	list-style-type : none;
+	padding: 0px;
+    margin: 0px;
+	background : #fff;
+	overflow : hidden;
+}
+.navbar .left {
+	float : left;
+}
+.navbar .right, .navbar .dropdown {
+	float : right;
+	border-left : 1px solid #bbb;
+}
+.navbar li a  {
+	display : block;
+}
+.navbar .right a , .navbar .dropdown a {
+	text-align: center;
+	padding : 14px 16px;
+	text-decoration: none;
+	color : #000;
+	cursor: pointer;
+}
+.navbar .dropdown .menuItems {
+	display: none;
+	position: absolute;
+	min-width : 100px;
+	margin-left : -62;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+	background : #fff;
+}
+.dropdown:hover .menuItems {
+    display: block;
+}
+header .title {
+	margin: 60px 27% 0px;
+    text-align: center;
+    background: rgba(35, 35, 35, 0.76);
+}
+
+header .title h1 {
+	color : #fff;
+	padding: 30px 0px;
 }
 
 /* fonts */
