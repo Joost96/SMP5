@@ -37,7 +37,24 @@
 			$stmt->close();
 			return $user;
 		}
+		function CreateUser($username, $firstName, $lastName, $studentId, $email, $password) {
+			$sql = "INSERT INTO user (username, firstName, lastName, studentId, email, password)
+						VALUES (?, ?, ?, ?, ?, ?)";
+			$user;
+			$databaseConn = $this->connect();
 			
+			if (!($stmt = $databaseConn->prepare($sql))) {
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+			}
+			if (!$stmt->bind_param("ssssss", $username, $firstName, $lastName, $studentId, $email, $password)) {
+				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+			}	
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+			}
+			$stmt->close();
+			return getUser($username);
+		}		
 	}
 ?>	
 			

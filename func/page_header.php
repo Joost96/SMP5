@@ -8,11 +8,11 @@
 		print "
 			<html>
 				<head>
-					<link rel='stylesheet' type='text/css' href='css/style.css'/>
-					<link rel='stylesheet' type='text/css' href='css/login.css'/>
-					<link rel='stylesheet' type='text/css' href='css/{$page}.css'/>
+					<link rel='stylesheet' type='text/css' href='/smp5/css/style.css'/>
+					<link rel='stylesheet' type='text/css' href='/smp5/css/login.css'/>
+					<link rel='stylesheet' type='text/css' href='/smp5/css/{$page}.css'/>
 					<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-					<script src='js/header.js'></script>
+					<script src='/smp5/js/header.js'></script>
 				</head>
 					<body>
 						<header>
@@ -56,55 +56,52 @@
 											<input id='loginBtn' type='submit'>
 											<input type='button' value='Annuleren'>
 										</div>
+										<p id='registerModalBtn' class='clickable'>klik hier voor registreren<p>
+									</div>
+								</div>
+							</div>
+							<!-- Modal register -->
+							<div id='registerModel' class='modal'>
+								<div class='modal-content'>
+									<span class='close'>&times;</span>
+									<h1 class='center'>Registreer</h1>
+									<div>
+										<div>
+											<label for='username'>Gebruikersnaam*</label>
+											<input type='text' name='username'><br>
+										</div>
+										<div>
+											<label for='firstName'>Voornaam</label>
+											<input type='text' name='firstName'><br>
+										</div>
+										<div>
+											<label for='lastName'>Achternaam</label>
+											<input type='text' name='lastName'><br>
+										</div>
+										<div>
+											<label for='studentId'>Student ID</label>
+											<input type='text' name='studentId'><br>
+										</div>
+										<div>
+											<label for='email'>email</label>
+											<input type='email' name='email'><br>
+										</div>
+										<div>
+											<label for='password'>Wachtwoord*</label>
+											<input type='password' name='password'><br>
+										</div>
+										<div>
+											<label for='confirmPassword'>bevestig wachtwoord*</label>
+											<input type='password' name='confirmPassword'><br>
+										</div>
+										<div class='center'>
+											<input id='registerBtn' type='submit' value='registreer'>
+											<input type='button' value='Annuleren'>
+										</div>
 									</div>
 								  </div>
 							</div>
-						</div>
-						<p id='registerModalBtn' class='clickable'>klik hier voor registreren<p>
-					  </div>
-				</div>
-				<!-- Modal register -->
-				<div id='registerModel' class='modal'>
-					<div class='modal-content'>
-						<span class='close'>&times;</span>
-						<h1 class='center'>Registreer</h1>
-						<div>
-							<div>
-								<label for='username'>Gebruikersnaam*</label>
-								<input type='text' name='username'><br>
-							</div>
-							<div>
-								<label for='firstName'>Voornaam</label>
-								<input type='text' name='firstName'><br>
-							</div>
-							<div>
-								<label for='lastName'>Achternaam</label>
-								<input type='text' name='lastName'><br>
-							</div>
-							<div>
-								<label for='studentId'>Student ID</label>
-								<input type='text' name='studentId'><br>
-							</div>
-							<div>
-								<label for='email'>email</label>
-								<input type='email' name='email'><br>
-							</div>
-							<div>
-								<label for='password'>Wachtwoord*</label>
-								<input type='password' name='password'><br>
-							</div>
-							<div>
-								<label for='confirmPassword'>bevestig wachtwoord*</label>
-								<input type='password' name='confirmPassword'><br>
-							</div>
-							<div class='center'>
-								<input id='registerBtn' type='submit' value='registreer'>
-								<input type='button' value='Annuleren'>
-							</div>
-						</div>
-					  </div>
-				</div>
-			</header>			
+						</header>			
 		";
 	}
 ?>

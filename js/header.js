@@ -17,23 +17,25 @@ window.onload = function() {
 		$("#loginModel").show();
 	});
 	
-	$( ".close" ).click(function() {
+	$( ".close, input[value=Annuleren]" ).click(function() {
 		$(".modal").hide();
 	});
 	
 	$( "#loginBtn" ).click(function() {
-		var username = $('input[name=username]').val();
-		var password = $('input[name=password]').val();
-		$.ajax({
-			method: "POST",
-			url: "func/login.php",
-			data: { username: username, password: password }
-		})
-		.done(function( msg ) {
-			alert(msg );
-			if (msg.indexOf("valid login") >= 0)
-				$("#loginModel").hide();
-		});
+		var username = $('#loginModel input[name=username]').val();
+		var password = $('#loginModel input[name=password]').val();
+		if(username && password) {
+			$.ajax({
+				method: "POST",
+				url: "func/login.php",
+				data: { username: username, password: password }
+			})
+			.done(function( msg ) {
+				alert(msg );
+				if (msg.indexOf("valid login") >= 0)
+					$("#loginModel").hide();
+			});
+		}
 	});
 	//--register modal
 	$( "#registerModalBtn" ).click(function() {
@@ -42,29 +44,30 @@ window.onload = function() {
 	});
 	
 	$( "#registerBtn" ).click(function() {
-		var username = $('input[name=username]').val();
-		var firstName = $('input[name=firstName]').val();;
-		var lastName = $('input[name=lastName]').val();;
-		var studentId = $('input[name=studentId]').val();;
-		var email = $('input[name=email]').val();;
-		var password = $('input[name=password]').val();
-		
-		$.ajax({
-			method: "POST",
-			url: "func/login.php",
-			data: { 
-			username: username, 
-			password: password,
-			firstName: firstName,
-			lastName: lastName,
-			studentId: studentId,
-			email: email
-			}
-		})
-		.done(function( msg ) {
-			alert(msg );
-			if (msg.indexOf("valid register") >= 0)
-				$("#loginModel").hide();
-		});
+		var username = $('#registerModel input[name=username]').val();
+		var firstName = $('#registerModel input[name=firstName]').val();;
+		var lastName = $('#registerModel input[name=lastName]').val();;
+		var studentId = $('#registerModel input[name=studentId]').val();;
+		var email = $('#registerModel input[name=email]').val();;
+		var password = $('#registerModel input[name=password]').val();
+		if(username && email && password) {
+			$.ajax({
+				method: "POST",
+				url: "func/register.php",
+				data: { 
+				username: username, 
+				password: password,
+				firstName: firstName,
+				lastName: lastName,
+				studentId: studentId,
+				email: email
+				}
+			})
+			.done(function( msg ) {
+				alert(msg );
+				if (msg.indexOf("valid register") >= 0)
+					$("#loginModel").hide();
+			});
+		}
 	});
 }

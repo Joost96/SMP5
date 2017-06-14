@@ -21,14 +21,19 @@
 			$email = trim_data($_POST["email"]);
 			$password = trim_data($_POST["password"]);
 			$username = strtolower($username);
-
 			$passwordHash = password_hash($password, PASSWORD_BCRYPT);
-			$user = $userDAO->GetUser($username);
-			if (password_verify($password, $user->password)) {
-				echo 'valid register';
-				$_SESSION["user"] = $user;
+			
+			$excistingUser = $userDAO->GetUser($username);
+			if(isset($excistingUser) && !empty($excistingUser)) {
+				echo 'invalid';
 			} else {
-				echo 'Invalid';
+				$user = $userDAO->CreateUser($username, $firstName, $lastName, $studentId, $email, $passwordHash);
+				if (isset($user) && !empty($user)) {
+					echo 'valid register';
+					$_SESSION["user"] = $user;
+				} else {
+					echo 'Invalid';
+				}
 			}
 		}
 	}
