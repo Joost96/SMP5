@@ -1,9 +1,9 @@
-<?php include_once "portfilters.php"; ?>
+<?php require "portfilters.php"; ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Portfolio</title>
-		<link rel="stylesheet" type="text/css" href="css/home.css">
+		<link rel="stylesheet" type="text/css" href="home.css">
 		<meta charset="UTF-8">
 		<meta name="Portfolio" content="Opleiding informatica">
 		<meta name="keywords" content="informatica, inholland, haarlem, studenten, hbo, it, ict">
@@ -32,32 +32,49 @@
 	
 	<body>
 	<aside class="filters">
-		<form action="portfilters.php" method="post" target="myIframe">
-		
+	<h3>FILTERS</h3>
+		<form action="portfilters.php" method="post" target="itemFrame">
+
 		<div class="talen">
-			<label><input type="checkbox" name="taalfilter[]" value="C#" checked />C#</label></br>
-			<label><input type="checkbox" name="taalfilter[]" value="Java" checked />JAVA</label></br>
-			<label><input type="checkbox" name="taalfilter[]" value="HTML" checked />HTML</label></br>
-			<label><input type="checkbox" name="taalfilter[]" value="CSS" checked />CSS</label></br>
-			<label><input type="checkbox" name="taalfilter[]" value="SQL" checked />SQL</label></br>
+			<p>Talen: </p>
+			<hr class="style2">
+			<label><input type="checkbox" name="taalfilter[]" value="C#" />C#</label></br>
+			<label><input type="checkbox" name="taalfilter[]" value="Java" />JAVA</label></br>
+			<label><input type="checkbox" name="taalfilter[]" value="HTML" />HTML</label></br>
+			<label><input type="checkbox" name="taalfilter[]" value="CSS" />CSS</label></br>
+			<label><input type="checkbox" name="taalfilter[]" value="SQL" />SQL</label></br>
+			<label><input type="checkbox" name="taalfilter[]" value="PHP" />PHP</label></br>
 		</div>
 		
 		<div class="jaar">
-			<label><input type="checkbox" name="jaarfilter[]" value="jaar1" checked />Jaar 1</label></br>
-			<label><input type="checkbox" name="jaarfilter[]" value="jaar2" checked />Jaar 2</label></br>
-			<label><input type="checkbox" name="jaarfilter[]" value="jaar3" checked />Jaar 3</label></br>
-			<label><input type="checkbox" name="jaarfilter[]" value="jaar4" checked />Jaar 4</label></br>
+			</br>
+			<p>Leerjaren: </p>
+			<hr class="style2">
+			<label><input type="checkbox" name="jaarfilter[]" value="jaar 1" />Jaar 1</label></br>
+			<label><input type="checkbox" name="jaarfilter[]" value="jaar 2" />Jaar 2</label></br>
+			<label><input type="checkbox" name="jaarfilter[]" value="jaar 3"/>Jaar 3</label></br>
+			<label><input type="checkbox" name="jaarfilter[]" value="jaar 4"  />Jaar 4</label></br>
 		</div>
-		
-		<input type="submit" name="portfilterSubmit" value="Submit" />
+		</br>
+		<input type="submit" name="portfilterSubmit" value="Sorteer" />
 		</form>
 	</aside>
-	<iframe name="myIframe">
+	<iframe name="itemFrame" onload="autoResize(this)">
 	
 	</iframe>
 	
+	
+	<script>
+   function autoResize(i) 
+	{
+     var iframeHeight=
+     (i).contentWindow.document.body.scrollHeight;
+     (i).height=iframeHeight+20;
+	} 
+	</script>
+
 	</body>
-	</html>
+</html>
 	
 	
 	

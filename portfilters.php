@@ -2,40 +2,46 @@
 	include_once ("portfolioDAO.php");
 	include_once ("portfolioItem.php");
 	$portDAO = new portfolioDAO();
-	$taalFilters = $_POST['taalfilter'];
-	$jaarFilters = $_POST['jaarfilter'];
-	
-	if(empty($taalFilters) && empty($jaarFilters))
+	$taalFilters = array();
+	$jaarFilters = array();
+	if(isset($_POST['taalfilter']))
 	{
-		header("Location:portfolio.html");
-		exit;
+		$taalFilters = $_POST['taalfilter'];
 	}
-	else
+	if(isset($_POST['jaarfilter']))
 	{
-		$n = count($jaarFilters) + count(taalFilters);	
-		echo "You selected $n filters <br/>";
-		
-		$test = '';
-		$i;
-		for($i = 0; $i < 5; $i++)
-		{
-			$test .= "test, ";
-		}
-		
-		$test=rtrim($test, ", ");
-		echo $test ."<br/>";
-
+		$jaarFilters = $_POST['jaarfilter'];
+	}
+	
+	if((empty($taalFilters)) && (empty($jaarFilters)))
+	{
 		$items = array();
 		$items = $portDAO->GetAllItems();
+		
+		EchoItems($items);
+	}
+	else
+	{	
+		$items = array();
+		$items =$portDAO->GetItemsForFilter($taalFilters, $jaarFilters);
+		
+		EchoItems($items);
+	}	
+	
+	function EchoItems($items)
+	{
+		echo "<link type='text/css' rel='stylesheet' href='home.css' />";
 		foreach($items as $item)
 		{
-		echo "<article>";
-		echo	"<h3>$item->titel</h3>";
-		echo	"<p>$item->beschrijving</p>";
-		echo	"<p>Auteur: $item->auteur</p>";
-		echo	"<p>Datum:$item->datum</p>";
-		echo	"<img src=$item->afbeelding alt=$item->titel/>";
-		echo "</article>";
+		echo "<article class='iframeItem'>
+				<img src=$item->thumbnail alt=$item->titel/>
+				<h3>$item->titel</h3>
+				<p>$item->beschrijving<br /><br /><br />
+				Door: $item->auteur<br />	
+				Datum/Tijd: $item->datum</p>				
+			 </article>
+			 <hr class='style3'>	
+			 </br>";
 		}
-	}	
+	}
 ?>
