@@ -7,7 +7,7 @@
 	$title = "";
 	
 	if($title = getOnderwerpbyid($onderwerp_id)->fetch_assoc()['naam'])	{
-		page_header2($title);
+		page_header($title);
 	}
 	
 	echo "

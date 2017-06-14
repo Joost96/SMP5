@@ -15,7 +15,7 @@
 		$content = $post['content'];
 	}
 
-	page_header2($titel);
+	page_header($titel);
 
 	echo "
 		<h2>{$titel}</h2><br>

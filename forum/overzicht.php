@@ -4,7 +4,7 @@
 	
 	$titel = "Forum Overzicht";
 	
-	page_header2($titel);	
+	page_header($titel);	
 	
 	$onderwerpen = getAllOnderwerpen();
 

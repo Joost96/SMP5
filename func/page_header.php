@@ -10,7 +10,7 @@
 				<head>
 					<link rel='stylesheet' type='text/css' href='css/style.css'/>
 					<link rel='stylesheet' type='text/css' href='css/login.css'/>
-					<link rel='stylesheet' type='text/css' href='css/$page.css'/>
+					<link rel='stylesheet' type='text/css' href='css/{$page}.css'/>
 					<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 					<script src='js/header.js'></script>
 				</head>
@@ -33,7 +33,7 @@
 								<li class='right'><a id='loginModalBtn'>Inloggen</a></li>	
 							</ul>
 							<div class='title'>
-								<h1>$page</h1>
+								<h1>{$page}</h1>
 							</div>
 							<section id='spacing_section'></section>
 
