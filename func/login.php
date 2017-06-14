@@ -1,60 +1,36 @@
 <?php
-$username = "";
-$password = "";
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
+	session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $username = trim_data($_POST["username"]);
-  $password = trim_data($_POST["password"]);
-  
-  echo $username;
-  echo $password;
-}
+	$username = "";
+	$password = "";
 
-function trim_data($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
+	if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
+		if($_SERVER["REQUEST_METHOD"] == "POST") {
+			include_once ("../model/userDAO.php");
+			include_once ("../model/user.php");
+			$userDAO = new userDAO();
+			
+			$username = trim_data($_POST["username"]);
+			$password = trim_data($_POST["password"]);
+		  
+
+			$passwordHash = password_hash($password, PASSWORD_BCRYPT);
+			$user = $userDAO->GetUser($username);
+			if (password_verify($password, $user->password)) {
+				echo 'login';
+				$_SESSION["user"] = $user;
+			} else {
+				echo 'Invalid';
+			}
+		}
+	}
+
+	function trim_data($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
 ?>
-<head>
-	<link rel='stylesheet' type='text/css' href='../css/login.css'/>
-	<link rel='stylesheet' type='text/css' href='../css/style.css'/>
-</head>
-<body>
-
-<h2>Modal Example</h2>
-
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
-
-<!-- The Modal for login -->
-
-
-<script>
-// Get the modal
-var modal = document.getElementById('login');
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
