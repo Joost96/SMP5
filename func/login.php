@@ -15,9 +15,13 @@
 			$username = strtolower($username);
 			
 			$user = $userDAO->GetUser($username);
-			if (password_verify($password, $user->password)) {
-				echo 'valid login';
-				$_SESSION["user"] = $user;
+			if(isset($user) && !empty($user)) {
+				if (password_verify($password, $user->password)) {
+					echo 'valid login';
+					$_SESSION["user"] = $user;
+				} else {
+					echo 'Invalid';
+				}
 			} else {
 				echo 'Invalid';
 			}

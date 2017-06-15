@@ -30,7 +30,8 @@
 										</div>
 								</li>			
 								<li class='right'><a href='blabla'>English</a></li>
-								<li class='right'><a id='loginModalBtn'>Inloggen</a></li>	
+								<li class='right'><a id='loginModalBtn'>Inloggen</a></li>
+								
 							</ul>
 							<div class='title'>
 								<h1>{$page}</h1>
@@ -43,7 +44,7 @@
 								<div class='modal-content'>
 									<span class='close'>&times;</span>
 									<h1 class='center'>Login</h1>
-									<div>
+									<div class='form'>
 										<div>
 											<label for='username'>Gebruikersnaam</label>
 											<input type='text' name='username'><br>
@@ -56,8 +57,8 @@
 											<input id='loginBtn' type='submit'>
 											<input type='button' value='Annuleren'>
 										</div>
-										<p id='registerModalBtn' class='clickable'>klik hier voor registreren<p>
 									</div>
+									<h3 id='registerModalBtn' class='center clickable'>klik hier voor registreren<p>
 								</div>
 							</div>
 							<!-- Modal register -->
@@ -65,34 +66,34 @@
 								<div class='modal-content'>
 									<span class='close'>&times;</span>
 									<h1 class='center'>Registreer</h1>
-									<div>
+									<div class='form'>
 										<div>
 											<label for='username'>Gebruikersnaam*</label>
-											<input type='text' name='username'><br>
+											<input type='text' name='username'>
 										</div>
 										<div>
 											<label for='firstName'>Voornaam</label>
-											<input type='text' name='firstName'><br>
+											<input type='text' name='firstName'>
 										</div>
 										<div>
 											<label for='lastName'>Achternaam</label>
-											<input type='text' name='lastName'><br>
+											<input type='text' name='lastName'>
 										</div>
 										<div>
 											<label for='studentId'>Student ID</label>
-											<input type='text' name='studentId'><br>
+											<input type='text' name='studentId'>
 										</div>
 										<div>
-											<label for='email'>email</label>
-											<input type='email' name='email'><br>
+											<label for='email'>email*</label>
+											<input type='email' name='email'>
 										</div>
 										<div>
 											<label for='password'>Wachtwoord*</label>
-											<input type='password' name='password'><br>
+											<input type='password' name='password'>
 										</div>
 										<div>
 											<label for='confirmPassword'>bevestig wachtwoord*</label>
-											<input type='password' name='confirmPassword'><br>
+											<input type='password' name='confirmPassword'>
 										</div>
 										<div class='center'>
 											<input id='registerBtn' type='submit' value='registreer'>

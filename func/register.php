@@ -25,7 +25,7 @@
 			
 			$excistingUser = $userDAO->GetUser($username);
 			if(isset($excistingUser) && !empty($excistingUser)) {
-				echo 'invalid';
+				echo 'username taken';
 			} else {
 				$user = $userDAO->CreateUser($username, $firstName, $lastName, $studentId, $email, $passwordHash);
 				if (isset($user) && !empty($user)) {

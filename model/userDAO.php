@@ -16,17 +16,20 @@
 		function GetUser($username)
 		{	
 			$sql = "SELECT * FROM user WHERE username = ?";
-			$user;
+			$user = NULL;
 			$databaseConn = $this->connect();
 			
 			if (!($stmt = $databaseConn->prepare($sql))) {
 				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
 			}
 			if (!$stmt->bind_param("s", $username)) {
 				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
 			}	
 			if (!$stmt->execute()) {
 				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
 			}
 			$result = $stmt->get_result();
 			if($row = $result->fetch_assoc())
@@ -45,12 +48,15 @@
 			
 			if (!($stmt = $databaseConn->prepare($sql))) {
 				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
 			}
 			if (!$stmt->bind_param("ssssss", $username, $firstName, $lastName, $studentId, $email, $password)) {
 				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
 			}	
 			if (!$stmt->execute()) {
 				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
 			}
 			$stmt->close();
 			return getUser($username);

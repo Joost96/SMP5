@@ -22,6 +22,8 @@ window.onload = function() {
 	});
 	
 	$( "#loginBtn" ).click(function() {
+		$( "#loginModel .form" ).find(".error").remove();
+		
 		var username = $('#loginModel input[name=username]').val();
 		var password = $('#loginModel input[name=password]').val();
 		if(username && password) {
@@ -31,9 +33,14 @@ window.onload = function() {
 				data: { username: username, password: password }
 			})
 			.done(function( msg ) {
-				alert(msg );
-				if (msg.indexOf("valid login") >= 0)
+				console.log(msg );
+				if (msg.indexOf("valid login") >= 0) {
 					$("#loginModel").hide();
+				} else {
+					$( "#loginModel .form" ).append( $( "<p class='error'>Gebruikersnaam of wachtwoord is incorrect</p>" ) );
+				}
+			}).fail(function() {
+				$( "#loginModel .form" ).append( $( "<p class='error'>Verbinding maken met de server is mislukt , probeer het later opnieuw</p>" ) );
 			});
 		}
 	});
@@ -44,30 +51,70 @@ window.onload = function() {
 	});
 	
 	$( "#registerBtn" ).click(function() {
+		$( "#registerModel input[name=studentId]" ).next(".error").remove();
+		$( "#registerModel input[name=email]" ).next(".error").remove();
+		$( "#registerModel input[name=password]" ).next(".error").remove();
+		$( "#registerModel input[name=username]" ).next(".error").remove();
+		$( "#registerModel .form" ).find(".error").remove();
+		
 		var username = $('#registerModel input[name=username]').val();
 		var firstName = $('#registerModel input[name=firstName]').val();;
 		var lastName = $('#registerModel input[name=lastName]').val();;
 		var studentId = $('#registerModel input[name=studentId]').val();;
 		var email = $('#registerModel input[name=email]').val();;
 		var password = $('#registerModel input[name=password]').val();
+		var confirmPassword = $('#registerModel input[name=confirmPassword]').val();
+		if(!validateStudentId(studentId)) {
+			$( "#registerModel input[name=studentId]" ).parent().append( $( "<p class='error'>Student id is incorrect</p>" ) );
+			return;
+		}
+		if(!validateEmail(email)) {
+			$( "#registerModel input[name=email]" ).parent().append( $( "<p class='error'>Email is incorrect</p>" ) );
+			return;
+		}
+		if(password.localeCompare(confirmPassword)) {
+			$( "#registerModel input[name=password]" ).parent().append( $( "<p class='error'>wachtworden zijn niet gelijk</p>" ) );
+			return;
+		}
+		
 		if(username && email && password) {
 			$.ajax({
 				method: "POST",
 				url: "func/register.php",
 				data: { 
-				username: username, 
-				password: password,
-				firstName: firstName,
-				lastName: lastName,
-				studentId: studentId,
-				email: email
+					username: username, 
+					password: password,
+					firstName: firstName,
+					lastName: lastName,
+					studentId: studentId,
+					email: email
 				}
 			})
 			.done(function( msg ) {
-				alert(msg );
+				console.log(msg );
 				if (msg.indexOf("valid register") >= 0)
+				{
 					$("#loginModel").hide();
+				} else if(msg.indexOf("username taken") >= 0) {
+					$( "#registerModel input[name=username]" ).parent().append( $( "<p class='error'>Gebruikersnaam is in gebruik</p>" ) );
+				}
+			}).fail(function() {
+				$( "#registerModel .form" ).append( $( "<p class='error'>Verbinding maken met de server is mislukt , probeer het later opnieuw</p>" ) );
 			});
 		}
 	});
+}
+function loggedIn(user)
+
+}
+function validateEmail(email) 
+{
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+
+function validateStudentId(StudentId) 
+{
+    var re = /^[0-9]*$/;
+    return re.test(StudentId);
 }
