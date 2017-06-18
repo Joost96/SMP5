@@ -113,7 +113,14 @@
 			echo "Excecute failed: ({$statement->errno}) {$statement->error}";
 		}
 		
-		return $statement->get_result();
+		$con->close();
+		$result = $statement->get_result();
+		$onderwerp = null;
+		if ($row = $result->fetch_assoc()){
+			$onderwerp = new forumOnderwerp($row['ID'], $row['naam']);
+		}
+		
+		return $onderwerp;
 	}
 	
 	function closeConnection(){

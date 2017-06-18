@@ -1,22 +1,24 @@
 <?php
-	require '../func/page_header.php';
-	require '../func/forumdao.php';
+	include_once (dirname(__DIR__)."/func/page_header.php");
+	include_once (dirname(__DIR__)."/model/forumDAO.php");
+	include_once (dirname(__DIR__)."/model/OnderwerpModel.php");
+
+	$forumdao = new forumDAO();
 	
 	$titel = "Forum Overzicht";
 	
 	page_header($titel);	
 	
-	$onderwerpen = getAllOnderwerpen();
+	$onderwerpen = $forumdao->getAllOnderwerpen();
 
 	print "
 		<h2>{$titel}</h2><br/>
 
 		";
-		
-	if ($onderwerpen) {
-		while ($row = $onderwerpen->fetch_assoc()){
-			echo "<a href='onderwerp.php?onderwerp_id={$row['ID']}' >{$row['naam']}</a> <br/>";
-		}
-	}
 	
+	foreach ( $onderwerpen as $onderwerp ){
+		echo "
+		<a href='onderwerp.php?onderwerp_id={$onderwerp->id}' >{$onderwerp->naam}</a><br/>
+		";
+	}
 ?>
