@@ -1,8 +1,8 @@
 <?php
 	include_once (dirname(__DIR__).'/func/page_header.php');
 	include_once (dirname(__DIR__).'/model/forumDAO.php');
-	include_once (dirname(__DIR__).'/model/PostModel.php');
-	include_once (dirname(__DIR__).'/model/ReactieModel.php');
+	include_once (dirname(__DIR__).'/model/ForumPostModel.php');
+	include_once (dirname(__DIR__).'/model/ForumReactieModel.php');
 	
 	$post_id = $_GET['post_id'];
 	

@@ -1,7 +1,7 @@
 <?php
-	include_once (dirname(__DIR__)."/model/OnderwerpModel.php");
-	include_once (dirname(__DIR__)."/model/PostModel.php");
-	include_once (dirname(__DIR__)."/model/ReactieModel.php");
+	include_once (dirname(__DIR__)."/model/ForumOnderwerpModel.php");
+	include_once (dirname(__DIR__)."/model/ForumPostModel.php");
+	include_once (dirname(__DIR__)."/model/ForumReactieModel.php");
 
 	class forumDAO{
 		private function connect(){
@@ -33,7 +33,7 @@
 			
 			$result = $this->executeQuery1($con, $query, "i", $post_id);
 			
-			$post = null;
+			$post[] = null;
 			
 			if ($row = $result->fetch_assoc()){
 				array_push($post, new PostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content']));
@@ -51,7 +51,7 @@
 			
 			$result = $this->executeQuery1($con, $query, "i", $post_id);
 			
-			$reacties[] = null;
+			$reacties[];
 			
 			while($row = $result->fetch_assoc()){
 				array_push($reacties, new ReactieModel($row['ID'], $row['postID'], $row['content']));
@@ -80,7 +80,7 @@
 			
 			if ($result == null){return;}
 			
-			$onderwerpen[] = null;
+			$onderwerpen[];
 			
 			while($row = $result->fetch_assoc()){
 				array_push($onderwerpen, new OnderwerpModel($row['ID'], $row['naam']));
@@ -97,7 +97,7 @@
 			
 			$result = $this->executeQuery1($con, $query, "i", $onderwerp_id);
 			
-			$onderwerp = null;
+			$onderwerp[];
 			if ($row = $result->fetch_assoc()){
 				array_push($onderwerp, new OnderwerpModel($row['ID'], $row['naam']));
 			}

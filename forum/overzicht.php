@@ -1,7 +1,7 @@
 <?php
 	include_once (dirname(__DIR__)."/func/page_header.php");
 	include_once (dirname(__DIR__)."/model/forumDAO.php");
-	include_once (dirname(__DIR__)."/model/OnderwerpModel.php");
+	include_once (dirname(__DIR__)."/model/ForumOnderwerpModel.php");
 
 	$forumdao = new forumDAO();
 	

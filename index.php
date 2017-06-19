@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Home</title>
-		<link rel="stylesheet" type="text/css" href="home.css">
+		<link rel="stylesheet" type="text/css" href="css/home.css">
 		<meta charset="UTF-8">
 		<meta name="Thuispagina" content="Opleiding informatica">
 		<meta name="keywords" content="informatica, inholland, haarlem, studenten, hbo, it, ict">
@@ -18,7 +18,7 @@
 			<a class="dropknop">Menu</a>
 				<div class="menuItems">
 					<a href="index.php">Thuis</a>
-					<a href="forum.html">Forum</a>
+					<a href="forum/overzicht.php">Forum</a>
 					<a href="curriculum.html">Curriculum</a>
 					<a href="buiten.html">Buiten School</a>
 					<a href="alumni.html">Succesverhalen</a>
@@ -37,7 +37,7 @@
 	
 	<div class="buttons">
 		<a href="portfolio.php" class="button"><p>Portfolio</br></br>Bekijk wat onze studenten allemaal maken</p></a>
-		<a href="#/Action2" class="button"><p>Forum</br></br>Stel vragen en discusseer mee</p></a>
+		<a href="forum/overzicht.php" class="button"><p>Forum</br></br>Stel vragen en discusseer mee</p></a>
 		<a href="#/Action3" class="button"><p>Succesverhalen</br></br>Lees verhalen van oud-studenten</p></a>
 		<a href="#/Action4" class="button"><p>Haarlem</br></br>Ontdek wat er allemaal te doen is in Haarlem</p></a>
 	</div>

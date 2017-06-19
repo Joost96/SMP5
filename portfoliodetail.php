@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Portfolio</title>
-		<link rel="stylesheet" type="text/css" href="home.css">
+		<link rel="stylesheet" type="text/css" href="css/home.css">
 		<meta charset="UTF-8">
 		<meta name="Portfolio" content="Opleiding informatica">
 		<meta name="keywords" content="informatica, inholland, haarlem, studenten, hbo, it, ict">
@@ -18,7 +18,7 @@
 			<a class="dropknop">Menu</a>
 				<div class="menuItems">
 					<a href="index.php">Thuis</a>
-					<a href="forum.html">Forum</a>
+					<a href="forum/overzicht.php">Forum</a>
 					<a href="curriculum.html">Curriculum</a>
 					<a href="buiten.html">Buiten School</a>
 					<a href="alumni.html">Succesverhalen</a>
