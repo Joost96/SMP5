@@ -37,7 +37,7 @@
 		<div class="talen">
 			<p>Talen: </p>
 			<hr class="style2">
-			<?php include "taalfilters.php";?>
+			<?php include (dirname(__DIR__).'/smp5/func/taalfilters.php');?>
 		</div>
 		
 		<div class="jaar">
@@ -55,7 +55,7 @@
 	</aside>
 
 	<div class="itemsReturn">
-	<?php include "portfilters.php"; ?>
+	<?php include (dirname(__DIR__).'/smp5/func/portfilters.php'); ?>
 	</div>
 
 	</body>
