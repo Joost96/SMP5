@@ -13,6 +13,7 @@
 					<link rel='stylesheet' type='text/css' href='/smp5/css/{$page}.css'/>
 					<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 					<script src='/smp5/js/header.js'></script>
+					<title>{$page}</title>
 				</head>
 					<body>
 						<header>
