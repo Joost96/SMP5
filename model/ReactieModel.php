@@ -5,6 +5,7 @@
 		public $portfolioId;
 		public $userId;
 		public $content;
+		public $dateTime;
 		
 		public function __construct($id, $postId, $portfolioId, $userId, $content, $dateTime){
 			$this->id = $id;
