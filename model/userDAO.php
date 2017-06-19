@@ -2,14 +2,21 @@
 	include_once (dirname(__DIR__)."/InformaticaBase.php");
 	include_once (dirname(__DIR__)."/model/user.php");
 	class userDAO
-	{		
-		function connect()
+	{	
+		var $dbObject;
+		
+		public function __construct() {
+			$this->dbObject = new InformaticaBase();
+		}
+		function getConnection()
 		{
-			$dbObject = new InformaticaBase();
-			$dbObject-> connect();
+			$this->dbObject->connect();
 			
-			$databaseConn = $dbObject->getConnection();
+			$databaseConn = $this->dbObject->getConnection();
 			return $databaseConn;
+		}
+		function closeConnection() {
+			$this->dbObject->disconnect();
 		}
 		
 		
@@ -17,7 +24,7 @@
 		{	
 			$sql = "SELECT * FROM user WHERE username = ?";
 			$user = NULL;
-			$databaseConn = $this->connect();
+			$databaseConn = $this->getConnection();
 			
 			if (!($stmt = $databaseConn->prepare($sql))) {
 				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
@@ -38,13 +45,14 @@
 													$row["email"], $row["password"]);
 			}
 			$stmt->close();
+			$this->closeConnection();
 			return $user;
 		}
 		function CreateUser($username, $firstName, $lastName, $studentId, $email, $password) {
 			$sql = "INSERT INTO user (username, firstName, lastName, studentId, email, password)
 						VALUES (?, ?, ?, ?, ?, ?)";
 			$user;
-			$databaseConn = $this->connect();
+			$databaseConn = $this->getConnection();
 			
 			if (!($stmt = $databaseConn->prepare($sql))) {
 				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
@@ -59,6 +67,7 @@
 				return;
 			}
 			$stmt->close();
+			$this->closeConnection();
 			return getUser($username);
 		}		
 	}

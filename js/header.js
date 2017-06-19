@@ -104,7 +104,7 @@ window.onload = function() {
 		}
 	});
 }
-function loggedIn(user)
+function loggedIn(user) {
 
 }
 function validateEmail(email) 
