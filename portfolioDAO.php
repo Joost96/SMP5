@@ -26,7 +26,12 @@
 		function executeItem($sql)
 		{
 			$databaseConn = $this->connect();
-			$result = $databaseConn->query($sql) or die($databaseConn->error);
+			$result = $databaseConn->query($sql);
+			if(!$result)
+			{
+				echo "Er is iets mis gegaan bij het communiceren met de database, neem contact op met de administrator van de website";
+			}
+			
 			$items = array();
 			
 			while($row = $result->fetch_assoc())
@@ -36,6 +41,8 @@
 				$items[] = $portfolioItem;
 			}
 			return $items;	
+			
+			$databaseConn->Close();
 		
 		}
 	
@@ -55,7 +62,7 @@
 
 			$filters = substr($filters, 0, -3);			
 		
-		$sql = "SELECT DISTINCT portfolioItem.ID, portfolioItem.titel, portfolioItem.beschrijving, 
+		$sql = "SELECT DIStINCT portfolioItem.ID, portfolioItem.titel, portfolioItem.beschrijving, 
 				portfolioItem.leerjaar, portfolioItem.datum, afbeelding.afbeeldinglink, user.username
 				FROM portfolioItem, afbeelding, programmeertaal, user, P_T 
 				WHERE portfolioItem.auteur_ID = user.ID AND P_T.portfolio_ID = portfolioItem.ID AND
@@ -76,7 +83,7 @@
 		return $this->executeItem($sql);
 		}
 	
-		/* Deze code is om alle talen uit de db te halen. maar ik krijg het niet voor elkaar om het in mijn html te tonen.
+		
 		function GetAllTalen()
 		{
 		$sql = "SELECT naam FROM programmeertaal";
@@ -98,7 +105,7 @@
 			
 			return $talen;		
 		}
-		*/
+		
 	}
 ?>	
 			
