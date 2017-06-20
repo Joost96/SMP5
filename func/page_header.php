@@ -3,7 +3,7 @@
 	ini_set('display_errors', 1);
 	session_start();
 	if (!isset($_SESSION['taal']) && empty($_SESSION['taal'])) {
-		$_SESSION["taal"] = 0;
+		$_SESSION["taal"] = "NL";
 	}
 	var_dump($_SESSION["user"]);
 	
@@ -30,10 +30,12 @@
 			$script = "";
 		}
 		
-		if($_SESSION["taal"] == 0) {
+		if($_SESSION["taal"] == "nl") {
 			$taalbtn = "English";
+			$switchTaal = "en";
 		} else {
 			$taalbtn = "Nederlands";
+			$switchTaal = "nl";
 		}
 		
 		print "
@@ -63,7 +65,7 @@
 											<a href='portfolio.html'>Portfolio</a>
 										</div>
 								</li>			
-								<li class='right'><a id='taalbtn'>{$taalbtn}</a></li>
+								<li class='right'><a id='taalbtn' href='switchlang.php?lang={$switchTaal}&page=".$_SERVER['REQUEST_URI']."'>{$taalbtn}</a></li>
 								<li class='right'><a id='loginModalBtn'>Inloggen</a></li>
 								
 							</ul>
