@@ -8,7 +8,7 @@
 	$infoTextDAO = new infoTextDAO();
 	
 	
-	$infoPage = $infoTextDAO->GetInfoPage("haarlem",0);
+	$infoPage = $infoTextDAO->GetInfoPage("haarlem",$_SESSION["taal"]);
 	usort($infoPage, "cmp");
 	var_dump($infoPage);
 	

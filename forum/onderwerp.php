@@ -8,7 +8,7 @@
 	$forumdao = new forumDAO();
 	
 	$onderwerp = $forumdao->getOnderwerpbyid($onderwerp_id);
-	$title = $onderwerp[0]->naam;
+	$title = $onderwerp->naam;
 	
 	page_header($title);
 	
@@ -18,9 +18,9 @@
 		<h2>{$title}</h2>
 		<br/>
 		";
-		
+	
 	echo "
-		<a href='nieuwePost.php?onderwerp_id={$onderwerp_id} >Maak een Nieuwe Post</a>
+		<p><a href='nieuwePost.php?onderwerp_id={$onderwerp_id}'>Maak een nieuwe post.</a></p>
 		";
 	
 	$posts = $forumdao->getPostbyOnderwerp($onderwerp_id);

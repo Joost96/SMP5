@@ -1,11 +1,17 @@
 <?php
 	include_once (dirname(__DIR__)."/model/ForumOnderwerpModel.php");
 	include_once (dirname(__DIR__)."/model/ForumPostModel.php");
-	include_once (dirname(__DIR__)."/model/ForumReactieModel.php");
+	include_once (dirname(__DIR__)."/model/ReactieModel.php");
+	include_once (dirname(__DIR__)."/model/informaticaBase.php");
 
 	class forumDAO{
 		private function connect(){
-			return new mysqli('smgroep5.infhaarlem.nl', 'smgroep5_root', 'Rootww1', 'smgroep5_informaticahaarlem');
+			$obj = new informaticaBase();
+			$obj->connect();
+			
+			$con = $obj->getConnection();
+			
+			return $con;
 		}
 		
 		function getPostbyOnderwerp($onderwerp_id){
@@ -33,7 +39,7 @@
 			
 			$result = $this->executeQuery1($con, $query, "i", $post_id);
 			
-			$post[] = null;
+			$post = array();
 			
 			if ($row = $result->fetch_assoc()){
 				array_push($post, new PostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content']));
@@ -41,7 +47,19 @@
 			
 			$con->close();
 			
-			return $post;
+			return $post[0];
+		}
+		
+		function plaatsPost($post){
+			$con = $this->connect();
+			
+			$query = "INSERT INTO `post` (`ID`, `titel`, `content`, `onderwerpID`) VALUES (NULL, ?, ?, ?)";
+			
+			$result = executeQuery3($con, $query, "ssi", $post->id, $post->titel, $post->onderwerpId);
+			
+			$con->close();
+			
+			return $result;
 		}
 		
 		function getAllReacties($post_id){
@@ -78,7 +96,7 @@
 			$con = $this->connect();
 			$result = $con->query("select * from onderwerp");
 			
-			if ($result == null){return;}
+			if ($result == null){$con->close(); return;}
 			
 			$onderwerpen = array();
 			
@@ -98,13 +116,14 @@
 			$result = $this->executeQuery1($con, $query, "i", $onderwerp_id);
 			
 			$onderwerp = array();
+			
 			if ($row = $result->fetch_assoc()){
 				array_push($onderwerp, new OnderwerpModel($row['ID'], $row['naam']));
 			}
 			
 			$con->close();
 
-			return $onderwerp;
+			return $onderwerp[0];
 		}
 		
 		private function executeQuery1($con, $query, $type, $param){
@@ -137,6 +156,28 @@
 			}
 			
 			if (!$statement->bind_param($type, $param1, $param2)) {
+				echo "Binding parameters failed: (" . $statement->errno . ") " . $statement->error;
+				$con->close();
+				return;
+			}
+			
+			if (!$statement->execute()){
+				echo "Excecute failed: ({$statement->errno}) {$statement->error}";
+				$con->close();
+				return;
+			}
+			
+			return $statement->get_result();
+		}
+		
+		private function executeQuery3($con, $query, $type, $param1, $param2, $param3){
+			if (!($statement = $con->prepare($query))) {
+				echo "Prepare failed: (" . $con->errno . ") " . $con->error;
+				$con->close();
+				return;
+			}
+			
+			if (!$statement->bind_param($type, $param1, $param2, $param3)) {
 				echo "Binding parameters failed: (" . $statement->errno . ") " . $statement->error;
 				$con->close();
 				return;
