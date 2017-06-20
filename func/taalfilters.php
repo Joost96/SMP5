@@ -4,8 +4,8 @@
 	$talen = array();
 	$talen = $portDAO->GetAllTalen();
 	
-	foreach($talen as $taal => $naam)
+	foreach($talen as $taal)
 	{
-	echo "<label><input type='checkbox' name='taalfilter[]' value=".$naam['naam']." checked />".$naam['naam']."</label></br>";
+	echo "<label><input type='checkbox' name='taalfilter' value=$taal->ID checked />$taal->naam</label></br>";
 	}
 ?>

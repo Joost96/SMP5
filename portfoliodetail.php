@@ -18,7 +18,7 @@
 			<a class="dropknop">Menu</a>
 				<div class="menuItems">
 					<a href="index.php">Thuis</a>
-					<a href="forum/overzicht.php">Forum</a>
+					<a href="forum.html">Forum</a>
 					<a href="curriculum.html">Curriculum</a>
 					<a href="buiten.html">Buiten School</a>
 					<a href="alumni.html">Succesverhalen</a>
@@ -30,6 +30,6 @@
 	</ul>
 	
 	<body>
-	
+	<?php include (dirname(__DIR__).'/smp5/func/itemdetail.php');?>
 	</body>
 </html>

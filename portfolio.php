@@ -1,38 +1,11 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Portfolio</title>
-		<link rel="stylesheet" type="text/css" href="css/home.css">
-		<meta charset="UTF-8">
-		<meta name="Portfolio" content="Opleiding informatica">
-		<meta name="keywords" content="informatica, inholland, haarlem, studenten, hbo, it, ict">
-		<meta name="author" content="Joshua Volkers">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
-	</head>
-	
-	<body>
-	
-	<ul class="navbar">	
-	<li><a href="index.html">Home</a></li>
-		<li class="dropdown">
-			<a class="dropknop">Menu</a>
-				<div class="menuItems">
-					<a href="index.html">Thuis</a>
-					<a href="forum/overzicht.php">Forum</a>
-					<a href="curriculum.html">Curriculum</a>
-					<a href="buiten.html">Buiten School</a>
-					<a href="alumni.html">Succesverhalen</a>
-					<a href="portfolio.html">Portfolio</a>
-				</div>
-		</li>			
-		<li class="right"><a href="blabla">English</a></li>
-		<li class="right"><a href="blabla">Inloggen</a></li>	
-	</ul>
-	
-	<body>
+	<?php require (dirname(__DIR__).'/smp5/func/page_header.php');
+	page_header("Portfolio", "home","home");
+	?>
 	<aside class="filters">
 	<h3>FILTERS</h3>
-		<form action="" method="post" target="itemFrame">
+		<div id="form">
 
 		<div class="talen">
 			<p>Talen: </p>
@@ -44,21 +17,51 @@
 			</br>
 			<p>Leerjaren: </p>
 			<hr class="style2">
-			<label><input type="checkbox" name="jaarfilter[]" value="jaar 1" checked />Jaar 1</label></br>
-			<label><input type="checkbox" name="jaarfilter[]" value="jaar 2" checked />Jaar 2</label></br>
-			<label><input type="checkbox" name="jaarfilter[]" value="jaar 3" checked />Jaar 3</label></br>
-			<label><input type="checkbox" name="jaarfilter[]" value="jaar 4" checked />Jaar 4</label></br>
+			<?php include (dirname(__DIR__).'/smp5/func/jaarfilters.php');?>
 		</div>
 		</br>
-		<input type="submit" name="portfilterSubmit" value="Sorteer" />
-		</form>
+		<input type="submit" id="sorteer" name="portfilterSubmit" value="Sorteer" />
+		</div>
 	</aside>
 
 	<div class="itemsReturn">
 	<?php include (dirname(__DIR__).'/smp5/func/portfilters.php'); ?>
 	</div>
 
-	</body>
+	<?php require (dirname(__DIR__).'/smp5/func/page_footer.php');
+	page_footer();?>
+	<script>
+	$("#sorteer").click(function(){
+		var jaarfilter = [];
+			$('input[type=checkbox][name=jaarfilter]').each(function(){
+				if($(this).is(':checked'))
+				{
+					jaarfilter.push($(this).val())
+				}
+			});
+		var taalfilter = [];
+			$('input[type=checkbox][name=taalfilter]').each(function(){
+				if($(this).is(':checked'))
+				{
+					taalfilter.push($(this).val())
+				}
+			});
+			console.log(taalfilter);
+			console.log(jaarfilter);
+		$.ajax({
+			method: "POST",
+		  url: "func/portfilters.php", 
+		  data: {jaarfilter:jaarfilter, taalfilter:taalfilter}
+		})
+		.done(function(msg){
+			console.log(msg);
+			$('.itemsReturn').html(msg);
+		})
+		.fail(function() {
+			$('.itemsReturn').html("<p>Er is een fout op getreden bij het communiceren met de database</p>");
+		});
+		});
+	</script>
 </html>
 	
 	

@@ -33,16 +33,17 @@
 	{
 		foreach($items as $item)
 		{
-		echo "<article class='item'>
-				<img src=$item->thumbnail alt=$item->titel/>
-				<h3>$item->titel</h3>
-				<p>$item->beschrijving<br /><br /><br />
-				Door: $item->auteur<br />	
-				Datum/Tijd: $item->datum</p>				
-			 </article>
-			 </br>
-			 <hr class='style3'>	
-			 </br>";
+			echo "<article class='item'>
+					<a href='portfoliodetail.php?itemID={$item->ID}' ><img src=$item->thumbnail alt=$item->titel/></a>
+					<a href='portfoliodetail.php?itemID={$item->ID}' ><h1>$item->titel</a></h1>
+					<p>$item->beschrijving<br /><br /><br />
+					Door: $item->auteur<br />	
+					Datum/Tijd: $item->datum<br />
+					Leerjaar: $item->jaar</p>
+				 </article>
+				 </br>
+				 <hr class='style3'>	
+				 </br>";
 		}
 	} 
 ?>
