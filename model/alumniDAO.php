@@ -1,7 +1,9 @@
 <?php
 	include_once (dirname(__DIR__)."/model/InformaticaBase.php");
+	include_once (dirname(__DIR__)."/model/alumni.php");
+	include_once (dirname(__DIR__)."/model/userDAO.php");
 	include_once (dirname(__DIR__)."/model/user.php");
-	class userDAO
+	class alumniDAO
 	{	
 		var $dbObject;
 		
@@ -20,39 +22,10 @@
 		}
 		
 		
-		function GetUser($username)
+		function GetAlumni($id)
 		{	
-			$sql = "SELECT * FROM user WHERE username = ?";
-			$user = NULL;
-			$databaseConn = $this->getConnection();
-			
-			if (!($stmt = $databaseConn->prepare($sql))) {
-				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
-				return;
-			}
-			if (!$stmt->bind_param("s", $username)) {
-				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
-				return;
-			}	
-			if (!$stmt->execute()) {
-				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-				return;
-			}
-			$result = $stmt->get_result();
-			if($row = $result->fetch_assoc())
-			{
-				$user = new user($row["username"], $row["firstName"], $row["lastName"], $row["studentId"],
-													$row["email"], $row["password"]);
-			}
-			$stmt->close();
-			$this->closeConnection();
-			return $user;
-		}
-		
-		function GetUserFromId($id)
-		{	
-			$sql = "SELECT * FROM user WHERE id = ?";
-			$user = NULL;
+			$sql = "SELECT * FROM alumni WHERE id = ?";
+			$alumni = NULL;
 			$databaseConn = $this->getConnection();
 			
 			if (!($stmt = $databaseConn->prepare($sql))) {
@@ -70,17 +43,46 @@
 			$result = $stmt->get_result();
 			if($row = $result->fetch_assoc())
 			{
-				$user = new user($row["username"], $row["firstName"], $row["lastName"], $row["studentId"],
-													$row["email"], $row["password"]);
+				$userDAO = new userDAO();
+				$user = $userDAO->GetUserFromId($row["user"]);
+				$alumni = new alumni($row["id"], $user, $row["functie"], $row["omschrijving"],
+													$row["link"]);
 			}
 			$stmt->close();
 			$this->closeConnection();
-			return $user;
+			return $alumni;
 		}
 		
-		function CreateUser($username, $firstName, $lastName, $studentId, $email, $password) {
-			$sql = "INSERT INTO user (username, firstName, lastName, studentId, email, password)
-						VALUES (?, ?, ?, ?, ?, ?)";
+		function GetAllAlumni()
+		{	
+			$sql = "SELECT * FROM alumni";
+			$alumni = array();
+			$databaseConn = $this->getConnection();
+			
+			if (!($stmt = $databaseConn->prepare($sql))) {
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
+			}
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}
+			$result = $stmt->get_result();
+			while($row = $result->fetch_assoc())
+			{
+				$userDAO = new userDAO();
+				$user = $userDAO->GetUserFromId($row["user"]);
+				$alumni[] = new alumni($row["id"], $user, $row["functie"], $row["omschrijving"],
+													$row["link"]);
+			}
+			$stmt->close();
+			$this->closeConnection();
+			return $alumni;
+		}
+		
+		function CreateAlumni( $user, $functie, $omschrijving, $webLink) {
+			$sql = "INSERT INTO alumni (user, lastName, studentId, link)
+						VALUES ( ?, ?, ?, ?)";
 			$user;
 			$databaseConn = $this->getConnection();
 			
@@ -88,7 +90,7 @@
 				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
 				return;
 			}
-			if (!$stmt->bind_param("ssssss", $username, $firstName, $lastName, $studentId, $email, $password)) {
+			if (!$stmt->bind_param("ssss", $user, $functie, $omschrijving, $webLink)) {
 				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 				return;
 			}	

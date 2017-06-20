@@ -4,15 +4,39 @@
 	session_start();
 	var_dump($_SESSION["user"]);
 	
-	function page_header($page){
+	function page_header(){
+		$numargs = func_num_args();
+		if($numargs >= 1) {
+			$page = func_get_arg(0);
+			if($numargs == 3) {
+				$css = func_get_arg(1);
+				$script = func_get_arg(2);
+			}
+			else if($numargs == 2) {
+				$css = func_get_arg(0);
+				$script = func_get_arg(1);
+			} else {
+				$css = func_get_arg(0);
+				$script = func_get_arg(0);
+			}
+			$css = "<link rel='stylesheet' type='text/css' href='/smp5/css/{$css}.css'/>";
+			$script = "<script src='/smp5/js/{$script}.js'></script>";
+		} else {
+			$page = "Informatica";
+			$css = "";
+			$script = "";
+		}
+		
 		print "
+			<!DOCTYPE html>
 			<html>
 				<head>
 					<link rel='stylesheet' type='text/css' href='/smp5/css/style.css'/>
 					<link rel='stylesheet' type='text/css' href='/smp5/css/login.css'/>
-					<link rel='stylesheet' type='text/css' href='/smp5/css/{$page}.css'/>
+					{$css}
 					<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 					<script src='/smp5/js/header.js'></script>
+					{$script}
 					<title>{$page}</title>
 				</head>
 					<body>

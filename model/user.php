@@ -19,7 +19,7 @@
 		
 		public function getFullName()
 		{
-			return $this->$firstname + $this->$lastName;
+			return $this->firstName." ".$this->lastName;
 		}
 	}
 ?>

@@ -1,5 +1,5 @@
 <?php
-	class user {
+	class alumni {
 		var $id;
 		var $user;
 		var $functie;
