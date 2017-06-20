@@ -13,7 +13,7 @@
 				$script = func_get_arg(2);
 			}
 			else if($numargs == 2) {
-				$css = func_get_arg(0);
+				$css = func_get_arg(1);
 				$script = func_get_arg(1);
 			} else {
 				$css = func_get_arg(0);
@@ -41,7 +41,7 @@
 				</head>
 					<body>
 						<header>
-							<a href='blabla'><img id='inholland_logo' src='img/inholland_logo.png' alt='oops' /></a>
+							<a href='blabla'><img id='inholland_logo' src='/smp5/img/inholland_logo.png' alt='oops' /></a>
 							<ul class='navbar'>
 								<li class='dropdown'>
 									<a class='dropknop'>Menu</a>

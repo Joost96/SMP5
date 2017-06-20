@@ -18,7 +18,7 @@
 			return $databaseConn;
 		}
 		function closeConnection() {
-			mysqli_close($this->dbObject);
+			mysqli_close($this->dbObject->getConnection());
 		}
 		
 		
