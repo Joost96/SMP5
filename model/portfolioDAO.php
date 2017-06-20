@@ -4,6 +4,8 @@
 	include_once (dirname(__DIR__).'/model/portfolioItem.php');
 	include_once (dirname(__DIR__).'/model/programmeertaal.php');
 	include_once (dirname(__DIR__).'/model/portfolioAfbeelding.php');
+	include_once (dirname(__DIR__)."/model/userDAO.php");
+	include_once (dirname(__DIR__)."/model/user.php");
 	class portfolioDAO
 	{
 	
@@ -184,9 +186,9 @@
 			
 			while($row = $result->fetch_assoc())
 			{
-				$reactie = new ReactieModel($row['ID'], NULL, NULL, $row['username'], $row['content'], $row['datum']);
-				
-
+				$userDAO = new userDAO();
+				$user = $userDAO->GetUser($row["username"]);
+				$reactie = new ReactieModel($row['ID'], NULL, NULL, $user, $row['content'], $row['datum']);
 				$reacties[] = $reactie;
 			}
 			

@@ -113,6 +113,11 @@ hr.style3 {
 	width: 100%;
 }
 
+hr.style4 {
+	border-top: 1px double #0065B3;
+	width: 80%;
+}
+
 .filters{
 	text-align: left;
 	float: left;
@@ -177,3 +182,49 @@ hr.style3 {
 	box-shadow: 7px 7px 10px grey;
 	-webkit-transition:all .3s ease-in;
 }
+
+.portfolioitem h1{
+	background-color:yellow;
+	font-size: 2em;
+	margin-bottom:0px;
+	color: #0065B3;
+	margin-left: 20%;
+	margin-top:22px;
+}
+
+.portfolioitem h2 {
+	font-size: 2em;
+	color: #0065B3;
+	margin-left:20%;
+}
+
+.portfolioitem h3 {
+	margin-top:0px;
+	background-color:green;
+	font-size: 0.6em;
+	margin-left:20%;
+	width:80%;
+}
+
+.portfolioitem p {
+	font-size: 1.1em;
+	margin-left:20%;
+	margin-top:10px;
+	background-color:deeppink;
+}
+
+.media {
+	width: 80%;
+	margin-left:20%;
+}
+
+.afbeelding {
+	float:left;
+	width: 250px;
+	height: 250px;
+	border: 1px solid #0065B3;
+	margin-top: 18px;
+	margin-bottom:24px;
+}
+
+	
