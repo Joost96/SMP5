@@ -59,17 +59,17 @@ header {
 
 #inholland_logo{
 	width: 20%;
-	margin-bottom: -155px;
+	margin-bottom: -66px;
 }
 
 #spacing_section{
-	height: 5%;
+	height: 15px;
 }
 
 .navbar {
 	list-style-type : none;
 	padding: 0px;
-    margin: 0px;
+    margin: -20px 0px 0px;
 	background : #fff;
 	overflow : hidden;
 }
@@ -89,6 +89,9 @@ header {
 	text-decoration: none;
 	color : #000;
 	cursor: pointer;
+}
+.navbar .right #username {
+	display : none;
 }
 .navbar .dropdown .menuItems {
 	display: none;

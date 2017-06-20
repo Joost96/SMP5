@@ -22,7 +22,7 @@
 		function GetAfbeelding($id)
 		{	
 			$sql = "SELECT * FROM afbeelding WHERE id = ?";
-			$user = NULL;
+			$afbeelding = NULL;
 			$databaseConn = $this->getConnection();
 			
 			if (!($stmt = $databaseConn->prepare($sql))) {

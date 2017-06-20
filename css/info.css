@@ -1,3 +1,6 @@
+.textblock {
+	border-top: 1px solid #000;
+}
 .textBlock img {
 	width : 100%;
 }

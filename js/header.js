@@ -1,6 +1,5 @@
 window.onload = function() {
-	//--login model
-
+	loggedIn()
 	// When the user clicks anywhere outside of the modal, close it
 	$(document).mouseup(function(e) 
 	{
@@ -12,15 +11,29 @@ window.onload = function() {
 			$(".modal").hide();
 		}
 	});
-	
+	//--login model
+	//open modal login
 	$( "#loginModalBtn" ).click(function() {
-		$("#loginModel").show();
+		if($("#loginModalBtn").html() == "Inloggen")
+			$("#loginModel").show();
+		else {
+			$.ajax({
+				url: "func/logout.php"
+			})
+			.done(function( msg ) {
+				console.log(msg);
+				$("#username").html("NULL");
+				loggedIn();
+			}).fail(function() {
+				console.log("failed");
+			});
+		}
 	});
-	
+	//close modal
 	$( ".close, input[value=Annuleren]" ).click(function() {
 		$(".modal").hide();
 	});
-	
+	//clicked login
 	$( "#loginBtn" ).click(function() {
 		$( "#loginModel .form" ).find(".error").remove();
 		
@@ -30,12 +43,14 @@ window.onload = function() {
 			$.ajax({
 				method: "POST",
 				url: "func/login.php",
-				data: { username: username, password: password }
+				data: { username: username, password: password },
+				dataType: 'json'
 			})
 			.done(function( msg ) {
 				console.log(msg );
-				if (msg.indexOf("valid login") >= 0) {
+				if (msg.status.indexOf("valid login") >= 0) {
 					$("#loginModel").hide();
+					logIn(msg.user);
 				} else {
 					$( "#loginModel .form" ).append( $( "<p class='error'>Gebruikersnaam of wachtwoord is incorrect</p>" ) );
 				}
@@ -45,11 +60,12 @@ window.onload = function() {
 		}
 	});
 	//--register modal
+	//open modal
 	$( "#registerModalBtn" ).click(function() {
 		$("#registerModel").show();
 		$("#loginModel").hide();
 	});
-	
+	//clicked register
 	$( "#registerBtn" ).click(function() {
 		$( "#registerModel input[name=studentId]" ).next(".error").remove();
 		$( "#registerModel input[name=email]" ).next(".error").remove();
@@ -104,8 +120,20 @@ window.onload = function() {
 		}
 	});
 }
-function loggedIn(user) {
-
+function logIn(user) {
+	console.log(user);
+	$("#username").html(user.username);
+	loggedIn();
+}
+function loggedIn() {
+	console.log("get");
+	if($("#username").html() != "NULL") {
+		$("#username").css('display', 'block')
+		$("#loginModalBtn").html("Uitloggen");
+	} else {
+		$("#username").css('display', 'none')
+		$("#loginModalBtn").html("Inloggen");
+	}
 }
 function validateEmail(email) 
 {

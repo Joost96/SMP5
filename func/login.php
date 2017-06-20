@@ -1,6 +1,6 @@
 <?php
 	session_start();
-
+	header('Content-Type: application/json');
 	$username = "";
 	$password = "";
 
@@ -14,16 +14,23 @@
 			$password = trim_data($_POST["password"]);
 			$username = strtolower($username);
 			
+			$status = "";
+			
 			$user = $userDAO->GetUser($username);
 			if(isset($user) && !empty($user)) {
 				if (password_verify($password, $user->password)) {
-					echo 'valid login';
+					$status = 'valid login';
 					$_SESSION["user"] = $user;
 				} else {
-					echo 'Invalid';
+					$status = 'Invalid';
 				}
 			} else {
-				echo 'Invalid';
+				$status = 'Invalid';
+			}
+			if($status == "valid login") {
+				echo json_encode(array('status' => $status,'user'=> $user));
+			} else {
+				echo json_encode(array('status' => $status,));
 			}
 		}
 	}

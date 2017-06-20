@@ -1,14 +1,17 @@
 <?php
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
+	
+	require (dirname(__DIR__).'/model/user.php');
+	
 	session_start();
-	if (!isset($_SESSION['taal']) && empty($_SESSION['taal'])) {
-		$_SESSION["taal"] = "NL";
+	if (!isset($_SESSION['lang']) && empty($_SESSION['lang'])) {
+		$_SESSION["lang"] = "nl";
 	}
-	var_dump($_SESSION["user"]);
 	
 	function page_header(){
 		$numargs = func_num_args();
+		//override functionality with title , css file and script file
 		if($numargs >= 1) {
 			$page = func_get_arg(0);
 			if($numargs == 3) {
@@ -17,10 +20,10 @@
 			}
 			else if($numargs == 2) {
 				$css = func_get_arg(1);
-				$script = func_get_arg(1);
+				$script = "";
 			} else {
-				$css = func_get_arg(0);
-				$script = func_get_arg(0);
+				$css = "";
+				$script = "";
 			}
 			$css = "<link rel='stylesheet' type='text/css' href='/smp5/css/{$css}.css'/>";
 			$script = "<script src='/smp5/js/{$script}.js'></script>";
@@ -30,12 +33,18 @@
 			$script = "";
 		}
 		
-		if($_SESSION["taal"] == "nl") {
+		//set vars for in the header
+		if($_SESSION["lang"] == "nl") {
 			$taalbtn = "English";
 			$switchTaal = "en";
 		} else {
 			$taalbtn = "Nederlands";
 			$switchTaal = "nl";
+		}
+		if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+			$username = $_SESSION['user']->username;
+		} else {
+			$username = "NULL";
 		}
 		
 		print "
@@ -67,6 +76,7 @@
 								</li>			
 								<li class='right'><a id='taalbtn' href='switchlang.php?lang={$switchTaal}&page=".$_SERVER['REQUEST_URI']."'>{$taalbtn}</a></li>
 								<li class='right'><a id='loginModalBtn'>Inloggen</a></li>
+								<li class='right'><a id='username'>{$username}</a></li>
 								
 							</ul>
 							<div class='title'>

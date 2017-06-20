@@ -32,7 +32,7 @@
 				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
 				return;
 			}
-			if (!$stmt->bind_param("si", $title,$taal)) {
+			if (!$stmt->bind_param("ss", $title,$taal)) {
 				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 				return;
 			}	
