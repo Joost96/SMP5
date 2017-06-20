@@ -15,7 +15,7 @@
 			
 			$result = $this->executeQuery1($con, $query, "i", $onderwerp_id);
 			
-			$posts[] = null;
+			$posts = array();
 			
 			while ($row = $result->fetch_assoc()){
 				array_push($posts, new PostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content']));
@@ -51,7 +51,7 @@
 			
 			$result = $this->executeQuery1($con, $query, "i", $post_id);
 			
-			$reacties[];
+			$reacties = array();
 			
 			while($row = $result->fetch_assoc()){
 				array_push($reacties, new ReactieModel($row['ID'], $row['postID'], $row['content']));
@@ -80,7 +80,7 @@
 			
 			if ($result == null){return;}
 			
-			$onderwerpen[];
+			$onderwerpen = array();
 			
 			while($row = $result->fetch_assoc()){
 				array_push($onderwerpen, new OnderwerpModel($row['ID'], $row['naam']));
@@ -97,7 +97,7 @@
 			
 			$result = $this->executeQuery1($con, $query, "i", $onderwerp_id);
 			
-			$onderwerp[];
+			$onderwerp = array();
 			if ($row = $result->fetch_assoc()){
 				array_push($onderwerp, new OnderwerpModel($row['ID'], $row['naam']));
 			}

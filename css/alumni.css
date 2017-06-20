@@ -1,6 +1,7 @@
 .alumni-post {
 	margin : auto;
 	float : none;
+	display : inline-block;
 }
 
 .alumni-post img {
