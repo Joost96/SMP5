@@ -121,12 +121,10 @@ window.onload = function() {
 	});
 }
 function logIn(user) {
-	console.log(user);
 	$("#username").html(user.username);
 	loggedIn();
 }
 function loggedIn() {
-	console.log("get");
 	if($("#username").html() != "NULL") {
 		$("#username").css('display', 'block')
 		$("#loginModalBtn").html("Uitloggen");

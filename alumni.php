@@ -9,7 +9,6 @@
 	
 	
 	$alumnus = $alumniDAO->GetAllAlumni();
-	var_dump($alumnus);
 ?>
 
 <main>

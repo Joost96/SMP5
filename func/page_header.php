@@ -17,16 +17,18 @@
 			if($numargs == 3) {
 				$css = func_get_arg(1);
 				$script = func_get_arg(2);
+				$css = "<link rel='stylesheet' type='text/css' href='/smp5/css/{$css}.css'/>";
+				$script = "<script src='/smp5/js/{$script}.js'></script>";
 			}
 			else if($numargs == 2) {
 				$css = func_get_arg(1);
+				$css = "<link rel='stylesheet' type='text/css' href='/smp5/css/{$css}.css'/>";
 				$script = "";
 			} else {
 				$css = "";
 				$script = "";
 			}
-			$css = "<link rel='stylesheet' type='text/css' href='/smp5/css/{$css}.css'/>";
-			$script = "<script src='/smp5/js/{$script}.js'></script>";
+
 		} else {
 			$page = "Informatica";
 			$css = "";
@@ -61,17 +63,17 @@
 				</head>
 					<body>
 						<header>
-							<a href='blabla'><img id='inholland_logo' src='/smp5/img/inholland_logo.png' alt='oops' /></a>
+							<a href='index.php'><img id='inholland_logo' src='/smp5/img/inholland_logo.png' alt='inholland logo' /></a>
 							<ul class='navbar'>
 								<li class='dropdown'>
 									<a class='dropknop'>Menu</a>
 										<div class='menuItems'>
-											<a href='index.html'>Thuis</a>
-											<a href='forum.html'>Forum</a>
+											<a href='index.php'>Thuis</a>
+											<a href='forum/overzicht.php'>Forum</a>
 											<a href='curriculum.html'>Curriculum</a>
-											<a href='buiten.html'>Buiten School</a>
-											<a href='alumni.html'>Succesverhalen</a>
-											<a href='portfolio.html'>Portfolio</a>
+											<a href='infohaarlem.php'>Buiten School</a>
+											<a href='alumni.php'>Succesverhalen</a>
+											<a href='portfolio.php'>Portfolio</a>
 										</div>
 								</li>			
 								<li class='right'><a id='taalbtn' href='switchlang.php?lang={$switchTaal}&page=".$_SERVER['REQUEST_URI']."'>{$taalbtn}</a></li>
