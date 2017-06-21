@@ -8,11 +8,10 @@ ul {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #333;
 }
 
 li {
-	float:left;
+	float:right;
 }
 
 li:last-child {
@@ -20,28 +19,28 @@ li:last-child {
 }
 
 li a {
+float:right;
 	display: block;
-	color: white;
+	color: black;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
 }
 
 li a:hover {
-    background-color: #111;
+    background-color: white;
 }
 
 
 li.left {
-    float: left;
-	border-right: 1px solid #bbb;
+    float: right;
+	border-left: 1px solid #bbb;
 }
-
 
 .slide {
 	display: none;
+	height: 500px;
 	width:100%;
-	max-height: 400px;
 	-webkit-transition:all .3s ease-in;
 }
 
@@ -54,7 +53,7 @@ li.left {
 }
 
 .buttons {
-	width:70%;
+	width:100%;
 	margin: 0 auto;
 	height: 100px;
 }
@@ -77,32 +76,55 @@ li.left {
 	-webkit-transition:all .3s ease-in;
 }
 
-.referral
-{
+.referral {
     visibility: hidden;
 }
 
-.juicer-feed
-{
+.juicer-feed {
     background: white !important;
 	padding-top: -100px;
 	margin-top: -100px;
 }
 
-.juicer-feed .j-meta a{
+.juicer-feed .j-meta a {
 	color:#666;
 }
 
-.j-text{
+.j-text {
 	background-color: white;
 }
 
-.j-meta ul{
+.j-meta ul {
 	background-color: white;
 }
 
-.li a:hover{
+.j-poster li a:hover {
 	color: white;
+}
+
+.feed-item juicer image-post {
+visibility: hidden;
+}
+
+.feed-item:hover{
+background-color:deeppink;
+}
+
+.j-poster{
+visibility: hidden;
+}
+
+.feed {
+	overflow:hidden;
+}
+
+.juicer-feed {
+	overflow-y: auto;
+	padding-right: 17px;
+}
+
+.jfilters ul {
+background-color: white;
 }
 
 .button p {

@@ -21,24 +21,29 @@
 	</ul>
 	
 	<article class="slideshow">
-		<img class="slide fade" src="../img/PortfolioMensen.jpg">
-		<img class="slide fade" src="http://img.clipartall.com/number-20clipart-number-clip-art-1300_716.jpg">
-		<img class="slide fade" src="http://www.englishnumber.com/images/numbers-01.gif">
+		<img class="slide fade" src="../img/PraatMee.png">
+		<img class="slide fade" src="../img/LeerMeer.png">
+		<img class="slide fade" src="../img/GoDutch.png">
+		<div class="buttons">
+			<button class="button"><a href="forum/overzicht.php"><p>Praat Mee!</br>Bezoek ons forum en praat mee over de opleiding</p></a></button>
+			<button class="button"><a href="portfolio.php"><p>Leer Meer!</br>Bij onze opleiding leer je werken met de nieuwste methoden en technieken</p></a></button>
+			<button class="button"><a href="infoHaarlem.php"><p>Go Dutch!</br>Kom studeren in Nederland</p></a></button>
+		</div>
 	</article>
 	
-	<div class="buttons">
-		<button class="button"><a href="forum/overzicht.php"><p>Praat Mee!</br>Bezoek ons forum en praat mee over de opleiding</p></a></button>
-		<button class="button"><a href="portfolio.php"><p>Forum</br>Bij onze opleiding leer je werken met de nieuwste methoden en technieken</p></a></button>
-		<button class="button"><a href="infoHaarlem.php"><p>Go Dutch!</br>Kom studeren in Nederland</p></a></button>
-	</div>
+	
 	
 	<div class="feed">
+	<br />
 	<h2>SOCIAL MEDIA</h2>
+	<br />
 	<hr class="style3">
 		<script src="//assets.juicer.io/embed.js" type="text/javascript"></script>
 		<link href="//assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
-		<ul class="juicer-feed" data-feed-id="inholland-977ec6ea-0534-4cec-9b2b-e4c4e2060407"></ul>
+		<ul class="juicer-feed" data-feed-id="inholland-977ec6ea-0534-4cec-9b2b-e4c4e2060407" data-pages="1" data-per="15" data-truncate="400"></ul>
 	</div>
+	
+	<hr class="style3">
 	
 	<br />
 	<br />
@@ -67,7 +72,7 @@
 					}			
 				j[index-1].style.display = "block";
 				buttons[index-1].className += " active";	
-				setTimeout(slideShow, 3000);
+				setTimeout(slideShow, 8000);
 				}
 		</script>
 	
