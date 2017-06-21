@@ -63,20 +63,20 @@
 				</head>
 					<body>
 						<header>
-							<a href='index.php'><img id='inholland_logo' src='/smp5/img/inholland_logo.png' alt='inholland logo' /></a>
+							<a href='/smp5/index.php'><img id='inholland_logo' src='/smp5/img/inholland_logo.png' alt='inholland logo' /></a>
 							<ul class='navbar'>
 								<li class='dropdown'>
 									<a class='dropknop'>Menu</a>
 										<div class='menuItems'>
-											<a href='index.php'>Thuis</a>
-											<a href='forum/overzicht.php'>Forum</a>
-											<a href='curriculum.html'>Curriculum</a>
-											<a href='infohaarlem.php'>Buiten School</a>
-											<a href='alumni.php'>Succesverhalen</a>
-											<a href='portfolio.php'>Portfolio</a>
+											<a href='/smp5/index.php'>Thuis</a>
+											<a href='/smp5/forum/overzicht.php'>Forum</a>
+											<a href='/smp5/curriculum.html'>Curriculum</a>
+											<a href='/smp5/infohaarlem.php'>Buiten School</a>
+											<a href='/smp5/alumni.php'>Succesverhalen</a>
+											<a href='/smp5/portfolio.php'>Portfolio</a>
 										</div>
 								</li>			
-								<li class='right'><a id='taalbtn' href='switchlang.php?lang={$switchTaal}&page=".$_SERVER['REQUEST_URI']."'>{$taalbtn}</a></li>
+								<li class='right'><a id='taalbtn' href='/smp5/func/switchlang.php?lang={$switchTaal}&page=".$_SERVER['REQUEST_URI']."'>{$taalbtn}</a></li>
 								<li class='right'><a id='loginModalBtn'>Inloggen</a></li>
 								<li class='right'><a id='username'>{$username}</a></li>
 								

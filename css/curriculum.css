@@ -1,0 +1,17 @@
+button {
+	box-sizing : border-box;
+	padding : 12%;
+	width : 140px;
+	border-style : none;
+	background : #169BD5;
+	border-bottom : 3px solid #137faf;
+	color : #fff;
+	display: block;
+	cursor: pointer;
+}
+.double {
+	padding : 3%;
+}
+button:hover {
+	background : #137faf;
+}

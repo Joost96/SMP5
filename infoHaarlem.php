@@ -1,7 +1,7 @@
 <?php
     require 'func/page_header.php';	
     require 'func/page_footer.php';
-	page_header("Buiten school","info");
+	page_header("After hours","info");
 	
 	include_once ("model/infoTextDAO.php");
 	include_once ("model/infoText.php");

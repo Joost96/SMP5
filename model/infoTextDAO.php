@@ -25,7 +25,7 @@
 		function GetInfoPage($title , $taal)
 		{	
 			$sql = "SELECT * FROM infoText WHERE page = ? AND taal = ?";
-			$infoPage = array();;
+			$infoPage = array();
 			$databaseConn = $this->getConnection();
 			
 			if (!($stmt = $databaseConn->prepare($sql))) {

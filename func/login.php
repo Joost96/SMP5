@@ -30,7 +30,7 @@
 			if($status == "valid login") {
 				echo json_encode(array('status' => $status,'user'=> $user));
 			} else {
-				echo json_encode(array('status' => $status,));
+				echo json_encode(array('status' => $status));
 			}
 		}
 	}
