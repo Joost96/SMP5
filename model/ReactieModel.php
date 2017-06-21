@@ -7,7 +7,9 @@
 		public $content;
 		public $dateTime;
 		
-		public function __construct($id, $postId, $portfolioId, $user, $content, $dateTime){
+		public function __construct($id, $postId, 
+			$portfolioId, $user, $content, $dateTime)
+		{
 			$this->id = $id;
 			$this->postId = $postId;
 			$this->portfolioId = $portfolioId;

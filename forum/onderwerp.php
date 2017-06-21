@@ -11,9 +11,7 @@
 	$title = $onderwerp->naam;
 	
 	page_header($title);
-	
-	var_dump($onderwerp);
-	
+		
 	echo "
 		<h2>{$title}</h2>
 		<br/>

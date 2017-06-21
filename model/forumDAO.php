@@ -2,16 +2,21 @@
 	include_once (dirname(__DIR__)."/model/ForumOnderwerpModel.php");
 	include_once (dirname(__DIR__)."/model/ForumPostModel.php");
 	include_once (dirname(__DIR__)."/model/ReactieModel.php");
-	include_once (dirname(__DIR__)."/model/informaticaBase.php");
+	include_once (dirname(__DIR__)."/informaticaBase.php");
 
 	class forumDAO{
+		private $obj;
 		private function connect(){
-			$obj = new informaticaBase();
-			$obj->connect();
+			$this->obj = new informaticaBase();
+			$this->obj->connect();
 			
-			$con = $obj->getConnection();
+			$con = $this->obj->getConnection();
 			
 			return $con;
+		}
+		
+		private function close(){
+			$this->obj->disconnect();
 		}
 		
 		function getPostbyOnderwerp($onderwerp_id){
@@ -24,10 +29,10 @@
 			$posts = array();
 			
 			while ($row = $result->fetch_assoc()){
-				array_push($posts, new PostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content']));
+				array_push($posts, new ForumPostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content']));
 			}
 			
-			$con->close();
+			$this->close();
 			
 			return $posts;
 		}
@@ -42,10 +47,10 @@
 			$post = array();
 			
 			if ($row = $result->fetch_assoc()){
-				array_push($post, new PostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content']));
+				array_push($post, new ForumPostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content']));
 			}
 			
-			$con->close();
+			$this->close();
 			
 			return $post[0];
 		}
@@ -55,9 +60,9 @@
 			
 			$query = "INSERT INTO `post` (`ID`, `titel`, `content`, `onderwerpID`) VALUES (NULL, ?, ?, ?)";
 			
-			$result = executeQuery3($con, $query, "ssi", $post->id, $post->titel, $post->onderwerpId);
+			$result = $this->executeQuery3($con, $query, "ssi", $post->titel, $post->content, $post->onderwerpId);
 			
-			$con->close();
+			$this->close();
 			
 			return $result;
 		}
@@ -75,19 +80,19 @@
 				array_push($reacties, new ReactieModel($row['ID'], $row['postID'], $row['content']));
 			}
 			
-			$con->close();
+			$this->close();
 			
 			return $reacties;
 		}
 		
-		function postReactie($post_id, $reactie_content){
+		function plaatsReactie($post_id, $reactie_content){
 			$con = $this->connect();
 			
 			$query = "INSERT INTO `reactie` (`ID`, `postID`, `content`) VALUES (NULL, ?, ?)";
 			
 			$result = $this->executeQuery2($con, $query, "is", $post_id, $reactie_content);
 			
-			$con->close();
+			$this->close();
 			
 			return $result;
 		}
@@ -101,10 +106,10 @@
 			$onderwerpen = array();
 			
 			while($row = $result->fetch_assoc()){
-				array_push($onderwerpen, new OnderwerpModel($row['ID'], $row['naam']));
+				array_push($onderwerpen, new ForumOnderwerpModel($row['ID'], $row['naam']));
 			}
 			
-			$con->close();
+			$this->close();
 			
 			return $onderwerpen;
 		}
@@ -118,10 +123,10 @@
 			$onderwerp = array();
 			
 			if ($row = $result->fetch_assoc()){
-				array_push($onderwerp, new OnderwerpModel($row['ID'], $row['naam']));
+				array_push($onderwerp, new ForumOnderwerpModel($row['ID'], $row['naam']));
 			}
 			
-			$con->close();
+			$this->close();
 
 			return $onderwerp[0];
 		}
@@ -129,19 +134,16 @@
 		private function executeQuery1($con, $query, $type, $param){
 			if (!($statement = $con->prepare($query))) {
 				echo "Prepare failed: (" . $con->errno . ") " . $con->error;
-				$con->close();
 				return null;
 			}
 			
 			if (!$statement->bind_param($type, $param)) {
 				echo "Binding parameters failed: (" . $statement->errno . ") " . $statement->error;
-				$con->close();
 				return null;
 			}
 			
 			if (!$statement->execute()){
 				echo "Excecute failed: ({$statement->errno}) {$statement->error}";
-				$con->close();
 				return null;
 			}
 			
@@ -151,20 +153,17 @@
 		private function executeQuery2($con, $query, $type, $param1, $param2){
 			if (!($statement = $con->prepare($query))) {
 				echo "Prepare failed: (" . $con->errno . ") " . $con->error;
-				$con->close();
-				return;
+				return null;
 			}
 			
 			if (!$statement->bind_param($type, $param1, $param2)) {
 				echo "Binding parameters failed: (" . $statement->errno . ") " . $statement->error;
-				$con->close();
-				return;
+				return null;
 			}
 			
 			if (!$statement->execute()){
 				echo "Excecute failed: ({$statement->errno}) {$statement->error}";
-				$con->close();
-				return;
+				return null;
 			}
 			
 			return $statement->get_result();
@@ -173,20 +172,17 @@
 		private function executeQuery3($con, $query, $type, $param1, $param2, $param3){
 			if (!($statement = $con->prepare($query))) {
 				echo "Prepare failed: (" . $con->errno . ") " . $con->error;
-				$con->close();
-				return;
+				return null;
 			}
 			
 			if (!$statement->bind_param($type, $param1, $param2, $param3)) {
 				echo "Binding parameters failed: (" . $statement->errno . ") " . $statement->error;
-				$con->close();
-				return;
+				return null;
 			}
 			
 			if (!$statement->execute()){
 				echo "Excecute failed: ({$statement->errno}) {$statement->error}";
-				$con->close();
-				return;
+				return null;
 			}
 			
 			return $statement->get_result();

@@ -7,13 +7,12 @@
 	
 	$titel = "Forum Overzicht";
 	
-	page_header($titel);	
+	page_header();	
 	
 	$onderwerpen = $forumdao->getAllOnderwerpen();
 
 	print "
 		<h2>{$titel}</h2><br/>
-
 		";
 	
 	foreach ( $onderwerpen as $onderwerp ){

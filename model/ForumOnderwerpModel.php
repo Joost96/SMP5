@@ -1,5 +1,5 @@
 <?php
-	class OnderwerpModel{
+	class ForumOnderwerpModel{
 		public $id;
 		public $naam;
 		

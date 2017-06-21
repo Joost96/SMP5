@@ -1,5 +1,5 @@
 <?php
-	class PostModel {
+	class ForumPostModel{
 		public $id;
 		public $onderwerpId;
 		public $titel;

@@ -2,7 +2,7 @@
 	include_once (dirname(__DIR__).'/func/page_header.php');
 	include_once (dirname(__DIR__).'/model/forumDAO.php');
 	include_once (dirname(__DIR__).'/model/ForumPostModel.php');
-	include_once (dirname(__DIR__).'/model/ForumReactieModel.php');
+	include_once (dirname(__DIR__).'/model/ReactieModel.php');
 	
 	$post_id = $_GET['post_id'];
 	
@@ -26,11 +26,7 @@
 			<input type='hidden' value='{$post_id}' name='post_id' />
 			<input type='submit' value='POST' />
 		</form>
-		";		
-	
-	$aantalReacties = count($reacties);
-	echo "<p>{$aantalReacties}</p>";
-	
+		";	
 	
 	foreach ( $reacties as $reactie ){
 		echo "
