@@ -13,53 +13,61 @@
 	<body>
 	
 	<ul class="navbar">	
-	<li><a href="index.html">Home</a></li>
-		<li class="dropdown">
-			<a class="dropknop">Menu</a>
-				<div class="menuItems">
-					<a href="index.php">Thuis</a>
-					<a href="forum.html">Forum</a>
-					<a href="curriculum.html">Curriculum</a>
-					<a href="buiten.html">Buiten School</a>
-					<a href="alumni.html">Succesverhalen</a>
-					<a href="portfolio.php">Portfolio</a>
-				</div>
-		</li>			
-		<li class="right"><a href="blabla">English</a></li>
-		<li class="right"><a href="blabla">Inloggen</a></li>	
+		<li class="left"><a href="index.php">Home</a></li>		
+		<li class="left"><a href="portfolio.php">Portfolio</a></li>
+		<li class="left"><a href="alumni.php">Succesverhalen</a></li>
+		<li class="left"><a href="curriculum.php">Studeren bij Inholland</a></li>	
+		<li class="left"><a href="infoHaarlem.php">Buiten School</a></li>						
 	</ul>
 	
 	<article class="slideshow">
-		<img class="slide" src="http://static.nautil.us/3006_5f268dfb0fbef44de0f668a022707b86.jpg">
-		<img class="slide" src="http://img.clipartall.com/number-20clipart-number-clip-art-1300_716.jpg">
-		<img class="slide" src="http://www.englishnumber.com/images/numbers-01.gif">
+		<img class="slide fade" src="../img/PortfolioMensen.jpg">
+		<img class="slide fade" src="http://img.clipartall.com/number-20clipart-number-clip-art-1300_716.jpg">
+		<img class="slide fade" src="http://www.englishnumber.com/images/numbers-01.gif">
 	</article>
 	
 	<div class="buttons">
-		<a href="portfolio.php" class="button"><p>Portfolio</br></br>Bekijk wat onze studenten allemaal maken</p></a>
-		<a href="#/Action2" class="button"><p>Forum</br></br>Stel vragen en discusseer mee</p></a>
-		<a href="#/Action3" class="button"><p>Succesverhalen</br></br>Lees verhalen van oud-studenten</p></a>
-		<a href="#/Action4" class="button"><p>Haarlem</br></br>Ontdek wat er allemaal te doen is in Haarlem</p></a>
+		<button class="button"><a href="forum/overzicht.php"><p>Praat Mee!</br>Bezoek ons forum en praat mee over de opleiding</p></a></button>
+		<button class="button"><a href="portfolio.php"><p>Forum</br>Bij onze opleiding leer je werken met de nieuwste methoden en technieken</p></a></button>
+		<button class="button"><a href="infoHaarlem.php"><p>Go Dutch!</br>Kom studeren in Nederland</p></a></button>
 	</div>
+	
+	<div class="feed">
+	<h2>SOCIAL MEDIA</h2>
+	<hr class="style3">
+		<script src="//assets.juicer.io/embed.js" type="text/javascript"></script>
+		<link href="//assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
+		<ul class="juicer-feed" data-feed-id="inholland-977ec6ea-0534-4cec-9b2b-e4c4e2060407"></ul>
+	</div>
+	
+	<br />
+	<br />
+	
+	
 	   <script>
 			var index = 0;
 			slideShow();
 			
 			function slideShow() {
 				var i;
+				var buttons = document.getElementsByClassName("button");
 				var j = document.getElementsByClassName("slide");
-				for (i =0; i < j.length; i++)
-				{
-					j[i].style.display = "none";
-				}
+					for (i =0; i < j.length; i++)
+					{
+						j[i].style.display = "none";
+					}
 				index++;
-				if (index > j.length)
-				{
-				index = 1;
-				}
-				
+					if (index > j.length)
+					{
+						index = 1;
+					}
+					for (i = 0; i < buttons.length; i++) 
+					{
+						buttons[i].className = buttons[i].className.replace(" active", "");
+					}			
 				j[index-1].style.display = "block";
-				setTimeout(slideShow, 4000);
+				buttons[index-1].className += " active";	
+				setTimeout(slideShow, 3000);
 				}
 		</script>
 	

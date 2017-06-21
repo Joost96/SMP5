@@ -32,75 +32,113 @@ li a:hover {
 }
 
 
-li.right {
-    float: right;
-	border-left: 1px solid #bbb;
+li.left {
+    float: left;
+	border-right: 1px solid #bbb;
 }
 
-li.dropdown {
-	float:right;
-	border-left: 1px solid #bbb;
-}
-
-.menuItems {
-	display: none;
-    position: absolute;
-    background-color: #333;
-	min-width: 100px;
-	margin-left: -74px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-	
-.menuItems a {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-}
-
-.dropdown:hover .menuItems {
-    display: block;
-}
 
 .slide {
 	display: none;
 	width:100%;
-	max-height: 550px;
+	max-height: 400px;
+	-webkit-transition:all .3s ease-in;
 }
 
 .slideshow {
-	padding-top: 5px;
+	padding-top: 0px;
 	margin: 0 auto;
 	max-width: 70%;
+	margin-bottom: 0px;
+	padding-bottom:0px;
 }
 
 .buttons {
+	width:70%;
 	margin: 0 auto;
-	max-width: 400px;
-	width: 40%;
+	height: 100px;
 }
 
 .button{
-	text-align: left;
-	text-decoration: none;
-	font-size: 1.6em;
+	width:33%;
+	height:100%;
+	vertical-align: top;
+	background-color: #0065B3; 
+    border: none;
+    color: white;
+	text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button:hover{
+	background-color: #43B9F1;
+	-webkit-transition:all .3s ease-in;
+}
+
+.referral
+{
+    visibility: hidden;
+}
+
+.juicer-feed
+{
+    background: white !important;
+	padding-top: -100px;
+	margin-top: -100px;
+}
+
+.juicer-feed .j-meta a{
+	color:#666;
+}
+
+.j-text{
+	background-color: white;
+}
+
+.j-meta ul{
+	background-color: white;
+}
+
+.li a:hover{
 	color: white;
 }
 
 .button p {
-	transition-duration: 0.5s;
-	padding-right: 10px;
-	padding-top: 10px;
-	padding-left: 10px;
-	background-color: #0065B3;
-	border-radius: 10px;
-	height: 140px;
+	text-decoration: none;
+	color: white;
 }
 
-.button p:hover {
-	background-color: #43B9F1;
+.button a {
+	text-decoration: none;
+}
+
+.active {
+  background-color: #b8b500;
+  -webkit-transition:all .4s ease-in;
+}
+
+.active:hover {
+  background-color: #d9db4f;
+  -webkit-transition:all .4s ease-in;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 2s;
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .2} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .2} 
+  to {opacity: 1}
 }
 
 hr.style2 {
