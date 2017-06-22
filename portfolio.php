@@ -10,7 +10,7 @@
 		<div class="talen">
 			<p>Talen: </p>
 			<hr class="style2">
-			<?php include (dirname(__DIR__).'/smp5/func/taalfilters.php');?>
+			<?php include (dirname(__DIR__).'/smp5/func/onderwerpfilters.php');?>
 		</div>
 		
 		<div class="jaar">
@@ -39,19 +39,19 @@
 					jaarfilter.push($(this).val())
 				}
 			});
-		var taalfilter = [];
-			$('input[type=checkbox][name=taalfilter]').each(function(){
+		var onderdeelfilter = [];
+			$('input[type=checkbox][name=onderdeelfilter]').each(function(){
 				if($(this).is(':checked'))
 				{
-					taalfilter.push($(this).val())
+					onderdeelfilter.push($(this).val())
 				}
 			});
-			console.log(taalfilter);
+			console.log(onderdeelfilter);
 			console.log(jaarfilter);
 		$.ajax({
 			method: "POST",
 		  url: "func/portfilters.php", 
-		  data: {jaarfilter:jaarfilter, taalfilter:taalfilter}
+		  data: {jaarfilter:jaarfilter, onderdeelfilter:onderdeelfilter}
 		})
 		.done(function(msg){
 			console.log(msg);

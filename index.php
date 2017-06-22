@@ -67,7 +67,7 @@
 					}			
 				j[index-1].style.display = "block";
 				buttons[index-1].className += " active";	
-				setTimeout(slideShow, 3000);
+				setTimeout(slideShow, 8000);
 				}
 		</script>
 	
