@@ -1,33 +1,16 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Home</title>
-		<link rel="stylesheet" type="text/css" href="css/home.css">
-		<meta charset="UTF-8">
-		<meta name="Thuispagina" content="Opleiding informatica">
-		<meta name="keywords" content="informatica, inholland, haarlem, studenten, hbo, it, ict">
-		<meta name="author" content="Joshua Volkers">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
-	</head>
-	
-	<body>
-	
-	<ul class="navbar">	
-		<li class="left"><a href="index.php">Home</a></li>		
-		<li class="left"><a href="portfolio.php">Portfolio</a></li>
-		<li class="left"><a href="alumni.php">Succesverhalen</a></li>
-		<li class="left"><a href="curriculum.php">Studeren bij Inholland</a></li>	
-		<li class="left"><a href="infoHaarlem.php">Buiten School</a></li>						
-	</ul>
+	<?php require (dirname(__DIR__).'/smp5/func/page_header.php');
+	page_header("Home", "home", "home");?>
 	
 	<article class="slideshow">
 		<img class="slide fade" src="../img/PraatMee.png">
 		<img class="slide fade" src="../img/LeerMeer.png">
 		<img class="slide fade" src="../img/GoDutch.png">
 		<div class="buttons">
-			<button class="button"><a href="forum/overzicht.php"><p>Praat Mee!</br>Bezoek ons forum en praat mee over de opleiding</p></a></button>
-			<button class="button"><a href="portfolio.php"><p>Leer Meer!</br>Bij onze opleiding leer je werken met de nieuwste methoden en technieken</p></a></button>
-			<button class="button"><a href="infoHaarlem.php"><p>Go Dutch!</br>Kom studeren in Nederland</p></a></button>
+			<button class="button" id="button1"><a href="forum/overzicht.php"><p>Praat Mee!</br>Bezoek ons forum en praat mee over de opleiding</p></a></button>
+			<button class="button" id="button2"><a href="portfolio.php"><p>Leer Meer!</br>Bij onze opleiding leer je werken met de nieuwste methoden en technieken</p></a></button>
+			<button class="button" id="button3"><a href="infoHaarlem.php"><p>Go Dutch!</br>Kom studeren in Nederland</p></a></button>
 		</div>
 	</article>
 	

@@ -1,6 +1,17 @@
 /*Josh*/
 body {
 	font-family: Arial;
+	width: 70%;
+}
+
+.title {
+visibility: hidden;
+
+}
+
+.navbarhome{
+margin-top: 18px;
+border-bottom: 1px solid #bbb;
 }
 
 ul {
@@ -19,11 +30,11 @@ li:last-child {
 }
 
 li a {
-float:right;
+	float:right;
 	display: block;
 	color: black;
 	text-align: center;
-	padding: 14px 16px;
+	padding: 10px 16px;
 	text-decoration: none;
 }
 
@@ -47,7 +58,7 @@ li.left {
 .slideshow {
 	padding-top: 0px;
 	margin: 0 auto;
-	max-width: 70%;
+	max-width: 100%;
 	margin-bottom: 0px;
 	padding-bottom:0px;
 }
@@ -74,6 +85,51 @@ li.left {
 .button:hover{
 	background-color: #43B9F1;
 	-webkit-transition:all .3s ease-in;
+}
+
+
+.button p {
+	text-decoration: none;
+	color: white;
+}
+
+.button a {
+	text-decoration: none;
+}
+
+#button1 {
+border-radius: 0px 0px 0px 15px;
+}
+
+#button3 {
+border-radius: 0px 0px 15px 0px;
+}
+
+.active {
+  background-color: #ff2200;
+  -webkit-transition:all .4s ease-in;
+}
+
+.active:hover {
+  background-color: #ff6f00;
+  -webkit-transition:all .4s ease-in;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 2s;
+  animation-name: fade;
+  animation-duration: 2s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .2} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .2} 
+  to {opacity: 1}
 }
 
 .referral {
@@ -125,42 +181,6 @@ visibility: hidden;
 
 .jfilters ul {
 background-color: white;
-}
-
-.button p {
-	text-decoration: none;
-	color: white;
-}
-
-.button a {
-	text-decoration: none;
-}
-
-.active {
-  background-color: #b8b500;
-  -webkit-transition:all .4s ease-in;
-}
-
-.active:hover {
-  background-color: #d9db4f;
-  -webkit-transition:all .4s ease-in;
-}
-
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 2s;
-  animation-name: fade;
-  animation-duration: 2s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .2} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .2} 
-  to {opacity: 1}
 }
 
 hr.style2 {
