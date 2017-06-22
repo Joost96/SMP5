@@ -2,18 +2,18 @@
 	include_once (dirname(__DIR__).'/model/portfolioDAO.php');
 	include_once (dirname(__DIR__).'/model/portfolioItem.php');
 	$portDAO = new portfolioDAO();
-	$taalFilters = array();
+	$onderdeelfilter = array();
 	$jaarFilters = array();
-	if(isset($_POST['taalfilter']))
+	if(isset($_POST['onderdeelfilter']))
 	{
-		$taalFilters = $_POST['taalfilter'];
+		$onderdeelfilter = $_POST['onderdeelfilter'];
 	}
 	if(isset($_POST['jaarfilter']))
 	{
 		$jaarFilters = $_POST['jaarfilter'];
 	}	
 	
-	if((empty($taalFilters)) && (empty($jaarFilters)))
+	if((empty($onderdeelfilter)) && (empty($jaarFilters)))
 		{
 			$items = array();
 			$items = $portDAO->GetAllItems();
@@ -24,7 +24,7 @@
 	else
 		{	
 			$items = array();
-			$items =$portDAO->GetItemsForFilter($taalFilters, $jaarFilters);
+			$items =$portDAO->GetItemsForFilter($onderdeelfilter, $jaarFilters);
 			
 			EchoItems($items);
 		}

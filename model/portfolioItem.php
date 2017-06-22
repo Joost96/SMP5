@@ -8,8 +8,10 @@
 		var $datum;		
 		var $auteur;
 		var $thumbnail;
+		var $technieken;
+		var $youtubelink;
 
-		public function __construct($ID, $titel, $auteur, $beschrijving, $jaar, $datum, $thumbnail)
+		public function __construct($ID, $titel, $auteur, $beschrijving, $jaar, $datum, $thumbnail, $technieken, $youtubelink)
 		{
 			$this->ID = $ID;
 			$this->titel = $titel;
@@ -18,6 +20,8 @@
 			$this->datum = $datum;
 			$this->jaar = $jaar;
 			$this->thumbnail = $thumbnail;
+			$this->technieken = $technieken;
+			$this->youtubelink = $youtubelink;
 		}
 	}
 ?>

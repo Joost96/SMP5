@@ -11,12 +11,24 @@
 	$item = $portDAO->GetItemForID($itemID);
 	$afbeeldingen = $portDAO->GetAfbeeldingenForItem($itemID);
 	$reacties = $portDAO->GetAllReactiesForItem($itemID);
+	$examenonderdelen = $portDAO->GetExamenOnderdelenForItem($itemID);
+	$onderdelen = "";
+	
+	foreach($examenonderdelen as $onderdeel)
+	{
+		$onderdelen .= $onderdeel . ", ";
+	} 
+	
+	$onderdelen = substr($onderdelen, 0, -2);
+	
 	
 	echo "<article class='portfolioitem'>
 			<h1>$item->titel</h1>
 			<h3>Door: $item->auteur<br />	
 			Datum/Tijd: $item->datum<br />
-			Leerjaar: $item->jaar</h3>
+			Leerjaar: $item->jaar
+			Technieken: $item->technieken<br />
+			Examenonderdeel: $onderdelen</h3>	
 			<p>$item->beschrijving</p><br />		
 		<br />
 		<br />
@@ -29,6 +41,8 @@
 	{
 		echo "<a href=$afbeelding->instagrampostLink ><img class='afbeelding' src=$afbeelding->afbeeldingLink alt=$afbeelding->beschrijving/></a>";
 	}
+	
+	echo "<iframe class='yt' width='10000' height='10000' src='https://www.youtube.com/embed/qUsQZj6h9H0' frameborder='0' allowfullscreen></iframe>";
 	echo "</div>";
 	echo "<hr class='style4'>";
 	
