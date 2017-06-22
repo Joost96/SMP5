@@ -1,7 +1,7 @@
 <?php
     require 'func/page_header.php';	
     require 'func/page_footer.php';
-	page_header("Curriculum","curriculum");
+	page_header("Curriculum","curriculum","curriculum");
 	
 	include_once ("model/curriculumDAO.php");
 	include_once ("model/vak.php");
@@ -41,7 +41,7 @@
 										<button class="double"><?php echo $periodeItem->naam; ?></button>	
 									<?php endforeach;
 								else : ?>
-									<button id="<?php echo $periodeItems[0]->id; ?>"><?php echo $periodeItems[0]->naam; ?></button>	
+									<button id="<?php echo $periodeItems[0]->id;?>"><?php echo $periodeItems[0]->naam; ?></button>	
 								<?php endif; ?>	
 							</th>
 						<?php endfor; ?>

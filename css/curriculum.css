@@ -1,7 +1,7 @@
 button {
 	box-sizing : border-box;
 	padding : 12%;
-	width : 140px;
+	width : 160px;
 	border-style : none;
 	background : #169BD5;
 	border-bottom : 3px solid #137faf;
@@ -12,6 +12,6 @@ button {
 .double {
 	padding : 3%;
 }
-button:hover {
+button:hover, th .selected {
 	background : #137faf;
 }
