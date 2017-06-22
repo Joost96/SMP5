@@ -62,7 +62,7 @@
 					<title>{$page}</title>
 				</head>
 					<body>
-						<header class='header'>
+						<header class='headerhome'>
 							<a href='/smp5/index.php'><img id='inholland_logo' src='/smp5/img/inholland_logo.png' alt='inholland logo' /></a>
 							<ul class='navbar'>
 								<li class='dropdown'>
@@ -81,11 +81,7 @@
 								<li class='right'><a id='username'>{$username}</a></li>
 								
 							</ul>
-							<div class='title'>
-								<h1>{$page}</h1>
-							</div>
-							<section id='spacing_section'></section>
-
+							<section id='spacing_section2'></section>
 
 							<!-- Modal login -->
 							<div id='loginModel' class='modal'>
@@ -150,7 +146,7 @@
 									</div>
 								  </div>
 							</div>
-						</header>			
+						</header>
 		";
 	}
 ?>

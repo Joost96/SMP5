@@ -1,53 +1,9 @@
 /*Josh*/
 body {
 	font-family: Arial;
-	width: 70%;
 }
 
-.title {
-visibility: hidden;
-
-}
-
-.navbarhome{
-margin-top: 18px;
-border-bottom: 1px solid #bbb;
-}
-
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-}
-
-li {
-	float:right;
-}
-
-li:last-child {
-	border-left: none;
-}
-
-li a {
-	float:right;
-	display: block;
-	color: black;
-	text-align: center;
-	padding: 10px 16px;
-	text-decoration: none;
-}
-
-li a:hover {
-    background-color: white;
-}
-
-
-li.left {
-    float: right;
-	border-left: 1px solid #bbb;
-}
-
+/*Slideshow&Buttons*/
 .slide {
 	display: none;
 	height: 500px;
@@ -110,7 +66,7 @@ border-radius: 0px 0px 15px 0px;
   -webkit-transition:all .4s ease-in;
 }
 
-.active:hover {
+.active:hover:before {
   background-color: #ff6f00;
   -webkit-transition:all .4s ease-in;
 }
@@ -132,6 +88,7 @@ border-radius: 0px 0px 15px 0px;
   to {opacity: 1}
 }
 
+/*Media feed*/
 .referral {
     visibility: hidden;
 }
@@ -162,16 +119,8 @@ border-radius: 0px 0px 15px 0px;
 visibility: hidden;
 }
 
-.feed-item:hover{
-background-color:deeppink;
-}
-
 .j-poster{
 visibility: hidden;
-}
-
-.feed {
-	overflow:hidden;
 }
 
 .juicer-feed {
@@ -183,6 +132,21 @@ visibility: hidden;
 background-color: white;
 }
 
+.feed h2{
+font-size: 1.2em;
+margin: 0 auto;
+text-align: center;
+color: #0065B3;
+}
+
+.forumoverzicht h2{
+font-size: 1.2em;
+margin: 0 auto;
+text-align: center;
+color: #0065B3;
+}
+
+/*divider lines styles*/
 hr.style2 {
 	border-top: 1px double #0065B3;
 	width: 150px;
@@ -198,6 +162,7 @@ hr.style4 {
 	width: 100%;
 }
 
+/*portfolio pagina*/
 .filters{
 	text-align: left;
 	float: left;
@@ -267,7 +232,7 @@ hr.style4 {
 	font-size: 2em;
 	margin-bottom:0px;
 	color: #0065B3;
-	margin-left: 10%
+	margin-left: 10%;
 	margin-top:22px;
 }
 
@@ -288,6 +253,7 @@ hr.style4 {
 	margin-top:10px;
 }
 
+/*portfolio detail pagina*/
 .media {
 	width: 100%;
 }
