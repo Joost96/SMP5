@@ -202,7 +202,7 @@
 			$sql = "SELECT post.ID, post.titel, post.content, onderwerp.naam, post.datum, user.username 
 					FROM post, onderwerp, user 
 					WHERE post.auteurId = user.ID AND onderwerp.ID = post.onderwerpID
-					ORDER BY post.datum DESC LIMIT 1";
+					ORDER BY post.datum DESC LIMIT 5";
 			
 			$result = $con->query($sql);
 			if ($result == null)

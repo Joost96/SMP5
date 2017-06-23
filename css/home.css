@@ -61,12 +61,17 @@ border-radius: 0px 0px 0px 15px;
 border-radius: 0px 0px 15px 0px;
 }
 
+#button2{
+margin-left: 0.47%;
+margin-right: 0.47%;
+}
+
 .active {
   background-color: #ff2200;
   -webkit-transition:all .4s ease-in;
 }
 
-.active:hover:before {
+.active:hover{
   background-color: #ff6f00;
   -webkit-transition:all .4s ease-in;
 }
@@ -139,13 +144,6 @@ text-align: center;
 color: #0065B3;
 }
 
-.forumoverzicht h2{
-font-size: 1.2em;
-margin: 0 auto;
-text-align: center;
-color: #0065B3;
-}
-
 /*divider lines styles*/
 hr.style2 {
 	border-top: 1px double #0065B3;
@@ -161,6 +159,55 @@ hr.style4 {
 	border-top: 1px double #0065B3;
 	width: 100%;
 }
+
+/*Forum overzicht home*/
+.forumoverzicht a {
+text-decoration: none;
+color: black;
+background-color: #f5f5f5;
+}
+
+.forumoverzicht h2{
+font-size: 1.2em;
+margin: 0 auto;
+text-align: center;
+color: #0065B3;
+}
+
+.forumposthome {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+}
+
+.forumposthome:hover {
+	background-color: #43B9F1;
+	-webkit-transition:all 1s ease-in;
+}
+
+.forumposthome h4 {
+	font-size: 1.4em;
+	margin: 0 0 0 0;
+	color: #0065B3;
+}
+
+.forumposthome h5 {
+	font-size: 0.9em;
+	margin: 0 0 0 0;
+	color: #666;
+	padding-top: 0;
+}
+
+.forumposthome h6 {
+	font-size: 0.9em;
+	margin: 0 0 0 0;
+	color: #666;
+}
+
+
+
 
 /*portfolio pagina*/
 .filters{

@@ -2,7 +2,7 @@
 	include_once (dirname(__DIR__).'/model/forumDAO.php');
 	include_once (dirname(__DIR__).'/model/ForumPostModel.php');
 	
-	$forumDAO = new $forumDAO();
+	$forumDAO = new forumDAO();
 	
 	$latestPosts = $forumDAO->GetLatestPosts();
 	
@@ -10,13 +10,15 @@
 	{
 		$datetime = new datetime($post->datum);
 		
-		$datum = $datetime->format('M - D');
+		$datum = $datetime->format('D d M');
 		$tijd = $datetime->format('H:i');
-		echo "<div class='forumposthome'>
-				<h5>$post->titel</h5><h6>$post->onderwerpId</h6><br />
-				<h4>geplaatst op: $datum om: $tijd door: $post->user</h4><br /><br />
-				<p>$post->content</p>
-			</div>";
+		echo "<a href='/smp5/forum/post.php?post_id={$post->id}'>
+				<div class='forumposthome'>
+					<h4>$post->titel</h4><h5>In: $post->onderwerpId</h5>
+					<h6>Geplaatst op: $datum Om: $tijd Door: $post->user</h6>
+					<p>$post->content</p>
+				</div>
+			</a>";
 	}
 ?>
 	
