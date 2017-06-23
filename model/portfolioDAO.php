@@ -203,10 +203,11 @@
 			$state->execute();
 			$result = $state->get_result();
 			
+			$userDAO = new userDAO();
 			$reacties = array();
+			
 			while($row = $result->fetch_assoc())
 			{
-				$userDAO = new userDAO();
 				$user = $userDAO->GetUser($row["username"]);
 				$reactie = new ReactieModel($row['id'], NULL, NULL, $user, $row['content'], $row['datum']);
 				$reacties[] = $reactie;

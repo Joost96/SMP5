@@ -4,15 +4,15 @@
 		public $onderwerpId;
 		public $titel;
 		public $content;
-		public $auteurId;
+		public $user;
 		public $datum;
 		
-		public function __construct($id, $onderwerpId, $titel, $content, $auteurId, $datum){
+		public function __construct($id, $onderwerpId, $titel, $content, $user, $datum){
 			$this->id = $id;
 			$this->onderwerpId = $onderwerpId;
 			$this->titel = $titel;
 			$this->content = $content;
-			$this->auteurId = $auteurId;
+			$this->user = $user;
 			$this->datum = $datum;
 		}
 	}
