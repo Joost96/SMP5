@@ -17,13 +17,14 @@
 		<li class="left"><a href="portfolio.php">Portfolio</a></li>
 		<li class="left"><a href="alumni.php">Succesverhalen</a></li>
 		<li class="left"><a href="curriculum.php">Studeren bij Inholland</a></li>	
-		<li class="left"><a href="infoHaarlem.php">Buiten School</a></li>						
+		<li class="left"><a href="infoHaarlem.php">Buiten School</a></li>	
+		<li class="left"><a href="forum/overzicht.php">Forum</a></li>
 	</ul>
 	
 	<article class="slideshow">
-		<img class="slide fade" src="../img/PraatMee.png">
-		<img class="slide fade" src="../img/LeerMeer.png">
-		<img class="slide fade" src="../img/GoDutch.png">
+		<img class="slide fade" src="img/PraatMee.png">
+		<img class="slide fade" src="img/LeerMeer.png">
+		<img class="slide fade" src="img/GoDutch.png">
 		<div class="buttons">
 			<button class="button"><a href="forum/overzicht.php"><p>Praat Mee!</br>Bezoek ons forum en praat mee over de opleiding</p></a></button>
 			<button class="button"><a href="portfolio.php"><p>Leer Meer!</br>Bij onze opleiding leer je werken met de nieuwste methoden en technieken</p></a></button>

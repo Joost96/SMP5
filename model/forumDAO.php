@@ -2,7 +2,7 @@
 	include_once (dirname(__DIR__)."/model/ForumOnderwerpModel.php");
 	include_once (dirname(__DIR__)."/model/ForumPostModel.php");
 	include_once (dirname(__DIR__)."/model/ReactieModel.php");
-	include_once (dirname(__DIR__)."/informaticaBase.php");
+	include_once (dirname(__DIR__)."/model/informaticaBase.php");
 
 	class forumDAO{
 		private $obj;
@@ -70,14 +70,15 @@
 		function getAllReacties($post_id){
 			$con = $this->connect();
 			
-			$query = "select * from reactie where postID = ?";
+			$query = "select * from reactie where postId = ?";
 			
 			$result = $this->executeQuery1($con, $query, "i", $post_id);
 			
 			$reacties = array();
 			
 			while($row = $result->fetch_assoc()){
-				array_push($reacties, new ReactieModel($row['ID'], $row['postID'], $row['content']));
+				array_push($reacties, new ReactieModel($row['id'], $row['postId'], 
+					$row['portfolioItemId'], $row['auteurId'], $row['content'], $row['datum']));
 			}
 			
 			$this->close();
@@ -85,12 +86,17 @@
 			return $reacties;
 		}
 		
-		function plaatsReactie($post_id, $reactie_content){
+		function plaatsReactie($reactie){
 			$con = $this->connect();
 			
-			$query = "INSERT INTO `reactie` (`ID`, `postID`, `content`) VALUES (NULL, ?, ?)";
+			$query = "INSERT INTO `reactie` (`postId`, `auteurId`, `content`) VALUES (?, ?, ?)";
 			
-			$result = $this->executeQuery2($con, $query, "is", $post_id, $reactie_content);
+			var_dump($reactie);
+			
+			$result = $this->executeQuery3($con, $query, "iss", 
+				$reactie->postId, 
+				$reactie->user->id, 
+				$reactie->content);
 			
 			$this->close();
 			

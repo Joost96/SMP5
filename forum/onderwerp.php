@@ -9,6 +9,8 @@
 	
 	$onderwerp = $forumdao->getOnderwerpbyid($onderwerp_id);
 	$title = $onderwerp->naam;
+	$posts = $forumdao->getPostbyOnderwerp($onderwerp_id);
+	$posts = array_reverse($posts);
 	
 	page_header($title);
 		
@@ -16,14 +18,14 @@
 		<h2>{$title}</h2>
 		<br/>
 		";
+	if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
+		echo "
+			<p><a href='nieuwePost.php?onderwerp_id={$onderwerp_id}'>Maak een nieuwe post.</a></p>
+			";
+	}
 	
-	echo "
-		<p><a href='nieuwePost.php?onderwerp_id={$onderwerp_id}'>Maak een nieuwe post.</a></p>
-		";
-	
-	$posts = $forumdao->getPostbyOnderwerp($onderwerp_id);
 	
 	foreach ( $posts as $post ){
-		echo "<p><a href=post.php?post_id={$post->id}>{$post->titel}</a></p>";
+		echo "<p><a href='post.php?post_id={$post->id}'>{$post->titel}</a></p>";
 	}
 ?>
