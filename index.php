@@ -1,7 +1,5 @@
 <!DOCTYPE HTML>
 <html>
-	<?php require (dirname(__DIR__).'/smp5/func/page_header_home.php');
-	page_header("Home", "home");?>
 	
 	<article class="slideshow">
 		<img class="slide fade" src="img/PraatMee.png">

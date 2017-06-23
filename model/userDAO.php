@@ -41,7 +41,7 @@
 			$result = $stmt->get_result();
 			if($row = $result->fetch_assoc())
 			{
-				$user = new user($row["username"], $row["firstName"], $row["lastName"], $row["studentId"],
+				$user = new user($row['ID'], $row["username"], $row["firstName"], $row["lastName"], $row["studentId"],
 													$row["email"], $row["password"]);
 			}
 			$stmt->close();
@@ -70,7 +70,7 @@
 			$result = $stmt->get_result();
 			if($row = $result->fetch_assoc())
 			{
-				$user = new user($row["username"], $row["firstName"], $row["lastName"], $row["studentId"],
+				$user = new user($row['ID'], $row["username"], $row["firstName"], $row["lastName"], $row["studentId"],
 													$row["email"], $row["password"]);
 			}
 			$stmt->close();
