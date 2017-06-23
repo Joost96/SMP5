@@ -19,8 +19,7 @@
 
 body{
 	margin: auto;
-	width: 65%;
-
+	width:70%;
 }
 
 .center {
@@ -33,10 +32,16 @@ body{
 }
 
 /* header */
-header {
+.header {
 	background-image: url(../img/header_background.png);
 	background-repeat: no-repeat;
 	background-position: center top;
+}
+
+.headerhome {
+	background-repeat: no-repeat;
+	background-position: center top;
+	width: 100% !important;
 }
 
 #menu_table{
@@ -66,12 +71,17 @@ header {
 	height: 15px;
 }
 
+#spacing_section2{
+	height: 28px;
+}
+
 .navbar {
 	list-style-type : none;
 	padding: 0px;
     margin: -20px 0px 0px;
 	background : #fff;
 	overflow : hidden;
+	border-bottom: 1px solid #bbb;
 }
 .navbar .left {
 	float : left;
@@ -97,13 +107,15 @@ header {
 	display: none;
 	position: absolute;
 	min-width : 100px;
-	margin-left : -62;
+	margin-left : -62px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 	background : #fff;
 }
 .dropdown:hover .menuItems {
     display: block;
+	background-color:#fff;
+	color:white;
 }
 header .title {
 	margin: 60px 27% 0px;
