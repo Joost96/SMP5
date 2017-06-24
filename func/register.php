@@ -30,7 +30,7 @@
 				$user = $userDAO->CreateUser($username, $firstName, $lastName, $studentId, $email, $passwordHash);
 				if (isset($user) && !empty($user)) {
 					echo 'valid register';
-					$_SESSION["user"] = $user;
+					$_SESSION["user"] = serialize($user);
 				} else {
 					echo 'Invalid';
 				}

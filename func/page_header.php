@@ -44,7 +44,8 @@
 			$switchTaal = "nl";
 		}
 		if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
-			$username = $_SESSION['user']->username;
+			$user = unserialize($_SESSION['user']);
+			$username = $user->username;
 		} else {
 			$username = "NULL";
 		}

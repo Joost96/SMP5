@@ -7,3 +7,32 @@
 .alumni-post img {
 	width : 100%;
 }
+.alumni-post a .linkedin-btn
+{
+	margin: 0 10px;
+    padding: 1%;
+}
+
+#new-post-btn {
+	float: right;
+    margin: 20px;
+    padding: 1%;
+}
+.new-post div label {
+	display: inline-block;
+    text-align: right;
+    width: calc(50% - 110px);
+    margin-right: 10px;
+}
+.new-post .buttons input {
+	padding: 1.2%;
+}
+.new-post input {
+	margin : 4px;
+}
+.new-post textarea {
+	height : 170px;
+}
+.new-post #imgPreview {
+	display : block;
+}

@@ -46,6 +46,28 @@
 			$this->closeConnection();
 			return $afbeelding;
 		}
+		function createAfbeelding($link,$beschrijving) {
+			$sql = "INSERT INTO afbeelding (afbeeldinglink, beschrijving)
+					VALUES ( ?, ?)";
+			$databaseConn = $this->getConnection();
+			
+			if (!($stmt = $databaseConn->prepare($sql))) {
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
+			}
+			if (!$stmt->bind_param("ss", $link, $beschrijving)) {
+				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}	
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}
+			$id = $stmt->insert_id;
+			$stmt->close();
+			$this->closeConnection();
+			return $id;
+		}
 	}
 ?>	
 			
