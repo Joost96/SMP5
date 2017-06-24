@@ -20,7 +20,7 @@
 			if(isset($user) && !empty($user)) {
 				if (password_verify($password, $user->password)) {
 					$status = 'valid login';
-					$_SESSION["user"] = $user;
+					$_SESSION["user"] = serialize($user);
 				} else {
 					$status = 'Invalid';
 				}
