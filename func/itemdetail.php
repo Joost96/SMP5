@@ -42,7 +42,7 @@
 		echo "<a href=$afbeelding->instagrampostLink ><img class='afbeelding' src=$afbeelding->afbeeldingLink alt=$afbeelding->beschrijving/></a>";
 	}
 	
-	echo "<iframe class='yt' width='10000' height='10000' src='https://www.youtube.com/embed/qUsQZj6h9H0' frameborder='0' allowfullscreen></iframe>";
+	echo "<iframe class='yt' width='10000' height='10000' src='https://www.youtube.com/embed/qnkex6JBuWo' frameborder='0' allowfullscreen></iframe>";
 	echo "</div>";
 	echo "<hr class='style4'>";
 	

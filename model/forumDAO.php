@@ -214,5 +214,35 @@
 			
 			return $statement->get_result();
 		}
+
+		/*Code van Josh voor homepagina*/
+		
+		public function GetLatestPosts()
+		{
+			$con = $this->connect();
+			$sql = "SELECT post.ID, post.titel, post.content, onderwerp.naam, post.datum, user.username 
+					FROM post, onderwerp, user 
+					WHERE post.auteurId = user.ID AND onderwerp.ID = post.onderwerpID
+					ORDER BY post.datum DESC LIMIT 5";
+			
+			$result = $con->query($sql);
+			if ($result == null)
+			{ 
+				$con->close(); 
+				return;
+			}
+			
+			$latestPosts = array();
+			
+			while($row = $result->fetch_assoc())
+			{
+				$post = new ForumPostModel($row['ID'], $row['naam'], $row['titel'], $row['content'], $row['username'], $row['datum']);
+				$latestPosts[] = $post;
+			}
+			
+			$this->close();
+			
+			return $latestPosts;
+		}			
 	}
 ?>

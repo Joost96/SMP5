@@ -1,35 +1,11 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Home</title>
-		<link rel="stylesheet" type="text/css" href="css/home.css">
-		<meta charset="UTF-8">
-		<meta name="Thuispagina" content="Opleiding informatica">
-		<meta name="keywords" content="informatica, inholland, haarlem, studenten, hbo, it, ict">
-		<meta name="author" content="Joshua Volkers">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
-	</head>
-	
-	<body>
-	
-	<ul class="navbar">	
-		<li class="left"><a href="index.php">Home</a></li>		
-		<li class="left"><a href="portfolio.php">Portfolio</a></li>
-		<li class="left"><a href="alumni.php">Succesverhalen</a></li>
-		<li class="left"><a href="curriculum.php">Studeren bij Inholland</a></li>	
-		<li class="left"><a href="infoHaarlem.php">Buiten School</a></li>	
-		<li class="left"><a href="forum/overzicht.php">Forum</a></li>
-	</ul>
+	<?php require (dirname(__DIR__).'/smp5/func/page_header_home.php');
+	page_header("home", "home", "home");
+	?>
 	
 	<article class="slideshow">
-		<img class="slide fade" src="img/PraatMee.png">
-		<img class="slide fade" src="img/LeerMeer.png">
-		<img class="slide fade" src="img/GoDutch.png">
-		<div class="buttons">
-			<button class="button"><a href="forum/overzicht.php"><p>Praat Mee!</br>Bezoek ons forum en praat mee over de opleiding</p></a></button>
-			<button class="button"><a href="portfolio.php"><p>Leer Meer!</br>Bij onze opleiding leer je werken met de nieuwste methoden en technieken</p></a></button>
-			<button class="button"><a href="infoHaarlem.php"><p>Go Dutch!</br>Kom studeren in Nederland</p></a></button>
-		</div>
+	<?php include (dirname(__DIR__).'/smp5/func/homeSlideshow.php');?>
 	</article>
 	
 	
@@ -41,15 +17,22 @@
 	<hr class="style3">
 		<script src="//assets.juicer.io/embed.js" type="text/javascript"></script>
 		<link href="//assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
-		<ul class="juicer-feed" data-feed-id="inholland-977ec6ea-0534-4cec-9b2b-e4c4e2060407" data-pages="1" data-per="15" data-truncate="400"></ul>
+		<ul class="juicer-feed" data-feed-id="inholland-977ec6ea-0534-4cec-9b2b-e4c4e2060407" data-pages="1" data-per="15" data-truncate="50"></ul>
 	</div>
-	
+	<div class="forumoverzicht">
+		<br />
+		<hr class="style3">
+		<br />
+		<h2>FORUM</h2>
+		<br />
+		<hr class="style3">
+		<br />
+		<?php include (dirname(__DIR__).'/smp5/func/latestPostsHome.php'); ?>
+	</div>	
 	<hr class="style3">
 	
 	<br />
 	<br />
-	
-	
 	   <script>
 			var index = 0;
 			slideShow();
@@ -76,7 +59,4 @@
 				setTimeout(slideShow, 8000);
 				}
 		</script>
-	
-	
-	</body>
 </html>
