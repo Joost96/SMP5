@@ -18,7 +18,7 @@ window.onload = function() {
 			$("#loginModel").show();
 		else {
 			$.ajax({
-				url: "func/logout.php"
+				url: "/smp5/func/logout.php"
 			})
 			.done(function( msg ) {
 				console.log(msg);
@@ -42,7 +42,7 @@ window.onload = function() {
 		if(username && password) {
 			$.ajax({
 				method: "POST",
-				url: "func/login.php",
+				url: "/smp5/func/login.php",
 				data: { username: username, password: password },
 				dataType: 'json'
 			})
@@ -96,7 +96,7 @@ window.onload = function() {
 		if(username && email && password) {
 			$.ajax({
 				method: "POST",
-				url: "func/register.php",
+				url: "/smp5/func/register.php",
 				data: { 
 					username: username, 
 					password: password,
