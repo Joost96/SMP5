@@ -18,6 +18,6 @@
 			<input type='hidden' value='{$onderwerp_id}' name='onderwerp_id' />
 			<p><input type='submit' value='Plaats Post' /></p>
 		</form>
-		"
+		";
 	
 ?>

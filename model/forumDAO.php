@@ -3,6 +3,7 @@
 	include_once (dirname(__DIR__)."/model/ForumPostModel.php");
 	include_once (dirname(__DIR__)."/model/ReactieModel.php");
 	include_once (dirname(__DIR__)."/model/informaticaBase.php");
+	include_once (dirname(__DIR__)."/model/userDAO.php");
 
 	class forumDAO{
 		private $obj;
@@ -47,7 +48,8 @@
 			$post = array();
 			
 			if ($row = $result->fetch_assoc()){
-				array_push($post, new ForumPostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content'], $row['auteurId'], $row['datum']));
+				array_push($post, new ForumPostModel($row['ID'], $row['onderwerpID'], 
+					$row['titel'], $row['content'], $row['auteurId'], $row['datum']));
 			}
 			
 			$this->close();
@@ -59,9 +61,11 @@
 			$con = $this->connect();
 			
 			$datum = date('Y-m-d H:i:s');
-			$query = "INSERT INTO `post` (`titel`, `content`, `onderwerpID`, `auteurId`, `datum`) VALUES (?, ?, ?, ?, '{$datum}')";
+			$query = "INSERT INTO `post` (`titel`, `content`, `onderwerpID`, `auteurId`, `datum`) 
+				VALUES (?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL 2 HOUR))";
 			
-			$result = $this->executeQuery4($con, $query, "ssii", $post->titel, $post->content, $post->onderwerpId, $post->auteurId);
+			$result = $this->executeQuery4($con, $query, "ssii", $post->titel, 
+				$post->content, $post->onderwerpId, $post->user->id);
 			
 			$this->close();
 			
@@ -84,21 +88,32 @@
 			
 			$this->close();
 			
+			$reacties = $this->getUsersForReacties($reacties);
+			
 			return $reacties;
+		}
+		
+		private function getUsersForReacties($reacties){
+			$userdao = new userDAO();
+			
+			$newReacties = array();
+			
+			foreach ($reacties as $reactie){
+				$reactie->user = $userdao->getUserFromId($reactie->user);
+				array_push($newReacties, $reactie);
+			}
+			
+			return $newReacties;
 		}
 		
 		function plaatsReactie($reactie){
 			$con = $this->connect();
 			
-			$datum = date_create()->format('Y-m-d H:i:s');
-			$query = "INSERT INTO `reactie` (`postId`, `auteurId`, `content`, `datum`) VALUES (?, ?, ?, {$datum})";
-			
-			var_dump($reactie);
+			$query = "INSERT INTO `reactie` (`postId`, `auteurId`, `content`, `datum`) 
+				VALUES (?, ?, ?, DATE_ADD(NOW(), INTERVAL 2 HOUR))";
 			
 			$result = $this->executeQuery3($con, $query, "iss", 
-				$reactie->postId, 
-				$reactie->user->id, 
-				$reactie->content);
+				$reactie->postId, $reactie->user->id, $reactie->content);
 			
 			$this->close();
 			
