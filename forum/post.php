@@ -4,8 +4,6 @@
 	include_once (dirname(__DIR__).'/model/ForumPostModel.php');
 	include_once (dirname(__DIR__).'/model/ReactieModel.php');
 	
-	session_start();
-	
 	$post_id = $_GET['post_id'];
 	
 	$forumdao = new forumDAO();
@@ -19,8 +17,9 @@
 	page_header($post->titel);
 
 	echo "
-		<h2>{$post->titel}</h2><br>
-		<p>{$post->content}</p><br>
+		<h2>{$post->titel}</h2>
+		<p>{$post->datum}</p>
+		<p>{$post->content}</p>
 		";
 	
 	if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
@@ -36,7 +35,8 @@
 	
 	foreach ( $reacties as $reactie ){
 		echo "
-			<p>{$reactie->content}</p><br>
+			<p>{$reactie->content}</p>
+			<p>{$reactie->}
 			";
 	}
 ?>
