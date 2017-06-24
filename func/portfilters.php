@@ -33,17 +33,24 @@
 	{
 		foreach($items as $item)
 		{
+			$datetime = new datetime($item->datum);	
+			$datum = $datetime->format('D d M');
+			$tijd = $datetime->format('H:i');
+			$string = $item->beschrijving;
+			$leesmeer = "<a href='portfoliodetail.php?itemID={$item->ID}' class='leesmeer' > ...lees meer</a>";
+			$beschrijving = (strlen($string) > 85) ? substr($string, 0, 85) . $leesmeer : $string;
+			
 			echo "<article class='item'>
 					<a href='portfoliodetail.php?itemID={$item->ID}' ><img src=$item->thumbnail alt=$item->titel/></a>
 					<a href='portfoliodetail.php?itemID={$item->ID}' ><h1>$item->titel</a></h1>
-					<p>$item->beschrijving<br /><br /><br />
-					Door: $item->auteur<br />	
-					Datum/Tijd: $item->datum<br />
+					<h2>$beschrijving</h2><br /><br /><br />
+					<p>Door: $item->auteur<br />	
+					Geplaatst op: $datum Om: $tijd<br />
 					Leerjaar: $item->jaar</p>
 				 </article>
-				 </br>
-				 <hr class='style3'>	
-				 </br>";
+				 <br />
+				 <hr class='style3'>
+				 <br />";	
 		}
 	} 
 ?>

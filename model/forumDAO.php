@@ -120,6 +120,23 @@
 			return $result;
 		}
 		
+		function plaatsForumReactie($reactie)
+		{
+			$con = $this->connect();
+			
+			$query = "INSERT INTO `reactie` (`portfolioItemId`, `auteurId`, `content`, `datum`) 
+				VALUES (?, ?, ?, DATE_ADD(NOW(), INTERVAL 2 HOUR))";
+			
+			$result = $this->executeQuery3($con, $query, "iss", 
+				$reactie->portfolioId, $reactie->user->id, $reactie->content);
+			
+			$this->close();
+			
+			echo "GELUKT";
+			
+			return $result;
+		}
+		
 		function getAllOnderwerpen(){
 			$con = $this->connect();
 			$result = $con->query("select * from onderwerp");
