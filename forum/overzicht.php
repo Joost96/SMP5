@@ -10,8 +10,8 @@
 	page_header();	
 	
 	$onderwerpen = $forumdao->getAllOnderwerpen();
-
-	print "
+	
+	echo "
 		<h2>{$titel}</h2><br/>
 		";
 	

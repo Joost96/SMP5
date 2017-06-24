@@ -1,0 +1,41 @@
+#postPageContent {
+	width: 50%;
+	margin: auto;
+}
+
+#reactieLabel {
+	float: left;
+	clear: both;
+}
+
+#reactieTextBox {
+	float: left;
+	clear: both;
+	width: 50%;
+}
+
+#postButton {
+	margin: 25px 0px 0px 20px;
+	padding: 20px 20px 20px 20px;
+}
+
+#reacties {
+	margin-top: 30px;
+	clear: both;
+}
+
+#reacties td {
+	vertical-align: top;
+}
+
+#reactieUsername {
+	width: 13%;
+}
+
+tr {
+	
+}
+
+hr {
+	clear: both;
+}

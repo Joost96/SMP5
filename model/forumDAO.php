@@ -3,6 +3,7 @@
 	include_once (dirname(__DIR__)."/model/ForumPostModel.php");
 	include_once (dirname(__DIR__)."/model/ReactieModel.php");
 	include_once (dirname(__DIR__)."/model/informaticaBase.php");
+	include_once (dirname(__DIR__)."/model/userDAO.php");
 
 	class forumDAO{
 		private $obj;
@@ -29,7 +30,7 @@
 			$posts = array();
 			
 			while ($row = $result->fetch_assoc()){
-				array_push($posts, new ForumPostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content']));
+				array_push($posts, new ForumPostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content'], $row['auteurId'], $row['datum']));
 			}
 			
 			$this->close();
@@ -47,7 +48,8 @@
 			$post = array();
 			
 			if ($row = $result->fetch_assoc()){
-				array_push($post, new ForumPostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content']));
+				array_push($post, new ForumPostModel($row['ID'], $row['onderwerpID'], 
+					$row['titel'], $row['content'], $row['auteurId'], $row['datum']));
 			}
 			
 			$this->close();
@@ -58,9 +60,12 @@
 		function plaatsPost($post){
 			$con = $this->connect();
 			
-			$query = "INSERT INTO `post` (`ID`, `titel`, `content`, `onderwerpID`) VALUES (NULL, ?, ?, ?)";
+			$datum = date('Y-m-d H:i:s');
+			$query = "INSERT INTO `post` (`titel`, `content`, `onderwerpID`, `auteurId`, `datum`) 
+				VALUES (?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL 2 HOUR))";
 			
-			$result = $this->executeQuery3($con, $query, "ssi", $post->titel, $post->content, $post->onderwerpId);
+			$result = $this->executeQuery4($con, $query, "ssii", $post->titel, 
+				$post->content, $post->onderwerpId, $post->user->id);
 			
 			$this->close();
 			
@@ -83,20 +88,32 @@
 			
 			$this->close();
 			
+			$reacties = $this->getUsersForReacties($reacties);
+			
 			return $reacties;
+		}
+		
+		private function getUsersForReacties($reacties){
+			$userdao = new userDAO();
+			
+			$newReacties = array();
+			
+			foreach ($reacties as $reactie){
+				$reactie->user = $userdao->getUserFromId($reactie->user);
+				array_push($newReacties, $reactie);
+			}
+			
+			return $newReacties;
 		}
 		
 		function plaatsReactie($reactie){
 			$con = $this->connect();
 			
-			$query = "INSERT INTO `reactie` (`postId`, `auteurId`, `content`) VALUES (?, ?, ?)";
-			
-			var_dump($reactie);
+			$query = "INSERT INTO `reactie` (`postId`, `auteurId`, `content`, `datum`) 
+				VALUES (?, ?, ?, DATE_ADD(NOW(), INTERVAL 2 HOUR))";
 			
 			$result = $this->executeQuery3($con, $query, "iss", 
-				$reactie->postId, 
-				$reactie->user->id, 
-				$reactie->content);
+				$reactie->postId, $reactie->user->id, $reactie->content);
 			
 			$this->close();
 			
@@ -194,6 +211,25 @@
 			return $statement->get_result();
 		}
 		
+		private function executeQuery4($con, $query, $type, $param1, $param2, $param3, $param4){
+			if (!($statement = $con->prepare($query))) {
+				echo "Prepare failed: (" . $con->errno . ") " . $con->error;
+				return null;
+			}
+			
+			if (!$statement->bind_param($type, $param1, $param2, $param3, $param4)) {
+				echo "Binding parameters failed: (" . $statement->errno . ") " . $statement->error;
+				return null;
+			}
+			
+			if (!$statement->execute()){
+				echo "Excecute failed: ({$statement->errno}) {$statement->error}";
+				return null;
+			}
+			
+			return $statement->get_result();
+		}
+
 		/*Code van Josh voor homepagina*/
 		
 		public function GetLatestPosts()
@@ -223,6 +259,5 @@
 			
 			return $latestPosts;
 		}			
-		
 	}
 ?>

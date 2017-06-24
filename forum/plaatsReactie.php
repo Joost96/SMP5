@@ -12,8 +12,15 @@
 		$reactie = new ReactieModel(null, $_POST['post_id'], null, $user, $_POST['reactie_content'], date("Y-m-d H:i:s"));
 		
 		$forumdao->plaatsReactie($reactie);
-		echo "done";
 	}
 		
 	header("location: post.php?post_id={$_POST['post_id']}");
+	
+	// voor debug comment: header(), en uncomment: echo.
+	
+	/*echo "
+		<br>
+		<a href='post.php?post_id={$_POST['post_id']}'>goto post</a>
+		";
+		*/
 ?>
