@@ -47,6 +47,8 @@ body {
 .button p {
 	text-decoration: none;
 	color: white;
+	font-size: 1.2em;
+	font-family: "Franklin Gothic";
 }
 
 .button a {
@@ -147,7 +149,7 @@ color: #0065B3;
 /*divider lines styles*/
 hr.style2 {
 	border-top: 1px double #0065B3;
-	width: 150px;
+	width: 100%;
 }
 
 hr.style3 {
@@ -160,18 +162,23 @@ hr.style4 {
 	width: 100%;
 }
 
+hr.style5 {
+	border-top: 1px double #0065B3;
+	width: 95%;
+}
+
 /*Forum overzicht home*/
 .forumoverzicht a {
-text-decoration: none;
-color: black;
-background-color: #f5f5f5;
+	text-decoration: none;
+	color: black;
+	background-color: #f5f5f5;
 }
 
 .forumoverzicht h2{
-font-size: 1.2em;
-margin: 0 auto;
-text-align: center;
-color: #0065B3;
+	font-size: 1.2em;
+	margin: 0 auto;
+	text-align: center;
+	color: #0065B3;
 }
 
 .forumposthome {
@@ -207,14 +214,12 @@ color: #0065B3;
 }
 
 
-
-
 /*portfolio pagina*/
 .filters{
 	text-align: left;
 	float: left;
-	margin-left: 10%;
-	margin-top: 70px;
+	margin-top: 5%;
+	width: 30%;
 }
 
 .filters p{
@@ -222,15 +227,24 @@ color: #0065B3;
 	text-align:center;
 }
 
-.filters h3 {
+#form h3 {
 	text-align:center;
+	margin-bottom: 10px;
+
 }
 
 .filters  input{
-	margin-left:30%;
 	margin-right: 10px;
 }
 
+#form{
+	float: left;
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+/*Portfoliopagina item weergave*/
 .itemsReturn {
 	width:65%;
 	float:left;
@@ -240,25 +254,53 @@ color: #0065B3;
 	display: inline-block;
 }
 
-.itemsReturn h3 {
-	width:40%;
-	font-size:1.5em;
-	margin-left: 20px;
-	float:left;
+.item {
+width:100%;
 }
 
-.item h3:hover {
+.leesmeer{
+	text-decoration: none;
+	color: black;
+	font-size: .8em;
+	font-family: "Franklin Gothic";
+}
+
+.leesmeer:hover{
 	color: #43B9F1;
 	-webkit-transition:all .3s ease-in;
 }
 
+.item h1 a{
+	text-decoration: none;
+	color: #0065B3;
+	font-size: 1em;
+	margin-left: 2%;
+	font-family: "Franklin Gothic";
+}
+
+.item h1 a:hover {
+	color: #43B9F1;
+	-webkit-transition:all .3s ease-in;
+	font-family: "Franklin Gothic";
+}
+
+.item h2{
+	width: 40%;
+	float:left;
+	font-size: 1em;
+	margin-left: 2%;
+	font-family: "Franklin Gothic";
+}
+
 .item p {
-	font-size:1.15em;
+	font-size:.95em;
 	width: 40%;
 	vertical-align:top;
 	float:left;
 	background-color:white;
-	margin-left: 20px;
+	margin-left: 2%;
+	font-family: "Franklin Gothic";
+	line-height: 15px;
 }
 
 .item img{
@@ -275,47 +317,144 @@ color: #0065B3;
 	-webkit-transition:all .3s ease-in;
 }
 
-.portfolioitem h1{
-	font-size: 2em;
-	margin-bottom:0px;
-	color: #0065B3;
+#sorteer {
+	background-color: #0065B3;
+	text-align:center !important;
+	width: 80%;
+	margin-right: 0px;
 	margin-left: 10%;
-	margin-top:22px;
+	cursor: pointer;
 }
 
-.portfolioitem h2 {
-	font-size: 2em;
+#sorteer:hover {
+	background-color: #43B9F1;
+	-webkit-transition:all .3s ease-in;
+	cursor: pointer;
+}
+
+
+/*portfolio detail pagina*/
+.portfolioitem h1 {
 	color: #0065B3;
-	margin-left:10%;
+	font-size: 2em;
+	margin-left: 2%;
+	font-family: "Franklin Gothic";
+	margin-bottom: 0;
 }
 
-.portfolioitem h3 {
-	margin-top:0px;
-	font-size: 0.7em;
-	width:80%;
+.portfolioitem h2{
+	width: 100%;
+	float:left;
+	font-size: 1em;
+	margin-left: 2%;
+	font-family: "Franklin Gothic";
+}
+
+.portfolioitem h3{
+	width: 100%;
+	color: #0065B3;
+	float:left;
+	font-size: 2em;
+	margin-left: 2%;
+	margin-top:4%;
+	font-family: "Franklin Gothic";
 }
 
 .portfolioitem p {
-	font-size: 1.1em;
-	margin-top:10px;
+	font-size:.95em;
+	width: 100%;
+	vertical-align:top;
+	float:left;
+	background-color:white;
+	margin-left: 2%;
+	font-family: "Franklin Gothic";
+	line-height: 15px;
+	margin-top: 0;
 }
 
-/*portfolio detail pagina*/
 .media {
 	width: 100%;
+	display: table;
 }
 
 .afbeelding {
 	float:left;
-	width: 250px;
+	width: 20%;
 	height: 250px;
 	border: 1px solid #0065B3;
-	margin-top: 18px;
-	margin-bottom:24px;
+	margin-top: 1%;
+	margin-bottom:1.5%;
+	margin-left: 2.35%;
+	margin-right: 2.35%;	
+	display: table-cell;
 }
 
 .yt{
 	max-height: 400px;
+	width: 70%;
+	margin-left: 15%;
+}
+
+.reactie h6{
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 1em;
+	color: #0065B3;
+}
+
+.reactie h5 {
+	font-size: 0.9em;
+	margin-top: 0;
+	margin-bottom: 0;
+	color: #666;
+}
+
+.reactie p {
+	margin-top: 0;
+	font-size: 1em;
+}
+
+.reactie{
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+}
+
+.nieuwereactieform{
+	margin-top: 2.5%;
 	width: 100%;
+}
+
+.nieuwereactieform h6{
+	margin-left: 1.5%;
+	margin-bottom: 0.5%;
+	font-size: 1.1em;
+	color: #0065B3;
+}
+
+
+#veld{
+	width: 100%;
+	margin-left: 0;
+}
+
+#portforeactie {
+	background-color: #0065B3;
+	text-align:center !important;
+	padding: 0 0 0 0;
+	width: 10%;
+	height:50px;
+	margin-top: 1%;
+	margin-right: 45%;
+	margin-left: 45%;
+	cursor: pointer;
+	margin-bottom: 1%;
+}
+
+#porforeactie:hover{
+	background-color:#43B9F1;
+	-webkit-transition: all .3s ease-in;
 }
 	

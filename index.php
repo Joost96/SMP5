@@ -11,6 +11,7 @@
 	
 	
 	<div class="feed">
+	<hr class="style3">
 	<br />
 	<h2>SOCIAL MEDIA</h2>
 	<br />

@@ -4,8 +4,8 @@
 	page_header("Portfolio", "home","home");
 	?>
 	<aside class="filters">
-	<h3>FILTERS</h3>
 		<div id="form">
+			<h3>FILTERS</h3>
 
 		<div class="talen">
 			<p>Talen: </p>

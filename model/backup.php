@@ -38,7 +38,8 @@
 				return true;
 			}
 		}
-					
+		
+				
 		/*Hier worden de jaarfilters en taalFilters doorgegeven, aan de hand van deze filters wordt een string gemaakt. Deze string wordt gereturned*/
 		function createFilterString($onderdeelfilter, $jaarFilters)
 		{
@@ -92,13 +93,32 @@
 			
 			while($row = $result->fetch_assoc())
 			{
-				$portfolioItem = new portfolioItem($row["ID"], $row["titel"], $row["username"], $row["beschrijving"], $row["leerjaar"], $row["datum"], $row["afbeeldinglink"], $row['technieken'], NULL);									
+				$portfolioItem = new portfolioItem($row["ID"], $row["titel_nl"], $row["username"], $row["beschrijving_nl"], $row["leerjaar"], $row["datum"], $row["afbeeldinglink"], NULL, NULL);									
 				
 				$items[] = $portfolioItem;
 			}
 			
-			$this->closeConnection();	
+			$databaseConn->Close();	
 			return $items;			
+		}
+		
+		function executeItem($sql)
+		{
+			$databaseConn = $this->connect();
+			$result = $databaseConn->query($sql);
+			if($this->checkResult($result) == false)
+			{
+				echo "PortfolioItem kon niet opgehaald worden";
+				exit;
+			}
+			
+			while($row = $result->fetch_assoc())
+			{
+				$portfolioItem = new portfolioItem($row["ID"], $row["titel_nl"], $row["username"], $row["beschrijving_nl"], $row["leerjaar"], $row["datum"], $row["afbeeldinglink"], NULL, $row['youtubelink']);									
+			}
+			
+			$databaseConn->Close();	
+			return $portfolioItem;			
 		}
 		
 		/**/
@@ -107,33 +127,16 @@
 		/* Hier haal ik de juiste items op voor de doorgegeven filters, er wordt een methode aangeroepen die de juiste string samenstelt die in de query gezet kan worden*/
 		function GetItemsForFilter($onderdeelfilter, $jaarFilters)
 		{		
-			$filters = '';
-			$filters = $this->createFilterString($onderdeelfilter, $jaarFilters);
-			
-			$sql = "SELECT DISTINCT portfolioItem.ID, portfolioItem.titel_nl as titel, portfolioItem.beschrijving_nl as beschrijving, 
-					portfolioItem.leerjaar, portfolioItem.datum, portfolioItem.technieken, portfolioItem.youtubeLink, afbeelding.afbeeldinglink, user.username 
-					FROM portfolioItem, afbeelding, portfolioAfbeelding, examenonderdeel, user, P_E 
-					WHERE portfolioItem.auteur_ID = user.ID AND P_E.portfolioitemId = portfolioItem.ID 
-					AND P_E.examenonderdeelId = examenonderdeel.id AND portfolioAfbeelding.portfolioitem_ID = portfolioItem.ID 
-					AND portfolioAfbeelding.afbeelding_id = afbeelding.ID 
-					AND ($filters)
-					GROUP BY portfolioItem.ID					
-					ORDER BY portfolioItem.datum DESC";
-					
-			return $this->executeItems($sql);
-		}
-				
-		/*Hier worden alle items uit de database opgehaald*/
-		function GetAllItems()
-		{
-		$sql = "SELECT DISTINCT portfolioItem.ID, portfolioItem.titel_nl as titel, portfolioItem.beschrijving_nl as beschrijving, 
-				portfolioItem.leerjaar, portfolioItem.datum, portfolioItem.technieken, portfolioItem.youtubeLink, afbeelding.afbeeldinglink, user.username 
+		$filters = '';
+		$filters = $this->createFilterString($onderdeelfilter, $jaarFilters);
+		
+		$sql = "SELECT DISTINCT portfolioItem.ID, portfolioItem.titel_nl, portfolioItem.beschrijving_nl, 
+				portfolioItem.leerjaar, portfolioItem.datum, afbeelding.afbeeldinglink, user.username 
 				FROM portfolioItem, afbeelding, portfolioAfbeelding, examenonderdeel, user, P_E 
 				WHERE portfolioItem.auteur_ID = user.ID AND P_E.portfolioitemId = portfolioItem.ID 
 				AND P_E.examenonderdeelId = examenonderdeel.id AND portfolioAfbeelding.portfolioitem_ID = portfolioItem.ID 
 				AND portfolioAfbeelding.afbeelding_id = afbeelding.ID 
-				GROUP BY portfolioItem.ID
-				ORDER BY portfolioItem.datum DESC";
+				AND ($filters) ORDER BY portfolioItem.leerjaar ASC";
 		
 		return $this->executeItems($sql);
 		}
@@ -141,32 +144,29 @@
 		/*Hier wordt een specifiek item opgehaald, om deze vervolgens op een detail pagina te tonen*/
 		function GetItemForID($ID)
 		{
-			$sql = "SELECT DISTINCT portfolioItem.ID, portfolioItem.titel_nl as titel, portfolioItem.beschrijving_nl as beschrijving, 
-					portfolioItem.leerjaar, portfolioItem.datum, portfolioItem.technieken, portfolioItem.youtubeLink, afbeelding.afbeeldinglink, user.username, portfolioItem.technieken 
+			$sql = "SELECT DISTINCT portfolioItem.ID, portfolioItem.titel_nl, portfolioItem.beschrijving_nl, 
+					portfolioItem.leerjaar, portfolioItem.datum, afbeelding.afbeeldinglink, user.username, portfolioItem.technieken 
 					FROM portfolioItem, afbeelding, portfolioAfbeelding, examenonderdeel, user, P_E 
 					WHERE portfolioItem.auteur_ID = user.ID AND P_E.portfolioitemId = portfolioItem.ID 
 					AND P_E.examenonderdeelId = examenonderdeel.id AND portfolioAfbeelding.portfolioitem_ID = portfolioItem.ID 
 					AND portfolioAfbeelding.afbeelding_id = afbeelding.ID 
-					AND portfolioItem.ID = ?";
-
-			$databaseConn = $this->connect();
-			$state = $databaseConn->prepare($sql);
-			$state->bind_param("i", $ID);
-			$state->execute();			
-			$result = $state->get_result();
-			if(!$result)
-			{
-				echo "er komt geen result terug";
-			}
-			
-			while($row = $result->fetch_assoc())
-			{
-				$portfolioItem = new portfolioItem($row["ID"], $row["titel"], $row["username"], $row["beschrijving"], $row["leerjaar"], $row["datum"], $row["afbeeldinglink"], $row['technieken'], $row['youtubeLink']);									
-			}
-			
-			$state->close();
-			$this->closeConnection();			
-			return $portfolioItem;	
+					AND portfolioItem.ID = $ID";
+				
+		return $this->executeItem($sql);
+		}
+	
+		/*Hier worden alle items uit de database opgehaald*/
+		function GetAllItems()
+		{
+		$sql = "SELECT DISTINCT portfolioItem.ID, portfolioItem.titel_nl, portfolioItem.beschrijving_nl, 
+				portfolioItem.leerjaar, portfolioItem.datum, afbeelding.afbeeldinglink, user.username 
+				FROM portfolioItem, afbeelding, portfolioAfbeelding, examenonderdeel, user, P_E 
+				WHERE portfolioItem.auteur_ID = user.ID AND P_E.portfolioitemId = portfolioItem.ID 
+				AND P_E.examenonderdeelId = examenonderdeel.id AND portfolioAfbeelding.portfolioitem_ID = portfolioItem.ID 
+				AND portfolioAfbeelding.afbeelding_id = afbeelding.ID 
+				ORDER BY portfolioItem.leerjaar ASC";
+		
+		return $this->executeItems($sql);
 		}
 		
 		function GetExamenOnderdelenForItem($ID)
@@ -220,14 +220,22 @@
 		/*Hier worden alle afbeeldingen van een portfolio-item opgehaald*/
 		function GetAfbeeldingenForItem($ID)
 		{
-			$sql = "SELECT * FROM afbeelding, portfolioAfbeelding WHERE portfolioAfbeelding.afbeelding_id = afbeelding.ID
-			AND portfolioAfbeelding.portfolioItem_ID = ?";
-			
 			$databaseConn = $this->connect();
-			$state = $databaseConn->prepare($sql);
-			$state->bind_param("i", $ID);
-			$state->execute();
-			$result = $state->get_result();
+			$sql = "SELECT * FROM afbeelding, portfolioAfbeelding WHERE portfolioAfbeelding.afbeelding_id = afbeelding.ID
+			AND portfolioAfbeelding.portfolioItem_ID = $ID";
+			
+		return $this->executeAfbeeldingen($sql);
+		}
+		
+		function executeAfbeeldingen($sql)
+		{
+			$databaseConn = $this->connect();
+			$result = $databaseConn->query($sql);
+			if($this->checkResult($result) == false)
+			{
+				echo "Afbeeldingen kunnen niet geladen worden";
+				exit;
+			}
 			
 			$afbeeldingen = array();
 			
@@ -237,10 +245,9 @@
 				$afbeeldingen[] = $portfolioAfbeelding;
 			}
 			
-			$state->close();
-			$this->closeConnection();
+			$databaseConn->Close();
 			
-			return $afbeeldingen;
+			return $afbeeldingen;		
 		}
 	
 		/*Hier worden alle examenonderdelen waar een portfolio-item voor bestaat uit de database opgehaald.*/
@@ -252,6 +259,7 @@
 		return $this->executeOnderdeel($sql);
 		}
 		
+				
 		function executeOnderdeel($sql)
 		{
 			$databaseConn = $this->connect();
