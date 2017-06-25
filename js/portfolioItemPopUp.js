@@ -10,11 +10,19 @@ function onLoad() {
 		}
 	});
 	
+	// Button die het form opent
 	$("#maakItemBTN").click(function() {
 		$("#itemModal").show();
 	});
 	
-	$("#itemModal .form").find(".error").remove();
+	//Button die het form sluit
+	$("#itemModal #cancel").click(function(){
+		$(".modal").hide();
+	});
+	
+	//button die alle waarden van het form post
+	$("#itemModal #send").click(function(){
+	$("#itemModal .itemForm").find(".error").remove();
 	
 	var titelNL = $('#itemModal input[name=titel]').val();
 	var titelEN = $('#itemModal input[name=title]').val();
@@ -34,50 +42,48 @@ function onLoad() {
 		
 	if(titelNL == "")
 	{
-		$('#itemModal .form').parent().append( $( "<p class='error'>Geen titel ingevoerd</p>"));
-		return;
+		$('#itemModal .itemForm').parrent().append( $( "<p class='error'>Geen titel ingevoerd</p>"));
 	}
 	if(titelEN == "")
 	{
-		$('#itemModal .form').parent().append( $( "<p class='error'>Fill in a title</p>"));
-		return;
+		var error = $('#itemModal .itemForm').parent().append( $( "<p class='error'>You didn't enter a title</p>"));
 	}
 	if(technieken == "")
 	{
-		$('#itemModal .form').parent().append( $( "<p class='error'>Geen technieken geselecteerd</p>"));
+		$('#itemModal .itemForm').parent().append( $( "<p class='error'>Geen technieken geselecteerd</p>"));
 		return;
 	}
 	if(!validateOnderdelen(onderdelen))
 	{
-		$('#itemModal .form').parent().append( $( "<p class='error'>Geen examenonderdeel geselecteerd</p>"));
+		$('#itemModal .itemForm').parent().append( $( "<p class='error'>Geen examenonderdeel geselecteerd</p>"));
 		return;
 	}
 	if(!$.isNumeric(jaar))
 	{
-		$('#itemModal .form').parent().append( $( "<p class='error'>Geen leerjaar geselecteerd</p>"));
+		$('#itemModal .itemForm').parent().append( $( "<p class='error'>Geen leerjaar geselecteerd</p>"));
 		return;
 	}
 	if(!validateFotos(fotos))
 	{
-		$('#itemModal .form').parent().append( $( "<p class='error'>De URL van één van de foto's was onjuist</p>"));
+		$('#itemModal .itemForm').parent().append( $( "<p class='error'>De URL van één van de foto's was onjuist</p>"));
 		return;
 	}
 	
 	if(!validateYt(yt))
 	{
-		$('#itemModal .form').parent().append( $( "<p class='error'>De youtubelink was onjuist</p>"));
+		$('#itemModal .itemForm').parent().append( $( "<p class='error'>De youtubelink was onjuist</p>"));
+		
+	}
+	
+	if(beschrijving == "")
+	{
+		$('#itemModal .itemForm').parent().append( $( "<p class='error'>Geen Nederlandse beschrijving toegevoegd</p>"));
 		return;
 	}
 	
 	if(beschrijving == "")
 	{
-		$('#itemModal .form').parent().append( $( "<p class='error'>Geen Nederlandse beschrijving toegevoegd</p>"));
-		return;
-	}
-	
-	if(beschrijving == "")
-	{
-		$('#itemModal .form').parent().append( $( "<p class='error'>No English description added</p>"));
+		$('#itemModal .itemForm').parent().append( $( "<p class='error'>No English description added</p>"));
 		return;
 	}
 	
@@ -102,8 +108,8 @@ function onLoad() {
 			console.log(msg);});
 	
 }
+});
 }
-
 function validateOnderdelen(onderdelen)
 {
 	if($(onderdelen).length !== 0)

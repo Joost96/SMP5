@@ -168,7 +168,7 @@
 			$this->closeConnection();			
 			return $portfolioItem;	
 		}
-		
+		/*Hier worden alleen de examenonderelen opgehaald die bij een specifiek portfolio-item horen*/
 		function GetExamenOnderdelenForItem($ID)
 		{
 			$databaseConn = $this->connect();
@@ -251,7 +251,7 @@
 			
 			return $this->executeOnderdeel($sql);
 		}
-		
+		/*Hier worden alle examenonderdelen opgehaald, om deze in een lijst te kunnen tonen*/
 		function GetALLExamenOnderdelen()
 		{
 			$sql = "SELECT DISTINCT * FROM examenonderdeel";
@@ -283,6 +283,53 @@
 			return $onderdelen;		
 		}
 		
+		/*Dit is de methode om een nieuw item aan de database toe te voegen*/
+		function CreateNewItem($titelNL, $titelEN, $technieken, $jaar, $yt, $beschrijvingNL, $description, $user)
+		{
+			$sql = "INSERT INTO portfolioItem (titel_nl, beschrijving_nl, leerjaar, datum, auteur_id, titel_en, beschrijving_en, youtubeLink)
+						VALUES ( ?, ?, ?, DATE_ADD(NOW(), INTERVAL 2 HOUR), ?, ?, ?, ?)";
+						
+			$databaseConn = $this->getConnection();
+			
+			if (!($stmt = $databaseConn->prepare($sql))) {
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
+			}
+			if (!$stmt->bind_param("ssiisss", $titelNL, $beschrijving, $jaar, $user->id, $titelEN, $description, $yt)) {
+				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}	
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}
+			$id = $stmt->insert_id;
+			$stmt->close();
+			$this-closeConnection();
+			return $id;
+		}
+		
+		function koppelExamenonderdeel($portfolioID, $onderdeel)
+		{
+			$sql = "INSERT INTO P_E (portfolioitemId, examenonderdeelId)
+						VALUES ( ?, ?)";
+			
+			$databaseConn = $this->getConnection();
+			
+			if (!($stmt = $databaseConn->prepare($sql))) {
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
+			}
+			if (!$stmt->bind_param("ii", $portfolioID, $onderdeel)) {
+				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}	
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}
+			$stmt->close();
+			$this-closeConnection();
 	}
 ?>	
 			

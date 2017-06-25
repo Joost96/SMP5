@@ -4,18 +4,14 @@
 	
 	$forumdao = new forumDAO();
 	
-	if (isset($_SESSION['user']) && !empty($_SESSION['user']) && !empty($_POST['itemID']) && !empty($_POST['reactie_content']))
+	if (isset($_SESSION['user']) && !empty($_SESSION['user']) && !empty($_POST['itemID']) && !empty($_POST['content']))
 	{
 		$user = unserialize($_SESSION['user']);
+		$content = $_POST['content'];
+		$ID = $_POST['itemID'];
 		
-		$reactie = new ReactieModel(null, null, $_POST['itemID'], $user, $_POST['reactie_content'], date("Y-m-d H:i:s"));
+		$reactie = new ReactieModel(null, null, $ID, $user, $content, date("Y-m-d H:i:s"));
 		
-		$forumdao->plaatsForumReactie($reactie);	
-		
-		header("location: /smp5/portfoliodetail.php?itemID={$_POST['itemID']}");
-	}
-	else 
-	{
-		echo "error, je hebt geen reactie ingevuld!";
+		$forumdao->plaatsForumReactie($reactie);			
 	}
 ?>

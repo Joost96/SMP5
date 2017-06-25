@@ -25,9 +25,10 @@
 		</div>
 		</br>
 		<input type="submit" id="sorteer" name="portfilterSubmit" value="Sorteer" />
+		<br />
+		<button id='maakItemBTN'>Maak post</button>
 		</div>	
-		<div class="test">
-		<button id='maakItemBTN' hidden>Maak post</button>
+		<div class="test">	
 		<?php include (dirname(__DIR__).'/smp5/func/nieuwPortItem.php');?>
 		</div>
 	</aside>

@@ -244,8 +244,58 @@ hr.style5 {
 	margin-right: 25%;
 }
 
+.modal{
+	max-height: calc(100vh - 20px);
+    overflow-y: auto;
+}
+
+.itemForm {
+width: 100%;
+margin-bottom: 100px;
+}
+
+.itemForm label{
+width: initial;
+}
+
+.itemForm textarea{
+width: 100%;
+}
+
+#yt, #foto, #technieken, #title, #titel{
+width: 80%;
+}
+
 #send {
-margin-bottom: 15%;
+	margin-left: 18%;
+	margin-right: 10%;
+	width: 20%;
+}
+
+#cancel{
+	margin-left: 10%;
+	margin-right: 18%;
+	width: 20%;
+}
+
+#maakItemBTN{
+	background-color: #0065B3;
+	text-align:center !important;
+	width: 80%;
+	margin-right: 0px;
+	margin-left: 10%;
+	cursor: pointer;
+	padding: 3%;
+	margin-top: 12%;
+	border-style: none;
+	color: white;
+	border-bottom: 3px solid #e4e4e4;
+}
+
+#maakItemBTN:hover {
+	background-color: #43B9F1;
+	-webkit-transition:all .3s ease-in;
+	cursor: pointer;
 }
 
 

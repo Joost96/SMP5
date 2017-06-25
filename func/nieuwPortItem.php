@@ -7,7 +7,7 @@
 	
 	echo "<div id='itemModal' class='modal'>
 			<div class='modal-content'>
-				<form class='form' action='#' id='nieuwItem'>
+				<form class='itemForm' action='#' id='nieuwItem'>
 					<h3>New portfolio-item</h3>
 					<hr/><br/>
 					<label>Dutch title: <span>*</span></label>
@@ -28,7 +28,8 @@
 					{
 						echo "<label><input type='checkbox' name='onderdeel' value=$onderdeel->ID />$onderdeel->naam</label></br>";
 					}			
-	echo			"<br />
+	echo			"<label>Year: <span>*</span></label>
+					<br />
 					<select name='leerjaar'>
 						<option value=''>Select....</option>
 						<option value='1'>Year 1</option>
@@ -50,7 +51,7 @@
 					<br />";
 					for($i = 0; $i < 4; $i++)
 					{
-						echo "<input type='text' class='foto' placeholder='instagram.com/p/.....'/><br />";
+						echo "<input type='text' id='foto' class='foto' placeholder='instagram.com/p/.....'/><br />";
 					}								
 	echo			"<br />
 					<label>YouTube video<span>*</span></label>

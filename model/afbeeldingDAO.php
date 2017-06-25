@@ -68,6 +68,28 @@
 			$this->closeConnection();
 			return $id;
 		}
+		
+		function createPortfolioAfbeelding($portfolioID, $afbeeldingID, $foto)
+		{
+			$sql = "INSERT INTO portfolioAfbeelding (portfolioitem_ID, afbeelding_id, instagramlink)
+						VALUES ( ?, ?)";
+			$databaseConn = $this->getConnection();
+			
+			if (!($stmt = $databaseConn->prepare($sql))) {
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
+			}
+			if (!$stmt->bind_param("iis", $portfolioID, $afbeeldingID, $foto)) {
+				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}	
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}
+			$stmt->close();
+			$this->closeConnection();
+		}
 	}
 ?>	
 			

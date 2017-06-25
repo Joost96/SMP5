@@ -5,6 +5,7 @@
 	include_once (dirname(__DIR__).'/model/user.php');
 	include_once (dirname(__DIR__).'/func/plaatsPortfolioReactie.php');
 	
+	
 	$itemID = $_GET['itemID'];
 	$portDAO = new portfolioDAO();
 	
@@ -82,15 +83,57 @@
 		
 		echo "<div class='nieuwereactieform'>
 				<h6>$user->username</h6>
-				<form class='reactieveld' action='/smp5/func/plaatsPortfolioReactie.php' method='post'>
-				<textarea id ='veld' name='reactie_content' rows='6' cols='200' placeholder='Geef een reactie...'></textarea>
-				<input type='hidden' value='{$itemID}' name='itemID' />
-				<input id='portforeactie'  value='POST' type='submit'> 
+				<form class='reactieveld' >
+				<textarea id='veld' name='reactie_content' rows='6' cols='200' placeholder='Geef een reactie...'></textarea>
+				<input id='ID' type='hidden' value='{$itemID}' name='itemID' />
+				<input id='portforeactie' value='Plaats' type='submit'> 
 				
 				</form>
 			</div>";
 	}	
-	
 ?>
+
+<script>
+	$("#portforeactie").click(function() {
+		var content = $.trim($('#veld').val());
+		var itemID = $('#ID').val();
+		if(content == '') 
+		{
+			alert('Je hebt geen reactie ingevoerd!');
+		}
+		else{
+			$.ajax({
+				method: "POST",
+				url: "/smp5/func/plaatsPortfolioReactie.php",
+				data: {itemID:itemID, content:content}
+			})
+			.done(function(msg){
+			console.log(msg);
+				$('.nieuwereactieform').html(msg);
+			})
+			.fail(function(){
+				alert('Er is iets misgegaan bij het plaatsen van je reactie');
+			});
+			
+			event.preventDefault();
+		}
+});
+</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 			
