@@ -25,6 +25,8 @@
 		header("location: /smp5/portfoliodetail.php?itemID={$_POST['itemID']}");
 	}
 	
+	header("location: /smp5/index.php");
+	
 	// voor debug comment: header(), en uncomment: echo.
 	
 	/*echo "
