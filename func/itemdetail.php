@@ -3,7 +3,7 @@
 	include_once (dirname(__DIR__).'/model/portfolioitem.php');
 	include_once (dirname(__DIR__).'/model/ReactieModel.php');
 	include_once (dirname(__DIR__).'/model/user.php');
-	include_once (dirname(__DIR__).'/forum/plaatsReactie.php');
+	include_once (dirname(__DIR__).'/func/plaatsPortfolioReactie.php');
 	
 	$itemID = $_GET['itemID'];
 	$portDAO = new portfolioDAO();
@@ -82,7 +82,7 @@
 		
 		echo "<div class='nieuwereactieform'>
 				<h6>$user->username</h6>
-				<form class='reactieveld' action='/smp5/forum/plaatsReactie.php' method='post'>
+				<form class='reactieveld' action='/smp5/func/plaatsPortfolioReactie.php' method='post'>
 				<textarea id ='veld' name='reactie_content' rows='6' cols='200' placeholder='Geef een reactie...'></textarea>
 				<input type='hidden' value='{$itemID}' name='itemID' />
 				<input id='portforeactie'  value='POST' type='submit'> 
