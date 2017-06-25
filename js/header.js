@@ -15,7 +15,7 @@ window.onload = function() {
 	//open modal login
 	$( "#loginModalBtn" ).click(function() {
 		if($("#loginModalBtn").html() == "Inloggen")
-			$("#loginModel").show();
+			$("#loginModal").show();
 		else {
 			$.ajax({
 				url: "/smp5/func/logout.php"
@@ -35,10 +35,10 @@ window.onload = function() {
 	});
 	//clicked login
 	$( "#loginBtn" ).click(function() {
-		$( "#loginModel .form" ).find(".error").remove();
+		$( "#loginModal .form" ).find(".error").remove();
 		
-		var username = $('#loginModel input[name=username]').val();
-		var password = $('#loginModel input[name=password]').val();
+		var username = $('#loginModal input[name=username]').val();
+		var password = $('#loginModal input[name=password]').val();
 		if(username && password) {
 			$.ajax({
 				method: "POST",
@@ -49,47 +49,47 @@ window.onload = function() {
 			.done(function( msg ) {
 				console.log(msg );
 				if (msg.status.indexOf("valid login") >= 0) {
-					$("#loginModel").hide();
+					$("#loginModal").hide();
 					logIn(msg.user);
 				} else {
-					$( "#loginModel .form" ).append( $( "<p class='error'>Gebruikersnaam of wachtwoord is incorrect</p>" ) );
+					$( "#loginModal .form" ).append( $( "<p class='error'>Gebruikersnaam of wachtwoord is incorrect</p>" ) );
 				}
 			}).fail(function() {
-				$( "#loginModel .form" ).append( $( "<p class='error'>Verbinding maken met de server is mislukt , probeer het later opnieuw</p>" ) );
+				$( "#loginModal .form" ).append( $( "<p class='error'>Verbinding maken met de server is mislukt , probeer het later opnieuw</p>" ) );
 			});
 		}
 	});
 	//--register modal
 	//open modal
 	$( "#registerModalBtn" ).click(function() {
-		$("#registerModel").show();
-		$("#loginModel").hide();
+		$("#registerModal").show();
+		$("#loginModal").hide();
 	});
 	//clicked register
 	$( "#registerBtn" ).click(function() {
-		$( "#registerModel input[name=studentId]" ).next(".error").remove();
-		$( "#registerModel input[name=email]" ).next(".error").remove();
-		$( "#registerModel input[name=password]" ).next(".error").remove();
-		$( "#registerModel input[name=username]" ).next(".error").remove();
-		$( "#registerModel .form" ).find(".error").remove();
+		$( "#registerModal input[name=studentId]" ).next(".error").remove();
+		$( "#registerModal input[name=email]" ).next(".error").remove();
+		$( "#registerModal input[name=password]" ).next(".error").remove();
+		$( "#registerModal input[name=username]" ).next(".error").remove();
+		$( "#registerModal .form" ).find(".error").remove();
 		
-		var username = $('#registerModel input[name=username]').val();
-		var firstName = $('#registerModel input[name=firstName]').val();;
-		var lastName = $('#registerModel input[name=lastName]').val();;
-		var studentId = $('#registerModel input[name=studentId]').val();;
-		var email = $('#registerModel input[name=email]').val();;
-		var password = $('#registerModel input[name=password]').val();
-		var confirmPassword = $('#registerModel input[name=confirmPassword]').val();
+		var username = $('#registerModal input[name=username]').val();
+		var firstName = $('#registerModal input[name=firstName]').val();;
+		var lastName = $('#registerModal input[name=lastName]').val();;
+		var studentId = $('#registerModal input[name=studentId]').val();;
+		var email = $('#registerModal input[name=email]').val();;
+		var password = $('#registerModal input[name=password]').val();
+		var confirmPassword = $('#registerModal input[name=confirmPassword]').val();
 		if(!validateStudentId(studentId)) {
-			$( "#registerModel input[name=studentId]" ).parent().append( $( "<p class='error'>Student id is incorrect</p>" ) );
+			$( "#registerModal input[name=studentId]" ).parent().append( $( "<p class='error'>Student id is incorrect</p>" ) );
 			return;
 		}
 		if(!validateEmail(email)) {
-			$( "#registerModel input[name=email]" ).parent().append( $( "<p class='error'>Email is incorrect</p>" ) );
+			$( "#registerModal input[name=email]" ).parent().append( $( "<p class='error'>Email is incorrect</p>" ) );
 			return;
 		}
 		if(password.localeCompare(confirmPassword)) {
-			$( "#registerModel input[name=password]" ).parent().append( $( "<p class='error'>wachtworden zijn niet gelijk</p>" ) );
+			$( "#registerModal input[name=password]" ).parent().append( $( "<p class='error'>wachtworden zijn niet gelijk</p>" ) );
 			return;
 		}
 		
@@ -110,15 +110,20 @@ window.onload = function() {
 				console.log(msg );
 				if (msg.indexOf("valid register") >= 0)
 				{
-					$("#loginModel").hide();
+					$("#loginModal").hide();
 				} else if(msg.indexOf("username taken") >= 0) {
-					$( "#registerModel input[name=username]" ).parent().append( $( "<p class='error'>Gebruikersnaam is in gebruik</p>" ) );
+					$( "#registerModal input[name=username]" ).parent().append( $( "<p class='error'>Gebruikersnaam is in gebruik</p>" ) );
 				}
 			}).fail(function() {
-				$( "#registerModel .form" ).append( $( "<p class='error'>Verbinding maken met de server is mislukt , probeer het later opnieuw</p>" ) );
+				$( "#registerModal .form" ).append( $( "<p class='error'>Verbinding maken met de server is mislukt , probeer het later opnieuw</p>" ) );
 			});
 		}
 	});
+	
+	//load other js files:
+	if (typeof onLoad === "function") { 
+		onLoad();
+	}
 }
 function logIn(user) {
 	$("#username").html(user.username);
