@@ -18,13 +18,16 @@
 			</br>
 			<p>Leerjaren: </p>
 			<hr class="style2">
-			<?php include (dirname(__DIR__).'/smp5/func/jaarfilters.php');?>
+			<?php for($i = 1; $i < 5; $i++)
+			{
+				echo "<label><input type='checkbox' name='jaarfilter' value=$i checked/>Jaar $i</label></br>";
+			}?>
 		</div>
 		</br>
 		<input type="submit" id="sorteer" name="portfilterSubmit" value="Sorteer" />
 		</div>	
 		<div class="test">
-		<button id='maakItemBTN'>Maak post</button>
+		<button id='maakItemBTN' hidden>Maak post</button>
 		<?php include (dirname(__DIR__).'/smp5/func/nieuwPortItem.php');?>
 		</div>
 	</aside>

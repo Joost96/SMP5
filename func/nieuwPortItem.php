@@ -50,14 +50,17 @@
 					<br />";
 					for($i = 0; $i < 4; $i++)
 					{
-						echo "<input type='text' id='foto'".$i." placeholder='instagram.com/p/.....'/><br />";
+						echo "<input type='text' class='foto' placeholder='instagram.com/p/.....'/><br />";
 					}								
 	echo			"<br />
+					<label>YouTube video<span>*</span></label>
+					<br/>
+					<input type='text' name='yt' id='yt' placeholder='youtube.com/watch?v=.....'/><br/>
+					<br/>
 					<input name='post' type='button' id='send' value='Post'/>
 					<input type='button' id='cancel' value='Cancel'/>
 					<br/>
 				</form>
 			</div>
 		</div>";
-		
 ?>

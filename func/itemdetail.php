@@ -69,7 +69,7 @@
 		$tijd = $datetime->format('H:i');
 		
 		echo "<article class='reactie'>
-				<h6>{$reactie->user->getFullName()}</h6>
+				<h6>{$reactie->user->username}</h6>
 				<h5>$datum $tijd</h5>
 				<hr class='style5'>
 				<p>$reactie->content</p>
