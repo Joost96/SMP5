@@ -22,6 +22,8 @@ function onLoad() {
 	var onderdelen = [];
 	$("input:checkbox[name=onderdeel]:checked").each(function(){
 		onderdelen.push($(this).val());
-	});
-	
+	});	
+	var jaar = document.getElementById("leerjaar");
+	var leerjaar = jaar.options[jaar.selectedIndex].value;
+	var foto1 = 
 }

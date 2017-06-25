@@ -1,12 +1,9 @@
 <!DOCTYPE HTML>
 <html>
-<head>
 	<?php require (dirname(__DIR__).'/smp5/func/page_header.php');
 	page_header("Portfolio", "home", "portfolioItemPopUp");
 	?>
 	
-	<script src="/smp5/js/portfolioItemPopUp.js"></script>
-</head>
 	<aside class="filters">
 		<div id="form">
 			<h3>FILTERS</h3>

@@ -83,7 +83,7 @@
 		echo "<div class='nieuwereactieform'>
 				<h6>$user->username</h6>
 				<form class='reactieveld' action='/smp5/forum/plaatsReactie.php' method='post'>
-				<textarea id ='veld' name='reactie' rows='6' cols='200' placeholder='Geef een reactie...'></textarea>
+				<textarea id ='veld' name='reactie_content' rows='6' cols='200' placeholder='Geef een reactie...'></textarea>
 				<input type='hidden' value='{$itemID}' name='itemID' />
 				<input id='portforeactie'  value='POST' type='submit'> 
 				

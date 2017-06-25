@@ -132,8 +132,6 @@
 			
 			$this->close();
 			
-			echo "GELUKT";
-			
 			return $result;
 		}
 		
