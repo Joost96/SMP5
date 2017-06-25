@@ -34,6 +34,13 @@
 			$css = "";
 			$script = "";
 		}
+		if(isset($_GET['admin']) && !empty($_GET['admin']) && $_GET["admin"] == "true") {
+			$adminCss = "<link rel='stylesheet' type='text/css' href='/smp5/css/admin.css'/>";
+			$adminScript = "<script src='/smp5/js/admin.js'></script>";
+		} else {
+			$adminCss = "";
+			$adminScript = "";
+		}
 		
 		//set vars for in the header
 		if($_SESSION["lang"] == "nl") {
@@ -57,9 +64,11 @@
 					<link rel='stylesheet' type='text/css' href='/smp5/css/style.css'/>
 					<link rel='stylesheet' type='text/css' href='/smp5/css/login.css'/>
 					{$css}
+					{$adminCss}
 					<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 					<script src='/smp5/js/header.js'></script>
 					{$script}
+					{$adminScript}
 					<title>{$page}</title>
 				</head>
 					<body>
@@ -89,7 +98,7 @@
 
 
 							<!-- Modal login -->
-							<div id='loginModel' class='modal'>
+							<div id='loginModal' class='modal'>
 								<div class='modal-content'>
 									<span class='close'>&times;</span>
 									<h1 class='center'>Login</h1>
@@ -111,7 +120,7 @@
 								</div>
 							</div>
 							<!-- Modal register -->
-							<div id='registerModel' class='modal'>
+							<div id='registerModal' class='modal'>
 								<div class='modal-content'>
 									<span class='close'>&times;</span>
 									<h1 class='center'>Registreer</h1>
