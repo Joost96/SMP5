@@ -1,6 +1,16 @@
+body{
+	font-family: Arial;
+}
+
 #postPageContent {
-	width: 50%;
+	width: 75%;
 	margin: auto;
+}
+
+.reactieForm {
+	width: 66%;
+	margin: auto;
+	margin-top: 5%;
 }
 
 #reactieLabel {
@@ -8,10 +18,35 @@
 	clear: both;
 }
 
+.post h6 {
+	font-size: 1.5em;
+	margin:  20px 0 0 0;
+	color: #0065B3;
+}
+
+.post p {
+	font-family: Verdana;
+}
+
+
+
 #reactieTextBox {
 	float: left;
 	clear: both;
-	width: 50%;
+	width: 70%;
+}
+
+.reactieArticle{
+	min-height: 20px;
+	padding: 19px;
+	margin-bottom: 20px;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+}
+
+.lijn{
+	border-top: 1px double #0065B3;
+	width: 95%;
 }
 
 #postButton {
@@ -19,23 +54,22 @@
 	padding: 20px 20px 20px 20px;
 }
 
-#reacties {
-	margin-top: 30px;
-	clear: both;
+.reacties {
+	width: 66%;
+	margin: auto;
+	margin-top: 5%;
 }
 
-#reacties td {
-	vertical-align: top;
+.reacties h6 {
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 1em;
+	color: #0065B3;
 }
 
-#reactieUsername {
-	width: 13%;
-}
-
-tr {
-	
-}
-
-hr {
-	clear: both;
+h5 {
+	font-size: 0.9em;
+	margin-top: 0;
+	margin-bottom: 0;
+	color: #666;
 }

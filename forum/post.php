@@ -19,13 +19,19 @@
 	
 	page_header($post->titel, $style);
 
-	echo "<section id='postPageContent'>";
 	echo "
-		<h2>{$post->titel}</h2>
+		<section id='postPageContent'>
+		<section class='post'>";
+	echo "
+		<h6>{$post->titel}</h6>
+		<h5>{$post->datum}</h5>
 		<p>{$post->content}</p>
-		<p>{$post->datum}</p>
 		";
 	
+	echo "
+		</section>
+		<section class='reactieSection'>
+		<section class='reactieForm'>";
 	if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
 		echo "
 			<form id='reactieForm' action='plaatsReactie.php' method='post'>
@@ -36,17 +42,23 @@
 			</form>
 		";	
 	}
-	echo "<table id='reacties'>";
+	
+	echo "
+		</section>
+		<section class='reacties'>";
 	foreach ( $reacties as $reactie ){
 		echo "
-			<tr>
-				<td id='reactieUsername'>{$reactie->user->username}:</td>
-				<td id='reactieContent'>{$reactie->content}</td>
-			</tr>
+				<article class='reactieArticle'>
+					<h6 id='reactieUsername'>{$reactie->user->username}</h6>
+					<h5 id='reactieDatetime'>{$reactie->dateTime}</h5>
+					<hr class='lijn'>
+					<p id='reactieContent'>{$reactie->content}</p>
+				</article>
 			";
 	}
 	echo "
-		</table>
+		</section>
+		</section>
 		</section>
 		";
 	page_footer();
