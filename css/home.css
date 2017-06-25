@@ -244,6 +244,8 @@ hr.style5 {
 	margin-right: 25%;
 }
 
+
+
 /*Portfoliopagina item weergave*/
 .itemsReturn {
 	width:65%;
@@ -331,7 +333,6 @@ width:100%;
 	-webkit-transition:all .3s ease-in;
 	cursor: pointer;
 }
-
 
 /*portfolio detail pagina*/
 .portfolioitem h1 {

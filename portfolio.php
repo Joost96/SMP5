@@ -1,8 +1,12 @@
 <!DOCTYPE HTML>
 <html>
+<head>
 	<?php require (dirname(__DIR__).'/smp5/func/page_header.php');
-	page_header("Portfolio", "home","home");
+	page_header("Portfolio", "home", "portfolioItemPopUp");
 	?>
+	
+	<script src="/smp5/js/portfolioItemPopUp.js"></script>
+</head>
 	<aside class="filters">
 		<div id="form">
 			<h3>FILTERS</h3>
@@ -21,6 +25,10 @@
 		</div>
 		</br>
 		<input type="submit" id="sorteer" name="portfilterSubmit" value="Sorteer" />
+		</div>	
+		<div class="test">
+		<button id='maakItemBTN'>Maak post</button>
+		<?php include (dirname(__DIR__).'/smp5/func/nieuwPortItem.php');?>
 		</div>
 	</aside>
 
@@ -46,21 +54,18 @@
 					onderdeelfilter.push($(this).val())
 				}
 			});
-			console.log(onderdeelfilter);
-			console.log(jaarfilter);
 		$.ajax({
 			method: "POST",
-		  url: "func/portfilters.php", 
-		  data: {jaarfilter:jaarfilter, onderdeelfilter:onderdeelfilter}
+			url: "func/portfilters.php", 
+			data: {jaarfilter:jaarfilter, onderdeelfilter:onderdeelfilter}
 		})
 		.done(function(msg){
-			console.log(msg);
 			$('.itemsReturn').html(msg);
 		})
 		.fail(function() {
 			$('.itemsReturn').html("<p>Er is een fout op getreden bij het communiceren met de database</p>");
 		});
-		});
+		});				
 	</script>
 </html>
 	

@@ -246,10 +246,17 @@
 		/*Hier worden alle examenonderdelen waar een portfolio-item voor bestaat uit de database opgehaald.*/
 		function GetExamenOnderdelen()
 		{
-		$sql = "SELECT DISTINCT examenonderdeel.id, examenonderdeel.naam FROM examenonderdeel, P_E, portfolioItem 
-				WHERE portfolioItem.ID = P_E.portfolioitemId AND examenonderdeel.id = P_E.examenonderdeelId";
+			$sql = "SELECT DISTINCT examenonderdeel.id, examenonderdeel.naam FROM examenonderdeel, P_E, portfolioItem 
+					WHERE portfolioItem.ID = P_E.portfolioitemId AND examenonderdeel.id = P_E.examenonderdeelId";
+			
+			return $this->executeOnderdeel($sql);
+		}
 		
-		return $this->executeOnderdeel($sql);
+		function GetALLExamenOnderdelen()
+		{
+			$sql = "SELECT DISTINCT * FROM examenonderdeel";
+			
+			return $this->executeOnderdeel($sql);
 		}
 		
 		function executeOnderdeel($sql)
