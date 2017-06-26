@@ -271,7 +271,7 @@
 			
 			while($row = $result->fetch_assoc())
 			{
-				$post = new ForumPostModel($row['ID'], $row['naam'], $row['titel'], $row['content'], $row['username'], $row['datum']);
+				$post = new ForumPostModel($row['ID'], $row['naam'], $row['titel'], $row['content'], $row['username'], $row['datum'], NULL);
 				$latestPosts[] = $post;
 			}
 			
