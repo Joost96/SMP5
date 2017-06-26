@@ -19,9 +19,12 @@
 	$title = $onderwerp->naam;
 	
 	echo "
-		<section id='overzichtContent'>
+		<section id='forumPageContent'>
+		<a href='../index.php'>Home</a><span> > </span>
+		<a href='overzicht.php'>Overzicht</a>
 		<h6>{$title}</h6>
 		";
+		
 	if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
 		echo "
 			<p><a href='nieuwePost.php?onderwerp_id={$onderwerp->id}'>Maak een nieuwe post.</a></p>
@@ -33,6 +36,7 @@
 			<tr>
 				<th>Titel</th>
 				<th>Gepost door</th>
+				<th>Aantal Reacties</th>
 			</tr>";
 	
 	foreach ( $posts as $post ){
@@ -40,6 +44,7 @@
 			<tr>
 				<td><a href='post.php?post_id={$post->id}'>{$post->titel}</a></td>
 				<td>{$post->user->username}</td>
+				<td>{$post->aantalReacties}</td>
 			</tr>";
 	}
 	echo "</table>";

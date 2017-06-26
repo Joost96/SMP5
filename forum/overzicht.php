@@ -5,19 +5,35 @@
 
 	$forumdao = new forumDAO();
 	
-	$titel = "Forum Overzicht";
+	$title = "Forum Overzicht";
+	$style = "forum";
 	
-	page_header();	
+	page_header($title, $style);	
 	
 	$onderwerpen = $forumdao->getAllOnderwerpen();
 	
 	echo "
-		<h2>{$titel}</h2><br/>
+		<section id='forumPageContent'>
+		<a href='../index.php'>Home</a>
 		";
-	
+		
+	echo "<table id='ondwerpenTabel'>
+			<tr>
+				<th>Onderwerp</th>
+				<th>Aantal Posts</th>
+			</tr>
+		";
+		
 	foreach ( $onderwerpen as $onderwerp ){
 		echo "
-		<a href='onderwerp.php?onderwerp_id={$onderwerp->id}' >{$onderwerp->naam}</a><br/>
-		";
+			<tr>
+				<td><a href='onderwerp.php?onderwerp_id={$onderwerp->id}' >{$onderwerp->naam}</a></td>
+				<td>{$onderwerp->aantalPosts}</td>
+			</tr>
+			";
 	}
+	
+	echo "
+		</table>
+		</section>";
 ?>

@@ -2,13 +2,13 @@ body{
 	font-family: Arial;
 }
 
-#postPageContent {
-	width: 75%;
+#forumPageContent{
+	width: 60%;
 	margin: auto;
 }
 
 .reactieForm {
-	width: 66%;
+	width: 100%;
 	margin: auto;
 	margin-top: 5%;
 }
@@ -34,17 +34,12 @@ tr > :nth-child(2) {
 	width: 200px;
 }
 
-#overzichtTabel {
+table {
 	margin: auto;
 }
 
-#overzichtTabel th {
+table th {
 	text-align: left;
-}
-
-#overzichtContent {
-	width: 60%;
-	margin: auto;
 }
 
 h6 {
@@ -84,7 +79,7 @@ h6 {
 }
 
 .reacties {
-	width: 66%;
+	width: 100%;
 	margin: auto;
 }
 
@@ -100,4 +95,9 @@ h5 {
 	margin-top: 0;
 	margin-bottom: 0;
 	color: #666;
+}
+
+.error {
+	float: left;
+	clear: both;
 }

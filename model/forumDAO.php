@@ -33,7 +33,8 @@
 			
 			while ($row = $result->fetch_assoc()){
 				$user = $userdao->GetUserFromId($row['auteurId']);
-				array_push($posts, new ForumPostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content'], $user, $row['datum']));
+				$aantalReacties = $this->executeQuery1($con, "SELECT COUNT(id) FROM `reactie` WHERE postId = ?", "i", $row['ID'])->fetch_assoc()['COUNT(id)'];
+				array_push($posts, new ForumPostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content'], $user, $row['datum'], $aantalReacties));
 			}
 			
 			$this->close();
@@ -51,8 +52,8 @@
 			$post = array();
 			
 			if ($row = $result->fetch_assoc()){
-				array_push($post, new ForumPostModel($row['ID'], $row['onderwerpID'], 
-					$row['titel'], $row['content'], $row['auteurId'], $row['datum']));
+				array_push($post, new ForumPostModel($row['ID'], $this->getOnderwerpbyid($row['onderwerpID']), 
+					$row['titel'], $row['content'], $row['auteurId'], $row['datum'], 0));
 			}
 			
 			$this->close();
@@ -147,7 +148,8 @@
 			$onderwerpen = array();
 			
 			while($row = $result->fetch_assoc()){
-				array_push($onderwerpen, new ForumOnderwerpModel($row['ID'], $row['naam']));
+				$aantalPosts = $this->executeQuery1($con, "SELECT COUNT(ID) FROM `post` WHERE onderwerpID = ?", "i", $row['ID'])->fetch_assoc()['COUNT(ID)'];
+				array_push($onderwerpen, new ForumOnderwerpModel($row['ID'], $row['naam'], $aantalPosts));
 			}
 			
 			$this->close();
@@ -164,7 +166,7 @@
 			$onderwerp = array();
 			
 			if ($row = $result->fetch_assoc()){
-				array_push($onderwerp, new ForumOnderwerpModel($row['ID'], $row['naam']));
+				array_push($onderwerp, new ForumOnderwerpModel($row['ID'], $row['naam'], 0));
 			}
 			
 			$this->close();
