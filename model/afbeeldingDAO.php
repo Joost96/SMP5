@@ -40,7 +40,7 @@
 			$result = $stmt->get_result();
 			if($row = $result->fetch_assoc())
 			{
-				$afbeelding = new afbeelding($row["afbeeldinglink"], $row["beschrijving"]);
+				$afbeelding = new afbeelding($id , $row["afbeeldinglink"], $row["beschrijving"]);
 			}
 			$stmt->close();
 			$this->closeConnection();

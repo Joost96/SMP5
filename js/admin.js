@@ -20,8 +20,11 @@ function onLoad() {
 		var button = $("<input class='imgUpload' type='file' name='afbeelding' id="+$(this).attr("id")+">");
 		$(this).after(button);
 	});
-	$('main textarea').change(function(){
+	$('main article textarea').change(function(){
 		$(this).parent().parent().addClass( "changed" );
+	});
+	$('main textarea').change(function(){
+		$(this).parent().addClass( "changed" );
 	});
 		
 	$('main img').click(function(){
@@ -65,8 +68,31 @@ function onLoad() {
     });
 	
 	$("#adminSubmit").click(function() {
-		$(".checked").each(function() {
-			
+		$(".changed").each(function() {
+			var title = $(this).find('textarea[id*=title]').val();
+			var text = $(this).find('textarea[id*=text]').val()
+			var img = $(this).find('img[id*=image]').attr('src');
+			var data = $(this).attr("id");
+			console.log(data);
+			var arr = data.split('-');
+			console.log(arr);
+			$.ajax({
+				type: "POST",
+				url: "func/updateInfopage.php",
+				data: {
+					pagetype : arr[0],
+					page : arr[1],
+					locatie : arr[2],
+					taal : arr[3],
+					title: title, 
+					text: text, 
+					img: img 
+				}
+			}).done(function( msg ) {
+				console.log(msg );
+			}).fail(function( jqXHR, textStatus ) {
+				console.log("Request failed: " + textStatus);
+			});
 		});
 	});
 }

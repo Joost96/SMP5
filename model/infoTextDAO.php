@@ -51,7 +51,29 @@
 			$stmt->close();
 			$this->closeConnection();
 			return $infoPage;
-		}	
+		}
+		function updateInfoText($infoText) {
+			$sql = "UPDATE infoText SET title = ?, text = ?, afbeelding = ? WHERE page=? AND locatie=? AND taal=?;";
+			$infoPage = array();
+			$databaseConn = $this->getConnection();
+			
+			if (!($stmt = $databaseConn->prepare($sql))) {
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
+			}
+			if (!$stmt->bind_param("ssisis", $infoText->title,$infoText->text,$infoText->afbeelding,
+						$infoText->page, $infoText->locatie, $infoText->taal)) {
+				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}	
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}
+			$stmt->close();
+			$this->closeConnection();
+			return $infoPage;
+		}
 	}
 ?>	
 			

@@ -28,7 +28,7 @@ window.onload = function() {
 		}
     });
 	
-	$('.new-post').submit(function()
+	$('.new-post').submit(function(event)
 	{
 		console.log("got here");
 		var functie = $('.new-post input[name=functie]').val();

@@ -22,12 +22,12 @@
 	<?php $count = 0;
 	foreach($infoPage as $infoText): ?>
     <?php if($infoText->locatie ==0) : ?>
-		<div class="col-8 center">
+		<div id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal?>" class="col-8 center">
 			<p id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal."-text"?>"><?php echo $infoText->text; ?></p>
 		</div>
 	<?php else : ?>
 
-		<article class="textBlock col-12">
+		<article id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal?>" class="textBlock col-12">
 			<?php if($count % 2 ==0) : ?>
 			<div class="col-6">
 				<img id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal."-image"?>" src="<?php echo $infoText->afbeelding->afbeeldinglink ?>" alt="<?php echo $infoText->afbeelding->beschrijving ?>">

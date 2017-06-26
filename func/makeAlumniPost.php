@@ -1,7 +1,6 @@
 <?php
 	error_reporting(E_ALL);
 	ini_set('display_errors', 1);
-	ini_set("allow_url_include", "1");
 	session_start();
 	//header('Content-Type: application/json');
 
