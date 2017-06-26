@@ -23,23 +23,23 @@
 	foreach($infoPage as $infoText): ?>
     <?php if($infoText->locatie ==0) : ?>
 		<div class="col-8 center">
-			<p><?php echo $infoText->text; ?></p>
+			<p id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal."-text"?>"><?php echo $infoText->text; ?></p>
 		</div>
 	<?php else : ?>
 
 		<article class="textBlock col-12">
 			<?php if($count % 2 ==0) : ?>
 			<div class="col-6">
-				<img src="<?php echo $infoText->afbeelding->afbeeldinglink ?>" alt="<?php echo $infoText->afbeelding->beschrijving ?>">
+				<img id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal."-image"?>" src="<?php echo $infoText->afbeelding->afbeeldinglink ?>" alt="<?php echo $infoText->afbeelding->beschrijving ?>">
 			</div>
 			<?php endif; ?>
 			<div class="col-6">
-				<h1><?php echo $infoText->title; ?></h1>
-				<p><?php echo $infoText->text; ?></p>
+				<h1 id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal."-title"?>"><?php echo $infoText->title; ?></h1>
+				<p id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal."-text"?>"><?php echo $infoText->text; ?></p>
 			</div>
 			<?php if($count % 2 !=0) : ?>
 			<div class="col-6">
-				<img src="<?php echo $infoText->afbeelding->afbeeldinglink ?>" alt="<?php echo $infoText->afbeelding->beschrijving ?>">
+				<img id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal."-image"?>" src="<?php echo $infoText->afbeelding->afbeeldinglink ?>" alt="<?php echo $infoText->afbeelding->beschrijving ?>">
 			</div>
 			<?php endif; ?>
 		</article>
@@ -47,4 +47,4 @@
 	$count++;
 	endforeach; ?>
 
-</main>
+</main>	
