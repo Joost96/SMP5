@@ -41,6 +41,7 @@ function onLoad() {
 	$('.foto').each(function() {
 		fotos.push($(this).val());
 	});
+	console.log(fotos);
 	var yt = $('.itemForm input[name=yt]').val();
 	var description = $('.itemForm textarea[name=description]').val();
 	var beschrijving = $('.itemForm textarea[name=beschrijving]').val();
@@ -114,13 +115,20 @@ function onLoad() {
 				}
 			})
 			.done(function(msg) {
-				console.log(msg);});
+				console.log(msg);
+				$('#nieuwItem')[0].reset();
+				$(".modal").hide();
+			});
+			.failed(function() {
+				(/**DIVnaam**/).html.("<p>ERROR!!</p>");
+				$('#nieuwItem')[0].reset();
+				$(".modal").hide();
+			});
 	}
 	else 
 		console.log(errors);
 });
 
-/*de foute moeten nog uit het array*/
 function validateOnderdelen(onderdelen)
 {
 	if($(onderdelen).length !== 0)
@@ -138,7 +146,6 @@ function validateOnderdelen(onderdelen)
 		return false;
 }
 		
-/*idem hier*/
 function validateFotos(fotos)
 {
 	var check = "https://www.instagram.";
@@ -154,8 +161,8 @@ function validateFotos(fotos)
 		});
 		return true;
 	}
-	else	
-		return true;
+	else
+		return false;
 }
 
 function validateYt(yt)
