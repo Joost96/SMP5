@@ -26,20 +26,27 @@
 		</br>
 		<input type="submit" id="sorteer" name="portfilterSubmit" value="Sorteer" />
 		<br />
-		<button id='maakItemBTN'>Maak post</button>
+		<?php if(isset($_SESSION['user']) && !empty($_SESSION['user']))
+		{
+			echo "<button id='maakItemBTN'>Maak post</button>";
+		} ?>		
 		</div>	
-		<div class="test">	
+		<div class="popupItem">	
 		<?php include (dirname(__DIR__).'/smp5/func/nieuwPortItem.php');?>
 		</div>
 	</aside>
 
 	<div class="itemsReturn">
-	<?php include (dirname(__DIR__).'/smp5/func/portfilters.php'); ?>
+	<?php include (dirname(__DIR__).'/smp5/func/toonItems.php'); ?>
 	</div>
 
 	<?php require (dirname(__DIR__).'/smp5/func/page_footer.php');
 	page_footer();?>
 	<script>
+	function isLoggedIn(){
+		$('#maakItemBTN').show();
+	}
+		
 	$("#sorteer").click(function(){
 		var jaarfilter = [];
 			$('input[type=checkbox][name=jaarfilter]').each(function(){
@@ -57,7 +64,7 @@
 			});
 		$.ajax({
 			method: "POST",
-			url: "func/portfilters.php", 
+			url: "func/toonItems.php", 
 			data: {jaarfilter:jaarfilter, onderdeelfilter:onderdeelfilter}
 		})
 		.done(function(msg){

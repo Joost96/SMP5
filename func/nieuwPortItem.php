@@ -7,30 +7,30 @@
 	
 	echo "<div id='itemModal' class='modal'>
 			<div class='modal-content'>
-				<form class='itemForm' action='#' id='nieuwItem'>
+				<form class='itemForm' id='nieuwItem'>
 					<h3>New portfolio-item</h3>
 					<hr/><br/>
-					<label>Dutch title: <span>*</span></label>
+					<label id ='nti'>Dutch title: <span>*</span></label>
 					<br/>
 					<input type='text' name='titel' id='titel' placeholder='Vul een Nederlandse titel in:'/><br/>
 					<br/>
-					<label>English Title: <span>*</span></label>
+					<label id = 'eti'>English Title: <span>*</span></label>
 					<br />
 					<input type='text' name='title' id='title' placeholder='Please fill in an English title:'/><br/>
 					<br/>
-					<label>Techniques used<span>*</span></label>
+					<label id = 'tec'>Techniques used<span>*</span></label>
 					<br/>
 					<input type='text' name='technieken' id='technieken' placeholder='C#, SQL, HTML, etc...'/><br/>
 					<br/>
-					<label>Subject: <span>*</span></label>
+					<label id='ond'>Subject: <span>*</span></label>
 					<br/>";
 					foreach($onderdelen as $onderdeel)
 					{
-						echo "<label><input type='checkbox' name='onderdeel' value=$onderdeel->ID />$onderdeel->naam</label></br>";
+						echo "<label><input type='checkbox' id='onderdeel' name='onderdeel' value=$onderdeel->ID />$onderdeel->naam</label></br>";
 					}			
-	echo			"<label>Year: <span>*</span></label>
+	echo			"<label id='lee'>Year: <span>*</span></label>
 					<br />
-					<select name='leerjaar'>
+					<select id='leerjaar'>
 						<option value=''>Select....</option>
 						<option value='1'>Year 1</option>
 						<option value='2'>Year 2</option>
@@ -39,26 +39,26 @@
 					</select>
 					<br />
 					<br />
-					<label>Dutch Description:</label>
+					<label id ='bes'>Dutch Description:</label>
 					<br/>
-					<textarea id='beschrijving' placeholder='Dutch description...'></textarea><br/>
+					<textarea id='beschrijving' name='beschrijving' placeholder='Dutch description...'></textarea><br/>
 					<br/>
-					<label>English Description:</label>
+					<label id='des'>English Description:</label>
 					<br/>
-					<textarea id='description' placeholder='English description...'></textarea><br/>
+					<textarea id='description' name='description' placeholder='English description...'></textarea><br/>
 					<br/>
-					<label>Upload up to four pictures via instagramlink: </label>
+					<label id='pic'>Upload up to four pictures via instagramlink: </label>
 					<br />";
 					for($i = 0; $i < 4; $i++)
 					{
 						echo "<input type='text' id='foto' class='foto' placeholder='instagram.com/p/.....'/><br />";
 					}								
 	echo			"<br />
-					<label>YouTube video<span>*</span></label>
+					<label id='you'>YouTube video<span>*</span></label>
 					<br/>
 					<input type='text' name='yt' id='yt' placeholder='youtube.com/watch?v=.....'/><br/>
 					<br/>
-					<input name='post' type='button' id='send' value='Post'/>
+					<input name='post' type='submit' id='send' value='Post'/>
 					<input type='button' id='cancel' value='Cancel'/>
 					<br/>
 				</form>

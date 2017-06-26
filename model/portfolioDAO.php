@@ -289,13 +289,13 @@
 			$sql = "INSERT INTO portfolioItem (titel_nl, beschrijving_nl, leerjaar, datum, auteur_id, titel_en, beschrijving_en, youtubeLink)
 						VALUES ( ?, ?, ?, DATE_ADD(NOW(), INTERVAL 2 HOUR), ?, ?, ?, ?)";
 						
-			$databaseConn = $this->getConnection();
+			$databaseConn = $this->connect();
 			
 			if (!($stmt = $databaseConn->prepare($sql))) {
 				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
 				return;
 			}
-			if (!$stmt->bind_param("ssiisss", $titelNL, $beschrijving, $jaar, $user->id, $titelEN, $description, $yt)) {
+			if (!$stmt->bind_param("ssiisss", $titelNL, $beschrijvingNL, $jaar, $user->id, $titelEN, $description, $yt)) {
 				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 				return;
 			}	
@@ -309,12 +309,13 @@
 			return $id;
 		}
 		
+		/*Hier wordt in de koppeltabel een koppeling gemaakt voor de portfolioitems en de juiste examenonderdelen*/
 		function koppelExamenonderdeel($portfolioID, $onderdeel)
 		{
 			$sql = "INSERT INTO P_E (portfolioitemId, examenonderdeelId)
 						VALUES ( ?, ?)";
 			
-			$databaseConn = $this->getConnection();
+			$databaseConn = $this->connect();
 			
 			if (!($stmt = $databaseConn->prepare($sql))) {
 				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
@@ -330,6 +331,7 @@
 			}
 			$stmt->close();
 			$this-closeConnection();
+	}
 	}
 ?>	
 			

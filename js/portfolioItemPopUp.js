@@ -7,6 +7,7 @@ function onLoad() {
 		if (!container.is(e.target) && container.has(e.target).length === 0) 
 		{
 			$(".modal").hide();
+			$('#nieuwItem')[0].reset();
 		}
 	});
 	
@@ -17,99 +18,107 @@ function onLoad() {
 	
 	//Button die het form sluit
 	$("#itemModal #cancel").click(function(){
+		$('#nieuwItem')[0].reset();
 		$(".modal").hide();
 	});
 	
 	//button die alle waarden van het form post
-	$("#itemModal #send").click(function(){
-	$("#itemModal .itemForm").find(".error").remove();
+	$("#itemModal .itemForm").submit(function(event){
+	$("#itemModal #nieuwItem").find(".error").remove();
+	event.preventDefault();
 	
-	var titelNL = $('#itemModal input[name=titel]').val();
-	var titelEN = $('#itemModal input[name=title]').val();
-	var technieken = $('#itemModal input[name=technieken]').val();
+	var titelNL = $('.itemForm input[name=titel]').val();
+	var titelEN = $('.itemForm input[name=title]').val();
+	var technieken = $('.itemForm input[name=technieken]').val();
 	var onderdelen = [];
 	$("input:checkbox[name=onderdeel]:checked").each(function(){
 		onderdelen.push($(this).val());
 	});	
-	var jaar = $('#itemModal #leerjaar option:selected').val();
+	var jaar = $('.itemForm #leerjaar :selected').val();
 	var fotos = [];
 	$('.foto').each(function() {
 		fotos.push($(this).val());
 	});
-	var youtube = $('#itemModal input[name=yt]').val();
-	var description = $('#itemModal textarea[name=description]').val();
-	var beschrijving = $('#itemModal textarea[name=beschrijving]').val();
+	var yt = $('.itemForm input[name=yt]').val();
+	var description = $('.itemForm textarea[name=description]').val();
+	var beschrijving = $('.itemForm textarea[name=beschrijving]').val();
+	var errors = 0;
 		
 	if(titelNL == "")
 	{
-		$('#itemModal .itemForm').parrent().append( $( "<p class='error'>Geen titel ingevoerd</p>"));
+		$('#nti').after( $( "<p class='error'>Geen titel ingevoerd</p>"));
+		errors++;
 	}
 	if(titelEN == "")
 	{
-		var error = $('#itemModal .itemForm').parent().append( $( "<p class='error'>You didn't enter a title</p>"));
+		var error = $('#eti').after( $( "<p class='error'>You didn't enter a title</p>"));
+		errors++;
 	}
 	if(technieken == "")
 	{
-		$('#itemModal .itemForm').parent().append( $( "<p class='error'>Geen technieken geselecteerd</p>"));
-		return;
+		$('#tec').after( $( "<p class='error'>Geen technieken geselecteerd</p>"));
+		errors++;
 	}
 	if(!validateOnderdelen(onderdelen))
 	{
-		$('#itemModal .itemForm').parent().append( $( "<p class='error'>Geen examenonderdeel geselecteerd</p>"));
-		return;
+		$('#ond').after( $( "<p class='error'>Geen examenonderdeel geselecteerd</p>"));
+		errors++;
 	}
 	if(!$.isNumeric(jaar))
 	{
-		$('#itemModal .itemForm').parent().append( $( "<p class='error'>Geen leerjaar geselecteerd</p>"));
-		return;
+		$('#lee').after( $( "<p class='error'>Geen leerjaar geselecteerd</p>"));
+		errors++;
 	}
+	
 	if(!validateFotos(fotos))
 	{
-		$('#itemModal .itemForm').parent().append( $( "<p class='error'>De URL van één van de foto's was onjuist</p>"));
-		return;
+		$('#pic').after( $( "<p class='error'>De URL van één van de foto's was onjuist</p>"));
+			errors++;
 	}
 	
 	if(!validateYt(yt))
 	{
-		$('#itemModal .itemForm').parent().append( $( "<p class='error'>De youtubelink was onjuist</p>"));
-		
+		$('#you').after( $( "<p class='error'>De youtubelink was onjuist</p>"));
+		errors++;		
 	}
 	
 	if(beschrijving == "")
 	{
-		$('#itemModal .itemForm').parent().append( $( "<p class='error'>Geen Nederlandse beschrijving toegevoegd</p>"));
-		return;
+		$('#bes').after( $( "<p class='error'>Geen Nederlandse beschrijving toegevoegd</p>"));
+		errors++;
 	}
 	
-	if(beschrijving == "")
+	if(description == "")
 	{
-		$('#itemModal .itemForm').parent().append( $( "<p class='error'>No English description added</p>"));
-		return;
+		$('#des').after( $( "<p class='error'>No English description added</p>"));
+		errors++;
 	}
 	
-	else
+	if(errors == 0)
 	{
 		$.ajax({
-			method: "POST",
-			url: "/smp5/func/createItem.php",
-			data: {
-				titelNL : titelNL,
-				titelEN : titelEN,
-				technieken : technieken,
-				onderdelen : onderdelen,
-				jaar : jaar,
-				fotos : fotos,
-				yt : yt,
-				beschrijving : beschrijving,
-				description : description
-			}
-		})
-		.done(function(msg) {
-			console.log(msg);});
-	
-}
+				method: "POST",
+				url: "/smp5/func/createItem.php",
+				data: {
+					titelNL : titelNL,
+					titelEN : titelEN,
+					technieken : technieken,
+					onderdelen : onderdelen,
+					jaar : jaar,
+					fotos : fotos,
+					yt : yt,		
+					description : description,
+					beschrijving : beschrijving,
+				}
+			})
+			.done(function(msg) {
+				console.log(msg);});
+	}
+	else 
+		console.log(errors);
 });
-}
+
+/*de foute moeten nog uit het array*/
 function validateOnderdelen(onderdelen)
 {
 	if($(onderdelen).length !== 0)
@@ -118,25 +127,33 @@ function validateOnderdelen(onderdelen)
 		{
 			if(!$.isNumeric(value))
 				{
-					return false;
+					onderdelen.splice(onderdelen.indexOf(value), 1);
 				}
 		});
+		return true;
 	}
+	else 
+		return false;
 }
 		
+/*idem hier*/
 function validateFotos(fotos)
 {
 	var check = "https://www.instagram.";
-	$.each(fotos, function(index, value)
+	if($(fotos).length !== 0)
 	{
-		if(!value == "")
-		{	
-			if(value.indexOf(check) == -1)
-				return false;
-		}
-		else
-			return false;
-	});
+		$.each(fotos, function(index, value)
+		{
+			if(!value == "")
+			{	
+				if(value.indexOf(check) == -1)
+					fotos.splice(fotos.indexOf(value), 1);
+			}
+		});
+		return true;
+	}
+	else	
+		return true;
 }
 
 function validateYt(yt)
@@ -144,7 +161,13 @@ function validateYt(yt)
 	var check = "https://youtube.";
 	var check2 = "https://youtu.be";
 	
-	if((yt.indexOf(check) == -1) || (yt.indexOf(check2) == -1))
-		return false;
+	if(!yt == "")
+	{
+		if((yt.indexOf(check) == -1) || (yt.indexOf(check2) == -1))
+			return false;
+	}
+	else
+		return true;
+}
 }
 	

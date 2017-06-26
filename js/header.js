@@ -133,6 +133,10 @@ function loggedIn() {
 	if($("#username").html() != "NULL") {
 		$("#username").css('display', 'block')
 		$("#loginModalBtn").html("Uitloggen");
+		if (typeof isLoggedIn === "function") { 
+			isLoggedIn();
+		}
+		
 	} else {
 		$("#username").css('display', 'none')
 		$("#loginModalBtn").html("Inloggen");
