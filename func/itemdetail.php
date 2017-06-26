@@ -4,6 +4,7 @@
 	include_once (dirname(__DIR__).'/model/ReactieModel.php');
 	include_once (dirname(__DIR__).'/model/user.php');
 	include_once (dirname(__DIR__).'/func/plaatsPortfolioReactie.php');
+	include_once (dirname(__DIR__).'model/PortfolioReacties.php');
 	
 	
 	$itemID = $_GET['itemID'];
@@ -62,20 +63,9 @@
 	echo "</div>";
 	echo "<hr class='style4'>";
 	
-	foreach($reacties as $reactie)
-	{
-		$datetime = new datetime($reactie->dateTime);
-		
-		$datum = $datetime->format('D d M');
-		$tijd = $datetime->format('H:i');
-		
-		echo "<article class='reactie'>
-				<h6>{$reactie->user->username}</h6>
-				<h5>$datum $tijd</h5>
-				<hr class='style5'>
-				<p>$reactie->content</p>
-			</article>";
-	}
+	echo "<div class='reacties'>";
+	printPortfoReacties($itemID);
+	echo "</div>";
 	
 	if(isset($_SESSION['user']) && !empty($_SESSION['user']))
 	{

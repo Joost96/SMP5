@@ -2,8 +2,6 @@
 	include_once (dirname(__DIR__).'/model/ReactieModel.php');
 	include_once (dirname(__DIR__).'/model/forumDAO.php');
 	
-
-	
 	function printReacties ($post_id){
 		
 		$forumdao = new forumDAO();

@@ -13,7 +13,9 @@ function onLoad() {
 	
 	// Button die het form opent
 	$("#maakItemBTN").click(function() {
+		$("#itemModal").find(".error").remove();
 		$("#itemModal").show();
+				
 	});
 	
 	//Button die het form sluit
@@ -24,7 +26,7 @@ function onLoad() {
 	
 	//button die alle waarden van het form post
 	$("#itemModal .itemForm").submit(function(event){
-	$("#itemModal #nieuwItem").find(".error").remove();
+	$(".itemForm").find(".error").remove();
 	event.preventDefault();
 	
 	var titelNL = $('.itemForm input[name=titel]').val();
