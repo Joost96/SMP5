@@ -8,24 +8,41 @@
 	$forumdao = new forumDAO();
 	
 	$onderwerp = $forumdao->getOnderwerpbyid($onderwerp_id);
-	$title = $onderwerp->naam;
 	$posts = $forumdao->getPostbyOnderwerp($onderwerp_id);
 	$posts = array_reverse($posts);
 	
-	page_header($title);
+	$title = "Forum";
+	$style = "forum";
+	
+	page_header($title, $style);
 		
+	$title = $onderwerp->naam;
+	
 	echo "
-		<h2>{$title}</h2>
-		<br/>
+		<section id='overzichtContent'>
+		<h6>{$title}</h6>
 		";
 	if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
 		echo "
-			<p><a href='nieuwePost.php?onderwerp_id={$onderwerp_id}'>Maak een nieuwe post.</a></p>
+			<p><a href='nieuwePost.php?onderwerp_id={$onderwerp->id}'>Maak een nieuwe post.</a></p>
 			";
 	}
 	
+	echo "
+		<table id='overzichtTabel'>
+			<tr>
+				<th>Titel</th>
+				<th>Gepost door</th>
+			</tr>";
 	
 	foreach ( $posts as $post ){
-		echo "<p><a href='post.php?post_id={$post->id}'>{$post->titel}</a></p>";
+		echo "
+			<tr>
+				<td><a href='post.php?post_id={$post->id}'>{$post->titel}</a></td>
+				<td>{$post->user->username}</td>
+			</tr>";
 	}
+	echo "</table>";
+	
+	echo "</section>";
 ?>

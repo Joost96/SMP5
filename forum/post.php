@@ -8,16 +8,16 @@
 	$post_id = $_GET['post_id'];
 	
 	$forumdao = new forumDAO();
-	
 	$post = $forumdao->getPostbyid($post_id);
 	
 	$reacties = $forumdao->getAllReacties($post_id);
-	
 	$reacties = array_reverse($reacties);
 
+	$title = "Forum";
 	$style = "forum";
+	$script = "nieuweReactie";
 	
-	page_header($post->titel, $style);
+	page_header($title, $style, $script);
 
 	echo "
 		<section id='postPageContent'>
@@ -34,10 +34,10 @@
 		<section class='reactieForm'>";
 	if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
 		echo "
-			<form id='reactieForm' action='plaatsReactie.php' method='post'>
+			<form id='reactieForm' method='post'>
 				<label id='reactieLabel' for='reactie'>Reactie:</label>
 				<textarea form='reactieForm' rows='8' cols='200' value='' id='reactieTextBox' name='reactie_content'></textarea>
-				<input type='hidden' value='{$post_id}' name='post_id' />
+				<input id='post_id' type='hidden' value='{$post_id}' name='post_id' />
 				<input type='submit' value='POST' id='postButton'/>
 			</form>
 		";	

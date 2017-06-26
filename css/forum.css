@@ -18,7 +18,36 @@ body{
 	clear: both;
 }
 
-.post h6 {
+table {
+	border-collapse: collapse;
+}
+
+tr th, tr td {
+	border-bottom: 1px solid #e3e3e3;
+}
+
+tr > :nth-child(1) {
+	width: 83%;
+	margin: auto;
+}
+tr > :nth-child(2) {
+	width: 200px;
+}
+
+#overzichtTabel {
+	margin: auto;
+}
+
+#overzichtTabel th {
+	text-align: left;
+}
+
+#overzichtContent {
+	width: 60%;
+	margin: auto;
+}
+
+h6 {
 	font-size: 1.5em;
 	margin:  20px 0 0 0;
 	color: #0065B3;
@@ -27,9 +56,6 @@ body{
 .post p {
 	font-family: Verdana;
 }
-
-
-
 
 #reactieTextBox {
 	float: left;

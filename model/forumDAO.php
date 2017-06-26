@@ -4,6 +4,7 @@
 	include_once (dirname(__DIR__)."/model/ReactieModel.php");
 	include_once (dirname(__DIR__)."/model/informaticaBase.php");
 	include_once (dirname(__DIR__)."/model/userDAO.php");
+	include_once (dirname(__DIR__)."/model/user.php");
 
 	class forumDAO{
 		private $obj;
@@ -23,6 +24,7 @@
 		function getPostbyOnderwerp($onderwerp_id){
 			$con = $this->connect();
 			
+			$userdao = new userDAO();
 			$query = "SELECT * FROM post WHERE onderwerpID = ?";
 			
 			$result = $this->executeQuery1($con, $query, "i", $onderwerp_id);
@@ -30,7 +32,8 @@
 			$posts = array();
 			
 			while ($row = $result->fetch_assoc()){
-				array_push($posts, new ForumPostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content'], $row['auteurId'], $row['datum']));
+				$user = $userdao->GetUserFromId($row['auteurId']);
+				array_push($posts, new ForumPostModel($row['ID'], $row['onderwerpID'], $row['titel'], $row['content'], $user, $row['datum']));
 			}
 			
 			$this->close();
