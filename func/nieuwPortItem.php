@@ -6,7 +6,7 @@
 	$onderdelen = $portDAO->GetALLExamenOnderdelen();
 	
 	echo "<div id='itemModal' class='modal'>
-			<div class='modal-content'>
+			<div class='modal-content' id='portItemModal'>
 				<form class='itemForm' id='nieuwItem'>
 					<h3>New portfolio-item</h3>
 					<hr/><br/>
@@ -39,22 +39,22 @@
 					</select>
 					<br />
 					<br />
-					<label id ='bes'>Dutch Description:</label>
+					<label id ='bes'>Dutch Description: <span>*</span></label>
 					<br/>
 					<textarea id='beschrijving' name='beschrijving' placeholder='Dutch description...'></textarea><br/>
 					<br/>
-					<label id='des'>English Description:</label>
+					<label id='des'>English Description: <span>*</span></label>
 					<br/>
 					<textarea id='description' name='description' placeholder='English description...'></textarea><br/>
 					<br/>
-					<label id='pic'>Upload up to four pictures via instagramlink: </label>
+					<label id='pic'>Upload up to four pictures via instagramlink: <span>*</span></label>
 					<br />";
 					for($i = 0; $i < 4; $i++)
 					{
 						echo "<input type='text' id='foto' class='foto' placeholder='instagram.com/p/.....'/><br />";
 					}								
 	echo			"<br />
-					<label id='you'>YouTube video<span>*</span></label>
+					<label id='you'>YouTube video</label>
 					<br/>
 					<input type='text' name='yt' id='yt' placeholder='youtube.com/watch?v=.....'/><br/>
 					<br/>

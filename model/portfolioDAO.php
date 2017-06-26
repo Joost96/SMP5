@@ -286,8 +286,8 @@
 		/*Dit is de methode om een nieuw item aan de database toe te voegen*/
 		function CreateNewItem($titelNL, $titelEN, $technieken, $jaar, $yt, $beschrijvingNL, $description, $user)
 		{
-			$sql = "INSERT INTO portfolioItem (titel_nl, beschrijving_nl, leerjaar, datum, auteur_id, titel_en, beschrijving_en, youtubeLink)
-						VALUES ( ?, ?, ?, DATE_ADD(NOW(), INTERVAL 2 HOUR), ?, ?, ?, ?)";
+			$sql = "INSERT INTO portfolioItem (titel_nl, beschrijving_nl, leerjaar, datum, auteur_id, technieken, titel_en, beschrijving_en, youtubeLink)
+						VALUES ( ?, ?, ?, DATE_ADD(NOW(), INTERVAL 2 HOUR), ?, ?, ?, ?, ?)";
 						
 			$databaseConn = $this->connect();
 			
@@ -295,7 +295,7 @@
 				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
 				return;
 			}
-			if (!$stmt->bind_param("ssiisss", $titelNL, $beschrijvingNL, $jaar, $user->id, $titelEN, $description, $yt)) {
+			if (!$stmt->bind_param("ssiissss", $titelNL, $beschrijvingNL, $jaar, $user->id, $technieken, $titelEN, $description, $yt)) {
 				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 				return;
 			}	
@@ -305,7 +305,7 @@
 			}
 			$id = $stmt->insert_id;
 			$stmt->close();
-			$this-closeConnection();
+			$this->closeConnection();
 			return $id;
 		}
 		
@@ -330,7 +330,7 @@
 				return;
 			}
 			$stmt->close();
-			$this-closeConnection();
+			$this->closeConnection();
 	}
 	}
 ?>	

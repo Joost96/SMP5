@@ -16,38 +16,41 @@
 			
 
 			$yt = "";
-			$fotos = array();
 			
 			$titelNL = ($_POST['titelNL']);
-			var_dump($titelNL);
 			$titelEN = ($_POST['titelEN']);
 			$technieken = ($_POST['technieken']);
 			$onderdelen = ($_POST['onderdelen']);
+			var_dump($onderdelen);
 			$jaar = ($_POST['jaar']);
-			$fotos[] = ($_POST['fotos']);
+			$fotos = ($_POST['fotos']);
+			var_dump($fotos);
 			$yt = ($_POST['yt']);
 			$beschrijvingNL = ($_POST['beschrijving']);
 			$description = ($_POST['description']);
 			
 			$portfolioID = $portDAO->CreateNewItem($titelNL, $titelEN, $technieken, $jaar, $yt, $beschrijvingNL, $description, $user);
-			if(count($fotos) !== 0)
-			{
-				$afbDAO = new afbeeldingDAO();
-				$instaScraper = new InstagramScraper();
+			$afbDAO = new afbeeldingDAO();
+			$instaScraper = new InstagramScraper();
 				
-					foreach($fotos as $foto)
-					{
-						$link = $instaScraper->image($foto);
-						$beschrijving = "Instagramfoto";
-						$afbeeldingID = $afbDAO->createAfbeelding($link, $beschrijving);
-						$afbDAO->createPortfolioAfbeelding($portfolioID, $afbeeldingID, $foto);
-					}
-			}
-			foreach($onderdelen as $onderdeel)
-			{
-				$portDAO->koppelExamenonderdeel($portfolioID, $onderdeel);
-			}
+				foreach($fotos as $foto)
+				{
+					$link = $instaScraper->image($foto);
+					$beschrijving = "Instagramfoto";
+					$afbeeldingID = $afbDAO->createAfbeelding($link, $beschrijving);
+					echo $afbeeldingID;
+					$afbDAO->createPortfolioAfbeelding($portfolioID, $afbeeldingID, $foto);
+				}
 		}
-	}	
+		
+		foreach($onderdelen as $onderdeelid)
+		{
+			echo $onderdeelid;
+			$onderdeel = (int)$onderdeelid;
+			echo $onderdeel;
+			$portDAO->koppelExamenonderdeel($portfolioID, $onderdeel);
+		}
+	}
+	
 		
 ?>

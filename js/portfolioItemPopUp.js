@@ -41,8 +41,8 @@ function onLoad() {
 	$('.foto').each(function() {
 		fotos.push($(this).val());
 	});
-	console.log(fotos);
-	var yt = $('.itemForm input[name=yt]').val();
+	var yt = "";
+	yt = $('.itemForm input[name=yt]').val();
 	var description = $('.itemForm textarea[name=description]').val();
 	var beschrijving = $('.itemForm textarea[name=beschrijving]').val();
 	var errors = 0;
@@ -75,14 +75,13 @@ function onLoad() {
 	
 	if(!validateFotos(fotos))
 	{
-		$('#pic').after( $( "<p class='error'>De URL van één van de foto's was onjuist</p>"));
+		$('#pic').after( $( "<p class='error'>Onjuiste URL, of geen foto toegevoegd.</p>"));
 			errors++;
 	}
 	
 	if(!validateYt(yt))
 	{
-		$('#you').after( $( "<p class='error'>De youtubelink was onjuist</p>"));
-		errors++;		
+		$('#you').after( $( "<p class='error'>De youtubelink was onjuist</p>"));		
 	}
 	
 	if(beschrijving == "")
@@ -111,16 +110,14 @@ function onLoad() {
 					fotos : fotos,
 					yt : yt,		
 					description : description,
-					beschrijving : beschrijving,
-				}
-			})
+					beschrijving : beschrijving
+				}})
 			.done(function(msg) {
 				console.log(msg);
 				$('#nieuwItem')[0].reset();
 				$(".modal").hide();
-			});
-			.failed(function() {
-				(/**DIVnaam**/).html.("<p>ERROR!!</p>");
+			})
+			.fail(function() {
 				$('#nieuwItem')[0].reset();
 				$(".modal").hide();
 			});
@@ -149,34 +146,35 @@ function validateOnderdelen(onderdelen)
 function validateFotos(fotos)
 {
 	var check = "https://www.instagram.";
+	
 	if($(fotos).length !== 0)
 	{
-		$.each(fotos, function(index, value)
+		for(var i = fotos.length -1; i >= 0; i--)
 		{
-			if(!value == "")
-			{	
-				if(value.indexOf(check) == -1)
-					fotos.splice(fotos.indexOf(value), 1);
-			}
-		});
-		return true;
+			if(fotos[i] == "")
+				fotos.splice(i, 1);
+			else if(fotos[i].indexOf(check) == -1)
+				fotos.splice(i, 1);
+		}
+		if($(fotos).length > 0)
+			return true;
+		else
+			return false;
 	}
-	else
-		return false;
+		
 }
 
 function validateYt(yt)
 {
-	var check = "https://youtube.";
-	var check2 = "https://youtu.be";
+	var check = "https://www.youtube.com/";
+	var check2 = "https://youtu.be/";
 	
-	if(!yt == "")
+	if((yt.indexOf(check) > -1) || (yt.indexOf(check2) > -1))
 	{
-		if((yt.indexOf(check) == -1) || (yt.indexOf(check2) == -1))
-			return false;
+		return true;
 	}
 	else
-		return true;
+		return false;
 }
 }
 	

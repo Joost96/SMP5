@@ -71,8 +71,8 @@
 		
 		function createPortfolioAfbeelding($portfolioID, $afbeeldingID, $foto)
 		{
-			$sql = "INSERT INTO portfolioAfbeelding (portfolioitem_ID, afbeelding_id, instagramlink)
-						VALUES ( ?, ?)";
+			$sql = "INSERT INTO portfolioAfbeelding (portfolioitem_ID, afbeelding_id, instagrampostlink)
+						VALUES ( ?, ?, ?)";
 			$databaseConn = $this->getConnection();
 			
 			if (!($stmt = $databaseConn->prepare($sql))) {

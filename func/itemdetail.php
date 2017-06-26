@@ -4,7 +4,7 @@
 	include_once (dirname(__DIR__).'/model/ReactieModel.php');
 	include_once (dirname(__DIR__).'/model/user.php');
 	include_once (dirname(__DIR__).'/func/plaatsPortfolioReactie.php');
-	include_once (dirname(__DIR__).'model/PortfolioReacties.php');
+	include_once (dirname(__DIR__).'/model/PortfolioReacties.php');
 	
 	
 	$itemID = $_GET['itemID'];
@@ -45,21 +45,26 @@
 	echo "<div class='media'>";
 	foreach($afbeeldingen as $afbeelding)
 	{
-		echo "<a href=$afbeelding->instagrampostLink ><img class='afbeelding' src=$afbeelding->afbeeldingLink alt=$afbeelding->beschrijving/></a>";
+		if($afbeelding->instagrampostLink !== "")
+			echo "<a href=$afbeelding->instagrampostLink target='_blank'><img class='afbeelding' src=$afbeelding->afbeeldingLink alt=$afbeelding->beschrijving/></a>";
+		else
+			echo "<img class='afbeelding' src=$afbeelding->afbeeldingLink alt=$afbeelding->beschrijving/>";
 	}
 	
-	$ytlink = $item->youtubelink;		
-	if( ($x_pos = strpos($ytlink, '=')) !== FALSE )
+	if($item->youtubelink !== NULL)
 	{
-		$ytlink = substr($ytlink, $x_pos + 1);
+		$ytlink = $item->youtubelink;		
+		if( ($x_pos = strpos($ytlink, '=')) !== FALSE )
+		{
+			$ytlink = substr($ytlink, $x_pos + 1);
+		}
+		else 
+		{
+			$ytlink = basename($ytlink);
+		}
+		
+		echo "<iframe class='yt' width='10000' height='10000' src='https://www.youtube.com/embed/$ytlink' frameborder='0' allowfullscreen></iframe>";
 	}
-	else 
-	{
-		$ytlink = basename($ytlink);
-	}
-
-	
-	echo "<iframe class='yt' width='10000' height='10000' src='https://www.youtube.com/embed/$ytlink' frameborder='0' allowfullscreen></iframe>";
 	echo "</div>";
 	echo "<hr class='style4'>";
 	

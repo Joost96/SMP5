@@ -219,7 +219,7 @@ hr.style5 {
 	text-align: left;
 	float: left;
 	margin-top: 5%;
-	width: 30%;
+	width: 25%;
 }
 
 .filters p{
@@ -239,19 +239,13 @@ hr.style5 {
 
 #form{
 	float: left;
-	width: 50%;
-	margin-left: 25%;
-	margin-right: 25%;
-}
-
-.modal{
-	max-height: calc(100vh - 20px);
-    overflow-y: auto;
+	width: 70%;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 .itemForm {
 width: 100%;
-margin-bottom: 100px;
 }
 
 .itemForm label{
@@ -270,12 +264,26 @@ width: 80%;
 	margin-left: 18%;
 	margin-right: 10%;
 	width: 20%;
+	background-color: #0065B3;
+	cursor: pointer;
+	border-bottom: 3px solid #e4e4e4;
 }
 
 #cancel{
 	margin-left: 10%;
+	color: white;
 	margin-right: 18%;
 	width: 20%;
+	background-color: #0065B3;
+	cursor: pointer;
+	border: none;
+	border-bottom: 3px solid #e4e4e4;
+}
+
+#send:hover, #cancel:hover{
+	background-color: #43B9F1;
+	-webkit-transition:all .3s ease-in;
+	cursor: pointer;
 }
 
 #maakItemBTN{
@@ -299,10 +307,18 @@ width: 80%;
 	cursor: pointer;
 }
 
+.modal-content {
+	margin-bottom: 200px;
+}
+
+#portItemModal{
+width: calc(100% /2);
+}
+
 
 /*Portfoliopagina item weergave*/
 .itemsReturn {
-	width:65%;
+	width:70%;
 	float:left;
 	margin-bottom:15px;
 	margin-top: 80px;
