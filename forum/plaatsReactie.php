@@ -15,17 +15,8 @@
 		header("location: post.php?post_id={$_POST['post_id']}");
 	}
 	
-	else if (isset($_SESSION['user']) && !empty($_SESSION['user']) && !empty($_POST['itemID'])){
-		$user = unserialize($_SESSION['user']);
-		
-		$reactie = new ReactieModel(null, null, $_POST['itemID'], $user, $_POST['reactie_content'], date("Y-m-d H:i:s"));
-		
-		$forumdao->plaatsForumReactie($reactie);	
-		
-		header("location: /smp5/portfoliodetail.php?itemID={$_POST['itemID']}");
-	}
-	
 	header("location: /smp5/index.php");
+	
 	
 	// voor debug comment: header(), en uncomment: echo.
 	
