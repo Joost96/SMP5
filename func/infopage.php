@@ -30,7 +30,7 @@
 		<article id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal?>" class="textBlock col-12">
 			<?php if($count % 2 ==0) : ?>
 			<div class="col-6">
-				<img id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal."-image"?>" src="<?php echo $infoText->afbeelding->afbeeldinglink ?>" alt="<?php echo $infoText->afbeelding->beschrijving ?>">
+				<img id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal."-image-".$infoText->afbeelding->id;?>" src="<?php echo $infoText->afbeelding->afbeeldinglink ?>" alt="<?php echo $infoText->afbeelding->beschrijving ?>">
 			</div>
 			<?php endif; ?>
 			<div class="col-6">
@@ -39,7 +39,7 @@
 			</div>
 			<?php if($count % 2 !=0) : ?>
 			<div class="col-6">
-				<img id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal."-image"?>" src="<?php echo $infoText->afbeelding->afbeeldinglink ?>" alt="<?php echo $infoText->afbeelding->beschrijving ?>">
+				<img id="<?php echo "infopage-".$infoText->page."-".$infoText->locatie."-".$infoText->taal."-image-".$infoText->afbeelding->id;?>" src="<?php echo $infoText->afbeelding->afbeeldinglink ?>" alt="<?php echo $infoText->afbeelding->beschrijving ?>">
 			</div>
 			<?php endif; ?>
 		</article>

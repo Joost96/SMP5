@@ -23,7 +23,7 @@ function onLoad() {
 	$('main article textarea').change(function(){
 		$(this).parent().parent().addClass( "changed" );
 	});
-	$('main textarea').change(function(){
+	$('main .col-8 textarea').change(function(){
 		$(this).parent().addClass( "changed" );
 	});
 		
@@ -69,6 +69,9 @@ function onLoad() {
 	
 	$("#adminSubmit").click(function() {
 		$(".changed").each(function() {
+			$("main .feedback").each(function() {
+				$(this).remove();
+			});
 			var title = $(this).find('textarea[id*=title]').val();
 			var text = $(this).find('textarea[id*=text]').val()
 			var img = $(this).find('img[id*=image]').attr('src');
@@ -76,9 +79,14 @@ function onLoad() {
 			console.log(data);
 			var arr = data.split('-');
 			console.log(arr);
+			if(img) {
+				var imgId = $(this).find('img[id*=image]').attr('id').split('-')[5];
+			}
+			console.log(imgId);
 			$.ajax({
 				type: "POST",
 				url: "func/updateInfopage.php",
+				dataType: 'json',
 				data: {
 					pagetype : arr[0],
 					page : arr[1],
@@ -86,10 +94,16 @@ function onLoad() {
 					taal : arr[3],
 					title: title, 
 					text: text, 
-					img: img 
+					img: img,
+					imgId : imgId
 				}
 			}).done(function( msg ) {
 				console.log(msg );
+				if(msg.status.indexOf("sucess") >= 0) {
+					$( "main" ).append( $( "<p class='feedback sucess' id='"+arr[2]+"'>"+msg.status+"</p>" ) );
+				} else {
+					$( "main" ).append( $( "<p class='feedback fail' id='"+arr[2]+"'>"+msg.status+"</p>" ) );
+				}
 			}).fail(function( jqXHR, textStatus ) {
 				console.log("Request failed: " + textStatus);
 			});

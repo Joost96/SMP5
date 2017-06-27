@@ -72,7 +72,7 @@
 			}
 			$stmt->close();
 			$this->closeConnection();
-			return $infoPage;
+			return $infoText;
 		}
 	}
 ?>	

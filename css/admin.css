@@ -1,6 +1,6 @@
 .pEdit {
 	width : 100%;
-	height : 200px;
+	height : 272px;
 }
 .h1Edit {
 	width : 100%;
@@ -18,4 +18,10 @@
 #adminSubmit {
 	width : 100%;
 	padding : 1%;
+}
+.fail {
+	color :red;
+}
+.sucess {
+	color : green;
 }

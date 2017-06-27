@@ -42,7 +42,7 @@
 			if($row = $result->fetch_assoc())
 			{
 				$user = new user($row['ID'], $row["username"], $row["firstName"], $row["lastName"], $row["studentId"],
-													$row["email"], $row["password"]);
+													$row["email"], $row["password"],$row["admin"]);
 			}
 			$stmt->close();
 			$this->closeConnection();
@@ -71,7 +71,7 @@
 			if($row = $result->fetch_assoc())
 			{
 				$user = new user($row['ID'], $row["username"], $row["firstName"], $row["lastName"], $row["studentId"],
-													$row["email"], $row["password"]);
+													$row["email"], $row["password"],$row["admin"]);
 			}
 			$stmt->close();
 			$this->closeConnection();

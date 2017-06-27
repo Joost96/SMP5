@@ -34,12 +34,13 @@
 			$css = "";
 			$script = "";
 		}
-		if(isset($_GET['admin']) && !empty($_GET['admin']) && $_GET["admin"] == "true") {
-			$adminCss = "<link rel='stylesheet' type='text/css' href='/smp5/css/admin.css'/>";
-			$adminScript = "<script src='/smp5/js/admin.js'></script>";
-		} else {
-			$adminCss = "";
-			$adminScript = "";
+		$adminCss = "";
+		$adminScript = "";
+		if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+			if(isset($_GET['admin']) && !empty($_GET['admin']) && $_GET["admin"] == "true" && unserialize($_SESSION['user'])->admin) {
+				$adminCss = "<link rel='stylesheet' type='text/css' href='/smp5/css/admin.css'/>";
+				$adminScript = "<script src='/smp5/js/admin.js'></script>";
+			}
 		}
 		
 		//set vars for in the header
