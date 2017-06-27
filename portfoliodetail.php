@@ -52,7 +52,7 @@
 		else
 			echo "<img class='afbeelding' src=$afbeelding->afbeeldingLink alt=$afbeelding->beschrijving/>";
 	}
-	echo $item->youtubelink;
+	
 	if($item->youtubelink != NULL)
 	{
 		$ytlink = $item->youtubelink;		
