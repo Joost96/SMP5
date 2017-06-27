@@ -81,7 +81,7 @@ function onLoad() {
 	
 	if(!validateYt(yt))
 	{
-		$('#you').after( $( "<p class='error'>De youtubelink was onjuist</p>"));		
+		$('#you').after( $( "<p class='error'>De YouTubelink was onjuist</p>"));		
 	}
 	
 	if(beschrijving == "")
@@ -113,10 +113,10 @@ function onLoad() {
 					beschrijving : beschrijving
 				}})
 			.done(function(msg) {
-				console.log(msg);
+				$("#sorteer").click();
 				$('#nieuwItem')[0].reset();
 				$(".modal").hide();
-				$("#sorteer").click();
+				
 			})
 			.fail(function() {
 				$('#nieuwItem')[0].reset();

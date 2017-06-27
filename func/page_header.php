@@ -74,7 +74,7 @@
 				</head>
 					<body>
 						<header class='header'>
-							<a href='/smp5/index.php'><img id='inholland_logo' src='/smp5/img/inholland_logo.png' alt='inholland logo' /></a>
+							<a href='/smp5/index.php'><img id='inholland_logo' src='/smp5/img/inholland_logo.PNG' alt='inholland logo' /></a>
 							<ul class='navbar'>
 								<li class='dropdown'>
 									<a class='dropknop'>Menu</a>

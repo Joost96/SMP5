@@ -13,7 +13,7 @@
 		
 		$reactie = new ReactieModel(null, null, $ID, $user, $content, date("Y-m-d H:i:s"));
 		
-		$forumdao->plaatsForumReactie($reactie);
+		$forumdao->plaatsPortReactie($reactie);
 
 		printPortfoReacties($_POST['itemID']);
 	}

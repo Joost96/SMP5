@@ -2,7 +2,7 @@
 	include_once (dirname(__DIR__)."/model/ForumOnderwerpModel.php");
 	include_once (dirname(__DIR__)."/model/ForumPostModel.php");
 	include_once (dirname(__DIR__)."/model/ReactieModel.php");
-	include_once (dirname(__DIR__)."/model/informaticaBase.php");
+	include_once (dirname(__DIR__)."/model/InformaticaBase.php");
 	include_once (dirname(__DIR__)."/model/userDAO.php");
 	include_once (dirname(__DIR__)."/model/user.php");
 
@@ -124,7 +124,7 @@
 			return $result;
 		}
 		
-		function plaatsForumReactie($reactie)
+		function plaatsPortReactie($reactie)
 		{
 			$con = $this->connect();
 			

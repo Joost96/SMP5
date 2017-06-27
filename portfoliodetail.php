@@ -3,7 +3,7 @@
 	<?php require (dirname(__DIR__).'/smp5/func/page_header.php');
 	page_header("Portfolio", "home", "nieuwePortReactie");
 	include_once (dirname(__DIR__).'/smp5/model/portfolioDAO.php');
-	include_once (dirname(__DIR__).'/smp5/model/portfolioitem.php');
+	include_once (dirname(__DIR__).'/smp5/model/portfolioItem.php');
 	include_once (dirname(__DIR__).'/smp5/model/ReactieModel.php');
 	include_once (dirname(__DIR__).'/smp5/model/user.php');
 	include_once (dirname(__DIR__).'/smp5/model/PortfolioReacties.php');

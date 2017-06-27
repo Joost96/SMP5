@@ -1,5 +1,5 @@
 <?php
-	include_once (dirname(__DIR__).'/model/informaticaBase.php');
+	include_once (dirname(__DIR__).'/model/InformaticaBase.php');
 	include_once (dirname(__DIR__).'/model/portfolioItem.php');
 	include_once (dirname(__DIR__).'/model/portfolioAfbeelding.php');
 	include_once (dirname(__DIR__)."/model/userDAO.php");

@@ -11,7 +11,8 @@
 	if (!isset($_SESSION['user']) || 
 		empty($_SESSION['user']) || 
 		!isset($_GET['onderwerp_id']) ||
-		$onderwerp == NULL){
+		$onderwerp == NULL)
+	{
 		header("location: overzicht.php");
 	}
 		

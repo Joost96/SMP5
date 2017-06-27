@@ -1,7 +1,7 @@
 <?php
 	class InformaticaBase
 	{
-		private $serverName = "smgroep5.infhaarlem.nl";
+		private $serverName = "localhost";
 		private $userName = "smgroep5_root";
 		private $passWord = "Rootww1";
 		private $database = "smgroep5_informaticahaarlem";
