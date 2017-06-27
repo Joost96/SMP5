@@ -36,7 +36,7 @@
 				foreach($fotos as $foto)
 				{
 					$link = $instaScraper->image($foto);
-					$beschrijving = "Instagramfoto";
+					$beschrijving = "Instagramfoto voor: $titelNL";
 					$afbeeldingID = $afbDAO->createAfbeelding($link, $beschrijving);
 					echo $afbeeldingID;
 					$afbDAO->createPortfolioAfbeelding($portfolioID, $afbeeldingID, $foto);
