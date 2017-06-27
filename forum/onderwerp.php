@@ -21,35 +21,57 @@
 	echo "
 		<section id='forumPageContent'>
 		<a href='../index.php'>Home</a><span> > </span>
-		<a href='overzicht.php'>Overzicht</a>
 		<h6>{$title}</h6>
 		";
+	$user = false;
 		
-	if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
-		echo "
-			<p><a href='nieuwePost.php?onderwerp_id={$onderwerp->id}'>Maak een nieuwe post.</a></p>
-			";
-	}
-	
 	echo "
 		<table id='overzichtTabel'>
-			<tr>
+			<tr class='even'>
 				<th>Titel</th>
-				<th>Gepost door</th>
 				<th>Aantal Reacties</th>
-			</tr>";
+				<th>Gepost door</th>
+				";
+	if($user != false){
+		if ($user->admin){
+			echo "
+				<th>Delete</th>
+				";
+		}
+	}
+				
+	echo "</tr>";
 	
 	$i = 1;
 	foreach ( $posts as $post ){
 		echo "
 			<tr class='".addTableClass($i)."'>
 				<td><a href='post.php?post_id={$post->id}'>{$post->titel}</a></td>
-				<td>{$post->user->username}</td>
 				<td>{$post->aantalReacties}</td>
-			</tr>";
-			$i++;
+				<td>{$post->user->username}</td>";
+		
+		if ($user != false){
+			if ($user->admin){
+				echo "
+					<td><a id='' href='deletePost.php?onderwerp_id={$onderwerp_id}&post_id={$post->id}'>X</a>
+					";
+			}
+		}
+		
+		
+		echo "</tr>";
+		$i++;
 	}
 	echo "</table>";
+	
+	if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
+		$user = $_SESSION['user'];
+		$user = unserialize($user);
+		echo "
+			<p id='nieuwePostLink'><a href='nieuwePost.php?onderwerp_id={$onderwerp->id}'>Maak een nieuwe post.</a></p>
+			";
+	}
+		
 	echo "</section>";
 	
 	function addTableClass ($i){

@@ -12,9 +12,8 @@
 			$_POST['titel'], $_POST['content'], $user, null, 0);
 		
 		$result = $forumdao->plaatsPost($post);	
-	} else {
-		echo "else";
-	}		
-	
-	header("location: onderwerp.php?onderwerp_id={$_POST['onderwerp_id']}");
+		header("location: onderwerp.php?onderwerp_id={$_POST['onderwerp_id']}");
+	}
+
+	echo "<a href='onderwerp.php?onderwerp_id={$_POST['onderwerp_id']}'>goto onderwerp</a>";
 ?>

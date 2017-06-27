@@ -13,6 +13,7 @@
 	$title = "Forum";
 	$style = "forum";
 	$script = "nieuweReactie";
+	$user = false;
 	
 	page_header($title, $style, $script);
 
@@ -32,6 +33,8 @@
 		<section class='reactieSection'>
 		<section class='reactieForm'>";
 	if (isset($_SESSION['user']) && !empty($_SESSION['user'])){
+		
+		
 		echo "
 			<form id='reactieForm'>
 				<label id='reactieLabel' for='reactie'>Reactie: </label>

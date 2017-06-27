@@ -28,17 +28,10 @@
 		<a href='onderwerp.php?onderwerp_id={$onderwerp->id}'>{$onderwerp->naam}</a>
 
 		<form id='postForm' action='plaatsPost.php' method='post'>
-			<table id='formTable'>
-				<tr>
-					<td class='nieuwePostLabel'><label>Titel:</label></td>
-					<td class='nieuwePostText'><input type='text' name='titel' value='' /></td>
-				</tr>
-				<tr>
-					<td class='nieuwePostLabel'><label>Post content:</label></td>
-					<td class='nieuwePostText'><textarea form='postForm' rows='8' cols='200' value='' id='postTextBox' name='content'></textarea></td>
-				</tr>
-			</table>
-			
+			<p><label>Titel:</label></p>
+			<p><textarea form='postForm' rows='1' cols='200' value='' id='postTitelTextBox' name='titel'></textarea></p>
+			<p><label>Post content:</label></p>
+			<p><textarea form='postForm' rows='8' cols='200' value='' id='postContentTextBox' name='content'></textarea></p>
 			<input type='hidden' value='{$onderwerp->id}' name='onderwerp_id' />
 			<p><input type='submit' value='Plaats Post' />
 		</form>

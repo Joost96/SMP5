@@ -69,7 +69,7 @@
 				VALUES (?, ?, ?, ?, DATE_ADD(NOW(), INTERVAL 2 HOUR))";
 			
 			$result = $this->executeQuery4($con, $query, "ssii", $post->titel, 
-				$post->content, $post->onderwerpId, $post->user->id);
+				$post->content, $post->onderwerp, $post->user->id);
 			
 			$this->close();
 			
@@ -172,6 +172,28 @@
 			$this->close();
 
 			return $onderwerp[0];
+		}
+		
+		function deletePost($id){
+			$con = $this->connect();
+			$query = "DELETE FROM `post` WHERE `post`.`ID` = ?";
+			
+			$result = $this->executeQuery1($con, $query, "i", $id);
+			
+			$this->close();
+			
+			return;
+		}
+		
+		function deleteReactie($id){
+			$con = $this->connect();
+			$query = "DELETE FROM `reactie` WHERE `reactie`.`id` = ?";
+			
+			$this->executeQuery1($con, $query, "i", $id);
+			
+			$this->close();
+			
+			return;
 		}
 		
 		private function executeQuery1($con, $query, $type, $param){

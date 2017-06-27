@@ -15,10 +15,11 @@
 	echo "
 		<section id='forumPageContent'>
 		<a href='../index.php'>Home</a>
+		<h6>{$title}</h6>
 		";
 		
 	echo "<table id='onderwerpenTabel'>
-			<tr>
+			<tr class='even'>
 				<th>Onderwerp</th>
 				<th>Aantal Posts</th>
 			</tr>
