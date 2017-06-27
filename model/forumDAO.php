@@ -79,7 +79,7 @@
 		function getAllReacties($post_id){
 			$con = $this->connect();
 			
-			$query = "select * from reactie where postId = ?";
+			$query = "select * from reactie where postId = ? ORDER BY `datum` desc";
 			
 			$result = $this->executeQuery1($con, $query, "i", $post_id);
 			

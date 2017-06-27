@@ -17,23 +17,35 @@
 		<a href='../index.php'>Home</a>
 		";
 		
-	echo "<table id='ondwerpenTabel'>
+	echo "<table id='onderwerpenTabel'>
 			<tr>
 				<th>Onderwerp</th>
 				<th>Aantal Posts</th>
 			</tr>
 		";
-		
+	
+	$i = 1;
 	foreach ( $onderwerpen as $onderwerp ){
 		echo "
-			<tr>
+			<tr class='".
+			addTableClass($i)
+			."'>
 				<td><a href='onderwerp.php?onderwerp_id={$onderwerp->id}' >{$onderwerp->naam}</a></td>
 				<td>{$onderwerp->aantalPosts}</td>
 			</tr>
 			";
+			$i++;
 	}
 	
 	echo "
 		</table>
 		</section>";
+		
+	function addTableClass ($i){
+		if ($i % 2 == 0){
+			return "even";
+		} else {
+			return "odd";
+		}
+	}
 ?>

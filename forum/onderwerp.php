@@ -39,15 +39,24 @@
 				<th>Aantal Reacties</th>
 			</tr>";
 	
+	$i = 1;
 	foreach ( $posts as $post ){
 		echo "
-			<tr>
+			<tr class='".addTableClass($i)."'>
 				<td><a href='post.php?post_id={$post->id}'>{$post->titel}</a></td>
 				<td>{$post->user->username}</td>
 				<td>{$post->aantalReacties}</td>
 			</tr>";
+			$i++;
 	}
 	echo "</table>";
-	
 	echo "</section>";
+	
+	function addTableClass ($i){
+		if ($i % 2 == 0){
+			return "even";
+		} else {
+			return "odd";
+		}
+	}
 ?>

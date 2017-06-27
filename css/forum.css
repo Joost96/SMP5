@@ -2,9 +2,33 @@ body{
 	font-family: Arial;
 }
 
+.odd {
+	background-color: #edf3ff;
+}
+
 #forumPageContent{
 	width: 60%;
 	margin: auto;
+}
+
+#forumPageContent a {
+	text-decoration: none;
+}
+
+#forumPageContent a:link {
+	color: blue;
+}
+
+#forumPageContent a:visited {
+	color: blue;
+}
+
+#forumPageContent a:hover {
+	text-decoration: underline;
+}
+
+#forumPageContent a:active {
+	color: red;
 }
 
 .reactieForm {
@@ -22,14 +46,20 @@ table {
 	border-collapse: collapse;
 }
 
-tr th, tr td {
-	border-bottom: 1px solid #e3e3e3;
+#nieuwePostLabel {
+	width: 30%;
+	color: blue;
+}
+
+#nieuwePostText {
+	align-text: left;
 }
 
 tr > :nth-child(1) {
 	width: 83%;
 	margin: auto;
 }
+
 tr > :nth-child(2) {
 	width: 200px;
 }
@@ -67,6 +97,10 @@ h6 {
 	clear: both;
 }
 
+#onderwerpenTabel{
+	margin-top: 30px;
+}
+
 .lijn{
 	border-top: 1px double #0065B3;
 	width: 95%;
@@ -100,4 +134,5 @@ h5 {
 .error {
 	float: left;
 	clear: both;
+	color: red;
 }

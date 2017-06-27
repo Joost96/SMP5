@@ -14,15 +14,11 @@
 		$onderwerp == NULL){
 		header("location: overzicht.php");
 	}
-	
-	var_dump($onderwerp);
-	
+		
 	$title = "Nieuwe Post";
 	$style = "forum";
 	
 	page_header($title, $style);
-	
-
 	
 	echo "
 		<section id='forumPageContent'>
@@ -30,13 +26,20 @@
 		<a href='overzicht.php'>Overzicht</a><span> > </span>
 		<a href='onderwerp.php?onderwerp_id={$onderwerp->id}'>{$onderwerp->naam}</a>
 
-		<form action='plaatsPost.php' method='post'>
-			<p><label>Titel:</label>
-			<input type='text' name='titel' value='' /></p>
-			<p><label>Post content:</label>
-			<input type='text' name='content' value='' /></p>
+		<form id='postForm' action='plaatsPost.php' method='post'>
+			<table id='formTable'>
+				<tr>
+					<td class='nieuwePostLabel'><label>Titel:</label></td>
+					<td class='nieuwePostText'><input type='text' name='titel' value='' /></td>
+				</tr>
+				<tr>
+					<td class='nieuwePostLabel'><label>Post content:</label></td>
+					<td class='nieuwePostText'><textarea form='postForm' rows='8' cols='200' value='' id='postTextBox' name='content'></textarea></td>
+				</tr>
+			</table>
+			
 			<input type='hidden' value='{$onderwerp->id}' name='onderwerp_id' />
-			<p><input type='submit' value='Plaats Post' /></p>
+			<p><input type='submit' value='Plaats Post' />
 		</form>
 		</section>
 		";

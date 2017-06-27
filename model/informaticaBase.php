@@ -23,7 +23,7 @@
 			return $this->connection; 
 		}
 		public function disconnect() {
-			mysqli_close($this->connection);
+			unset($this->connection);
 		}
     }
 ?>

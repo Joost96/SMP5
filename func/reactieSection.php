@@ -6,8 +6,8 @@
 		
 		$forumdao = new forumDAO();
 		$reacties = $forumdao->getAllReacties($post_id);
-		$reacties = array_reverse($reacties);
-
+		
+		$i = 1;
 
 		foreach ( $reacties as $reactie ){
 			echo "
@@ -18,6 +18,8 @@
 						<p id='reactieContent'>{$reactie->content}</p>
 					</article>
 				";
+			
+			$i++;
 		}	
 	}
 ?>
