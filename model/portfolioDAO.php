@@ -150,21 +150,28 @@
 					AND portfolioItem.ID = ?";
 
 			$databaseConn = $this->connect();
-			$state = $databaseConn->prepare($sql);
-			$state->bind_param("i", $ID);
-			$state->execute();			
-			$result = $state->get_result();
-			if(!$result)
-			{
-				echo "er komt geen result terug";
+			
+			if (!($stmt = $databaseConn->prepare($sql))) {
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
 			}
+			if (!$stmt->bind_param("i", $ID)) {
+				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}	
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}
+			
+			$result = $stmt->get_result();
 			
 			while($row = $result->fetch_assoc())
 			{
 				$portfolioItem = new portfolioItem($row["ID"], $row["titel"], $row["username"], $row["beschrijving"], $row["leerjaar"], $row["datum"], $row["afbeeldinglink"], $row['technieken'], $row['youtubeLink']);									
 			}
 			
-			$state->close();
+			$stmt->close();
 			$this->closeConnection();			
 			return $portfolioItem;	
 		}
@@ -175,10 +182,22 @@
 			$sql = "SELECT examenonderdeel.naam FROM examenonderdeel, P_E
 					WHERE P_E.examenonderdeelId = examenonderdeel.Id AND P_E.portfolioItemId = ?";
 					
-			$state = $databaseConn->prepare($sql);				
-			$state->bind_param("i", $ID);
-			$state->execute();
-			$result = $state->get_result();
+			$databaseConn = $this->connect();
+			
+			if (!($stmt = $databaseConn->prepare($sql))) {
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
+			}
+			if (!$stmt->bind_param("i", $ID)) {
+				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}	
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}
+			
+			$result = $stmt->get_result();
 			
 			$onderdelen = array();
 			while($row = $result->fetch_assoc())
@@ -186,7 +205,7 @@
 				$onderdeel = ($row['naam']);
 				$onderdelen[] = $onderdeel;
 			}
-			$state->close();
+			$stmt->close();
 			$this->closeConnection();
 			return $onderdelen;
 		}
@@ -198,10 +217,23 @@
 			$sql = "SELECT reactie.id, user.username, reactie.content, reactie.datum 
 					FROM reactie, user WHERE user.ID = reactie.auteurId AND reactie.portfolioItemId = ?";
 					
-			$state = $databaseConn->prepare($sql);				
-			$state->bind_param("i", $ID);
-			$state->execute();
-			$result = $state->get_result();
+			$databaseConn = $this->connect();
+			
+			
+			if (!($stmt = $databaseConn->prepare($sql))) {
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
+			}
+			if (!$stmt->bind_param("i", $ID)) {
+				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}	
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}
+			
+			$result = $stmt->get_result();
 			
 			$userDAO = new userDAO();
 			$reacties = array();
@@ -212,7 +244,7 @@
 				$reactie = new ReactieModel($row['id'], NULL, NULL, $user, $row['content'], $row['datum']);
 				$reacties[] = $reactie;
 			}
-			$state->close();
+			$stmt->close();
 			$this->closeConnection();
 			return $reacties;
 		}
@@ -224,10 +256,22 @@
 			AND portfolioAfbeelding.portfolioItem_ID = ?";
 			
 			$databaseConn = $this->connect();
-			$state = $databaseConn->prepare($sql);
-			$state->bind_param("i", $ID);
-			$state->execute();
-			$result = $state->get_result();
+			
+			
+			if (!($stmt = $databaseConn->prepare($sql))) {
+				echo "Prepare failed: (" . $databaseConn->errno . ") " . $databaseConn->error;
+				return;
+			}
+			if (!$stmt->bind_param("i", $ID)) {
+				echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}	
+			if (!$stmt->execute()) {
+				echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				return;
+			}
+			
+			$result = $stmt->get_result();
 			
 			$afbeeldingen = array();
 			
@@ -237,7 +281,7 @@
 				$afbeeldingen[] = $portfolioAfbeelding;
 			}
 			
-			$state->close();
+			$stmt->close();
 			$this->closeConnection();
 			
 			return $afbeeldingen;

@@ -104,7 +104,8 @@
 			})
 			.done(function(msg){
 			console.log(msg);
-				$('.nieuwereactieform').html(msg);
+				$('.reacties').html(msg);
+				content = "";
 			})
 			.fail(function(){
 				alert('Er is iets misgegaan bij het plaatsen van je reactie');

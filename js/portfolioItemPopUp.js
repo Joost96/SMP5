@@ -116,6 +116,7 @@ function onLoad() {
 				console.log(msg);
 				$('#nieuwItem')[0].reset();
 				$(".modal").hide();
+				$("#sorteer").click();
 			})
 			.fail(function() {
 				$('#nieuwItem')[0].reset();
@@ -126,6 +127,38 @@ function onLoad() {
 		console.log(errors);
 });
 
+	function isLoggedIn(){
+		$('#maakItemBTN').show();
+	}
+		
+	$("#sorteer").click(function(){
+		var jaarfilter = [];
+			$('input[type=checkbox][name=jaarfilter]').each(function(){
+				if($(this).is(':checked'))
+				{
+					jaarfilter.push($(this).val())
+				}
+			});
+		var onderdeelfilter = [];
+			$('input[type=checkbox][name=onderdeelfilter]').each(function(){
+				if($(this).is(':checked'))
+				{
+					onderdeelfilter.push($(this).val())
+				}
+			});
+		$.ajax({
+			method: "POST",
+			url: "func/toonItems.php", 
+			data: {jaarfilter:jaarfilter, onderdeelfilter:onderdeelfilter}
+		})
+		.done(function(msg){
+			$('.itemsReturn').html(msg);
+		})
+		.fail(function() {
+			$('.itemsReturn').html("<p>Er is een fout op getreden bij het communiceren met de database</p>");
+		});
+		});	
+}
 function validateOnderdelen(onderdelen)
 {
 	if($(onderdelen).length !== 0)
@@ -170,11 +203,9 @@ function validateYt(yt)
 	var check2 = "https://youtu.be/";
 	
 	if((yt.indexOf(check) > -1) || (yt.indexOf(check2) > -1))
-	{
 		return true;
-	}
 	else
 		return false;
 }
-}
+
 	

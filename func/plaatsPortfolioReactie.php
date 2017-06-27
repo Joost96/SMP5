@@ -2,7 +2,6 @@
 	include_once (dirname(__DIR__).'/model/forumDAO.php');
 	include_once (dirname(__DIR__).'/model/user.php');
 	include_once (dirname(__DIR__).'/model/PortfolioReacties.php');
-	
 	session_start();
 	$forumdao = new forumDAO();
 	
